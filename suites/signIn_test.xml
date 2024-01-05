@@ -1,0 +1,22 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="App Test Suite" verbose="1" >
+
+  <listeners>
+    <listener class-name="com.epam.reportportal.testng.ReportPortalTestNGListener" />
+    <listener class-name="co.huru.listeners.TestListener" />
+  </listeners>
+
+  <test name="SignIn Test">
+    <groups>
+      <run>
+        <include name ="signIn"/>
+      </run>
+    </groups>
+
+    <classes>
+      <class name="co.huru.test.SignInTest"/>
+    </classes>
+
+  </test>
+</suite>
