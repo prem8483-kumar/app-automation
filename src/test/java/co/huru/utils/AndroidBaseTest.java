@@ -52,7 +52,7 @@ public class AndroidBaseTest extends AppiumUtils{
 
 /*
 {
-  "appium:app": "//Users//prem//Desktop//app-automation//src//test//resources//app-debug-version.apk",
+  "appium:app": "C://Repo//app-automation//src//test//resources//app-debug-version-old.apk",
   "appium:deviceName": "Pixel",
   "appium:automationName": "UiAutomator2",
   "platformName": "Android",

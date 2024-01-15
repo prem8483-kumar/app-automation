@@ -1,2 +1,4 @@
 target/
 screenshots
+.idea
+src/test/resources/apk

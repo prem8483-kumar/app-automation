@@ -10,4 +10,11 @@ public class SignInDataProvider {
                 {"520000000", "123789", "123456"},
         };
     }
+
+    @DataProvider(name = "forgotPinData")
+    public Object[][] forgotPinData() {
+        return new Object[][] {
+                {"520000000", "246135", "123456"},
+        };
+    }
 }

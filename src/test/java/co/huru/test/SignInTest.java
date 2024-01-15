@@ -2,6 +2,7 @@ package co.huru.test;
 
 import co.huru.data.SignInDataProvider;
 import co.huru.pageObjects.SignInPage;
+import co.huru.pageObjects.SignUpPage;
 import co.huru.utils.AndroidBaseTest;
 import org.testng.annotations.Test;
 import org.apache.logging.log4j.LogManager;
@@ -18,6 +19,25 @@ public class SignInTest extends AndroidBaseTest {
         SignInPage signInPage = new SignInPage(driver);
         signInPage.enterPhoneNumber(phoneNumber);
         signInPage.enterPasscode(passcode);
+        signInPage.enterOtp(otp);
+        signInPage.waitForHomePage();
+    }
+
+    @Test(groups = {"signIn"}, description = "Sign In", dataProvider = "forgotPinData", dataProviderClass = SignInDataProvider.class)
+    public void forgotPasscode(String phoneNumber, String newPasscode, String otp)  {
+
+        log.info("Sign In Test");
+        SignInPage signInPage = new SignInPage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+
+        signInPage.enterPhoneNumber(phoneNumber);
+        signInPage.clickForgotPasswordLink();
+
+        signUpPage.enterOtp(otp);
+        signUpPage.enterPasscode(newPasscode);
+        signUpPage.confirmPasscode(newPasscode);
+
+        signInPage.enterPasscode(newPasscode);
         signInPage.enterOtp(otp);
         signInPage.waitForHomePage();
     }
