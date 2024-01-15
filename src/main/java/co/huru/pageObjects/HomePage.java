@@ -33,4 +33,33 @@ public class HomePage extends AndroidActions {
 		waitForElementToBeVisible(backButton).click();
 	}
 
+	public void goToHomePage()
+	{
+		log.info("Go to profile");
+		waitForElementToBeVisible(homeTab).click();
+	}
+
+	public void goToPayBillsPage()
+	{
+		log.info("Go to profile");
+		waitForElementToBeVisible(payBillsTab).click();
+	}
+
+	public void goToSendMoneyPage()
+	{
+		log.info("Go to profile");
+		waitForElementToBeVisible(sendMoneyTab).click();
+	}
+
+	public void goToTransactionsPage()
+	{
+		log.info("Go to profile");
+		waitForElementToBeVisible(transactionsTab).click();
+	}
+
+	public void goToProfilePage()
+	{
+		log.info("Go to profile");
+		waitForElementToBeVisible(profileTab).click();
+	}
 }

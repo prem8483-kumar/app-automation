@@ -66,7 +66,6 @@ public class SignInPage extends AndroidActions {
 		waitForElementToBeVisible(otpView);
 		waitForElementToBeVisible(otpTextBox_1).click();
 		sendNumericKeysUsingKeyboard(otp);
-
 	}
 
 	public void waitForHomePage()
@@ -79,6 +78,14 @@ public class SignInPage extends AndroidActions {
 	{
 		log.info("Verify phone number prefilled");
 		assertEquals(waitForElementToBeVisible(phoneNumberTextBox).getText(), phoneNumber);
+	}
+
+	public void signIn(String phoneNumber, String passcode, String otp) {
+		log.info("Sign In");
+		enterPhoneNumber(phoneNumber);
+		enterPasscode(passcode);
+		enterOtp(otp);
+		waitForHomePage();
 	}
 
 }
