@@ -59,7 +59,7 @@ public class ProfilePage extends AndroidActions {
 	private final By addAccountButton = By.id("com.huru:id/add_account_btn");
 
 	private final By cashbackRewardsSection = By.id("com.huru:id/cashback_section");
-	private final By cashbackBalanceText = By.id("//android.widget.TextView[@text=\"Cashback Balance\"]");
+	private final By cashbackBalanceText = By.xpath("//android.widget.TextView[@text=\"Cashback Balance\"]");
 	private final By backButtonFromCashbackRewards = By.id("//android.widget.Button");
 
 	private final By loginSettingsSection = By.id("com.huru:id/login_section");
@@ -71,16 +71,16 @@ public class ProfilePage extends AndroidActions {
 	private final By confirmPasscodeButton = By.id("com.huru:id/set_passcode_continue");
 
 	private final By termsAndConditionsSection = By.id("com.huru:id/others_section1");
-	private final By termsAndConditionsHeaderText = By.id("//android.widget.TextView[@text=\"Terms & Conditions\"]");
-	private final By backButtonFromTermsAndConditions = By.id("//android.widget.Button");
+	private final By termsAndConditionsHeaderText = By.xpath("//android.widget.TextView[@text=\"Terms & Conditions\"]");
+	private final By backButtonFromTermsAndConditions = By.xpath("//android.widget.Button");
 
 	private final By privacyPolicySection = By.id("com.huru:id/others_section2");
-	private final By privacyPolicyHeaderText = By.id("//android.widget.TextView[@text=\"Privacy policy\"]");
-	private final By backButtonFromPrivacyPolicy = By.id("//android.widget.Button");
+	private final By privacyPolicyHeaderText = By.xpath("//android.widget.TextView[@text=\"Privacy policy\"]");
+	private final By backButtonFromPrivacyPolicy = By.xpath("//android.widget.Button");
 
 	private final By helpAndSupportSection = By.id("com.huru:id/others_section3");
-	private final By helpAndSupportHeaderText = By.id("//android.widget.TextView[@text=\"Help & Support\"]");
-	private final By backButtonFromHelpAndSupport = By.id("//android.widget.Button");
+	private final By helpAndSupportHeaderText = By.xpath("//android.widget.TextView[@text=\"Help & Support\"]");
+	private final By backButtonFromHelpAndSupport = By.xpath("//android.widget.Button");
 
 	private final By logoutSection = By.id("com.huru:id/logout_section");
 	private final By logoutContinueButton = By.id("com.huru:id/logout_continue");
