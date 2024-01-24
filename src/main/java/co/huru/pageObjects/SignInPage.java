@@ -28,7 +28,7 @@ public class SignInPage extends AndroidActions {
 	private final By forgotPasscodeLink = By.id("com.huru:id/forgot_passcode");
 
 	private final By otpView = By.id("com.huru:id/otpView");
-	private final By otpTextBox_1 = By.xpath("//android.widget.LinearLayout[1]/android.widget.EditText");
+	private final By otpTextBox_1 = By.xpath("//androidx.compose.ui.platform.ComposeView[@resource-id=\"com.huru:id/otpView\"]/android.view.View/android.view.View[1]/android.widget.EditText/android.view.View");
 	private final By verifyOtpButton = By.id("com.huru:id/continueBtn");
 	private final By resendOtpLink = By.id("com.huru:id/resendOtpLink");
 
@@ -64,7 +64,7 @@ public class SignInPage extends AndroidActions {
 	{
 		log.info("Enter otp");
 		waitForElementToBeVisible(otpView);
-		waitForElementToBeVisible(otpTextBox_1).click();
+		//waitForElementToBeVisible(otpTextBox_1).click();
 		sendNumericKeysUsingKeyboard(otp);
 	}
 

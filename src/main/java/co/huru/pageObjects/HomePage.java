@@ -1,12 +1,13 @@
 package co.huru.pageObjects;
 
 import co.huru.utils.AndroidActions;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
-import static org.testng.Assert.assertEquals;
+import io.appium.java_client.AppiumBy;
 
 public class HomePage extends AndroidActions {
 
@@ -27,10 +28,20 @@ public class HomePage extends AndroidActions {
 
 	//ToDo: Ask to add id for rest elements
 
+	private final By kycCardHeader = AppiumBy.accessibilityId("id_kyc_status_header");
+	private final By kycCardDescription = AppiumBy.accessibilityId("id_kyc_status_desc");
+
 	public void navigateBack()
 	{
 		log.info("Navigate back");
 		waitForElementToBeVisible(backButton).click();
+	}
+
+	public void kycCard()
+	{
+		log.info("Kyc card");
+		waitForElementToBeVisible(kycCardHeader);
+		waitForElementToBeVisible(kycCardDescription);
 	}
 
 	public void goToHomePage()
