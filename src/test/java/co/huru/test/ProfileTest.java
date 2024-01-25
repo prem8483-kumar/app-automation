@@ -103,7 +103,8 @@ public class ProfileTest extends AndroidBaseTest {
     }
 
     @Test(groups = {"profile"}, description = "Profile", dataProvider = "userSignInData", dataProviderClass = ProfileDataProvider.class)
-    public void addBankAccountAsPaymentMethod(String phoneNumber, String passcode, String otp)  {
+    public void addBankAccountAsPaymentMethod(String phoneNumber, String passcode, String otp,
+                                              String bankUserName, String bankPassword, String bankOtp)  {
 
         log.info("Add bank account as payment method  test");
         SignInPage signInPage = new SignInPage(driver);
@@ -114,8 +115,8 @@ public class ProfileTest extends AndroidBaseTest {
 
         ProfilePage profilePage = new ProfilePage(driver);
         profilePage.gotToPaymentMethodsSection();
-        profilePage.addBankAccount();
-        //ToDo: Id and Test data required
+        profilePage.addBankAccount(bankUserName, bankPassword, bankOtp);
+
     }
 
     @Test(groups = {"profile"}, description = "Profile", dataProvider = "userSignInData", dataProviderClass = ProfileDataProvider.class)

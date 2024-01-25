@@ -39,4 +39,10 @@ public class ProfileDataProvider {
         };
     }
 
+    @DataProvider(name = "addBankAccountData")
+    public Object[][] addBankAccountData() {
+        return new Object[][] {
+                {"581111111", "123789", "123456", "mr.lazaroschaefer", "CvwxAhXTfBaFKvS", "1111"},
+        };
+    }
 }

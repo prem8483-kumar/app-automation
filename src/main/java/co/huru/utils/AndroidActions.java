@@ -44,7 +44,6 @@ public class AndroidActions extends AppiumUtils {
 		return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
 	}
 
-
 	public boolean elementDisplayed(By locator)
 	{
 		log.info("Check if element is displayed with locator: " +  locator);

@@ -1,6 +1,7 @@
 package co.huru.pageObjects;
 
 import co.huru.utils.AndroidActions;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -55,8 +56,20 @@ public class ProfilePage extends AndroidActions {
 
 	private final By paymentMethodsSection = By.id("com.huru:id/payment_section");
 	private final By bankAccountsTab = By.id("com.huru:id/background_bank_view");
-	private final By cardsTab = By.id("com.huru:id/background_card_view");
 	private final By addAccountButton = By.id("com.huru:id/add_account_btn");
+	private final By addAccountLink = By.xpath("//android.widget.TextView[@text=\"Add\"]");
+	private final By cardsTab = By.id("com.huru:id/background_card_view");
+
+	private final By choseYourBankButton = AppiumBy.accessibilityId("id_huru_button_text");
+	private final By selectBank1 = By.xpath("//android.widget.TextView[@text=\"Lean Mockbank\"]");
+
+	private final By connectToBankButton = By.id("BUTTON_ID__INITIAL__SUBMIT");
+	private final By bankAccountUserNameTextBox = By.id("username");
+	private final By bankAccountPasswordTextBox = By.id("password");
+	private final By bankAccountLoginButton = By.id("BUTTON_ID__CREDENTIALS__SUBMIT");
+	private final By bankAccountOtpTextBox = By.id("genericMfa");
+	private final By bankAccountOtpSubmitButton = By.id("BUTTON_ID__MFA__SUBMIT");
+	private final By bankAccountSuccessButton = By.id("BUTTON_ID__SUCCESS__CLOSE");
 
 	private final By cashbackRewardsSection = By.id("com.huru:id/cashback_section");
 	private final By cashbackBalanceText = By.xpath("//android.widget.TextView[@text=\"Cashback Balance\"]");
@@ -168,13 +181,30 @@ public class ProfilePage extends AndroidActions {
 		waitForElementToBeVisible(paymentMethodsSection);
 	}
 
-	public void addBankAccount()
+	public void addBankAccount(String userName, String password, String otp)
 	{
-		log.info("Verify payment methods");
+		log.info("Add bank account");
 		waitForElementToBeVisible(bankAccountsTab).click();
-		waitForElementToBeVisible(addAccountButton).click();
+		if(elementDisplayed(addAccountButton)) {
+			waitForElementToBeVisible(addAccountButton).click();
+		} else {
+			waitForElementToBeVisible(addAccountLink).click();
+		}
 
-		//ToDo: Require Test Data for Bank Account and Id
+		waitForElementToBeVisible(choseYourBankButton).click();
+		waitForElementToBeVisible(selectBank1).click();
+		waitForElementToBeVisible(connectToBankButton).click();
+
+		waitForElementToBeVisible(bankAccountUserNameTextBox).sendKeys(userName);
+		waitForElementToBeVisible(bankAccountPasswordTextBox).sendKeys(password);
+		waitForElementToBeVisible(bankAccountLoginButton).click();
+
+		waitForElementToBeVisible(bankAccountOtpTextBox).click();
+		sendNumericKeysUsingKeyboard(otp);
+		waitForElementToBeVisible(bankAccountOtpSubmitButton).click();
+		waitForElementToBeVisible(bankAccountSuccessButton).click();
+
+		waitForElementToBeVisible(addAccountLink);
 	}
 
 	public void gotToCashbackRewardsSection()
