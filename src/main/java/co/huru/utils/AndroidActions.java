@@ -2,6 +2,7 @@ package co.huru.utils;
 
 import co.huru.configs.EnvConfig;
 import co.huru.pageObjects.SignInPage;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
@@ -44,18 +45,24 @@ public class AndroidActions extends AppiumUtils {
 		return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
 	}
 
-	public boolean elementDisplayed(By locator)
+	public boolean elementNotVisible(By locator)
 	{
-		log.info("Check if element is displayed with locator: " +  locator);
-		return driver.findElement(locator).isDisplayed();
+		log.info("Check if element is visible with locator: " +  locator);
+		return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
 	}
 
-	public void moveToElement(WebElement element)
+	public void scrollToText(String visibleText)
 	{
+		log.info("Scrolling to text : " +  visibleText);
+		driver.findElement(new AppiumBy.ByAndroidUIAutomator(
+				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"" + visibleText + "\").instance(0))"));
+	}
 
-		log.info("Moving to element: " +  element);
-		Actions actions = new Actions(driver);
-		actions.moveToElement(element).click().perform();
+	public void scrollToElement(String resourceId)
+	{
+		log.info("Scrolling to element with resource-id : " +  resourceId);
+		driver.findElement(new AppiumBy.ByAndroidUIAutomator(
+				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().resourceId(\"" + resourceId + "\").instance(0))"));
 	}
 
 	public void sendNumericKeysUsingKeyboard(String keys)

@@ -62,18 +62,19 @@ public class ProfilePage extends AndroidActions {
 
 	private final By choseYourBankButton = AppiumBy.accessibilityId("id_huru_button_text");
 	private final By selectBank1 = By.xpath("//android.widget.TextView[@text=\"Lean Mockbank\"]");
+	private final By selectBankByText = By.xpath(String.format("//android.widget.TextView[@text=%s]", "Lean Mockbank"));
 
-	private final By connectToBankButton = By.id("BUTTON_ID__INITIAL__SUBMIT");
-	private final By bankAccountUserNameTextBox = By.id("username");
-	private final By bankAccountPasswordTextBox = By.id("password");
-	private final By bankAccountLoginButton = By.id("BUTTON_ID__CREDENTIALS__SUBMIT");
-	private final By bankAccountOtpTextBox = By.id("genericMfa");
-	private final By bankAccountOtpSubmitButton = By.id("BUTTON_ID__MFA__SUBMIT");
-	private final By bankAccountSuccessButton = By.id("BUTTON_ID__SUCCESS__CLOSE");
+	private final By connectToBankButton = By.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__INITIAL__SUBMIT\"]");
+	private final By bankAccountUserNameTextBox = By.xpath("//android.widget.EditText[@resource-id=\"username\"]");
+	private final By bankAccountPasswordTextBox = By.xpath("//android.widget.EditText[@resource-id=\"password\"]");
+	private final By bankAccountLoginButton = By.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__CREDENTIALS__SUBMIT\"]");
+	private final By bankAccountOtpTextBox = By.xpath("//android.widget.EditText[@resource-id=\"genericMfa\"]");
+	private final By bankAccountOtpSubmitButton = By.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__MFA__SUBMIT\"]");
+	private final By bankAccountSuccessButton = By.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__SUCCESS__CLOSE\"]");
 
 	private final By cashbackRewardsSection = By.id("com.huru:id/cashback_section");
 	private final By cashbackBalanceText = By.xpath("//android.widget.TextView[@text=\"Cashback Balance\"]");
-	private final By backButtonFromCashbackRewards = By.id("//android.widget.Button");
+	private final By backButtonFromCashbackRewards = By.xpath("//android.widget.Button");
 
 	private final By loginSettingsSection = By.id("com.huru:id/login_section");
 	private final By changePinLink = By.id("com.huru:id/edit_change_passcode");
@@ -122,12 +123,18 @@ public class ProfilePage extends AndroidActions {
         assertEquals(waitForElementToBeVisible(nameText).getText(), name);
 	}
 
-	public void editEmail(String email)
+	public void editEmail(String email, String otp)
 	{
 		log.info("Edit email");
 		waitForElementToBeVisible(editEmailLink).click();
 		waitForElementToBeVisible(emailTextBox).sendKeys(email);
 		waitForElementToBeVisible(emailSaveButton).click();
+
+		log.info("Enter otp");
+		waitForElementToBeVisible(otpView);
+		sendNumericKeysUsingKeyboard(otp);
+		waitForElementToBeVisible(emailVerifyButton).click();
+		waitForElementToBeVisible(personalDetailsSection).click();
 		assertEquals(waitForElementToBeVisible(emailText).getText(), email);
 	}
 
@@ -139,7 +146,6 @@ public class ProfilePage extends AndroidActions {
 		waitForElementToBeVisible(phoneNumberSaveButton).click();
 		assertEquals(waitForElementToBeVisible(phoneNumberText).getText(), phoneNumber);
 	}
-
 
 	public void verifyEmailFromProfilePage(String otp)
 	{
@@ -175,7 +181,6 @@ public class ProfilePage extends AndroidActions {
 	{
 		log.info("Verify payment methods");
 		waitForElementToBeVisible(bankAccountsTab).click();
-		waitForElementToBeVisible(addAccountButton);
 		waitForElementToBeVisible(cardsTab);
 		navigateBack();
 		waitForElementToBeVisible(paymentMethodsSection);
@@ -184,11 +189,11 @@ public class ProfilePage extends AndroidActions {
 	public void addBankAccount(String userName, String password, String otp)
 	{
 		log.info("Add bank account");
-		waitForElementToBeVisible(bankAccountsTab).click();
-		if(elementDisplayed(addAccountButton)) {
-			waitForElementToBeVisible(addAccountButton).click();
-		} else {
+		//waitForElementToBeVisible(bankAccountsTab).click();
+		if(elementNotVisible(addAccountButton)) {
 			waitForElementToBeVisible(addAccountLink).click();
+		} else {
+			waitForElementToBeVisible(addAccountButton).click();
 		}
 
 		waitForElementToBeVisible(choseYourBankButton).click();
@@ -238,9 +243,9 @@ public class ProfilePage extends AndroidActions {
 	public void gotToPrivacyPolicySection()
 	{
 		log.info("Go to privacy policy section");
+		scrollToText("Privacy policy");
 		waitForElementToBeVisible(privacyPolicySection).click();
 	}
-
 
 	public void verifyPrivacyPolicy()
 	{
@@ -253,9 +258,9 @@ public class ProfilePage extends AndroidActions {
 	public void gotToHelpAndSupportSection()
 	{
 		log.info("Go to help & support section");
+		scrollToText("Help and Support");
 		waitForElementToBeVisible(helpAndSupportSection).click();
 	}
-
 
 	public void verifyHelpAndSupport()
 	{
@@ -304,25 +309,10 @@ public class ProfilePage extends AndroidActions {
 		waitForElementToBeVisible(homeTab);
 	}
 
-	public void enableBiometric(String passcode)
-	{
-		log.info("Enable biometric");
-		waitForElementToBeVisible(enableBiometricRadioButton).click();
-
-		log.info("Enter passcode");
-		waitForElementToBeVisible(passcodeView);
-		sendNumericKeysUsingKeyboard(passcode);
-
-		waitForElementToBeVisible(biometricHeaderText);
-		navigateBack();
-		waitForElementToBeVisible(enableBiometricRadioButton);
-
-		//ToDo: Check automation feasibility
-	}
-
 	public void gotToLogoutSection()
 	{
 		log.info("Go to logout section");
+		scrollToText("Log out");
 		waitForElementToBeVisible(logoutSection).click();
 	}
 
@@ -349,7 +339,26 @@ public class ProfilePage extends AndroidActions {
 		waitForElementToBeVisible(outOfUaeAlertAcceptButton).click();
 		waitForElementToBeVisible(activateAccountCancelButton).click();
 		waitForElementToBeVisible(activateAccountButton);
+
+		//ToDo: Check automation feasibility
 	}
+
+	public void enableBiometric(String passcode)
+	{
+		log.info("Enable biometric");
+		waitForElementToBeVisible(enableBiometricRadioButton).click();
+
+		log.info("Enter passcode");
+		waitForElementToBeVisible(passcodeView);
+		sendNumericKeysUsingKeyboard(passcode);
+
+		waitForElementToBeVisible(biometricHeaderText);
+		navigateBack();
+		waitForElementToBeVisible(enableBiometricRadioButton);
+
+		//ToDo: Check automation feasibility
+	}
+
 
 
 }

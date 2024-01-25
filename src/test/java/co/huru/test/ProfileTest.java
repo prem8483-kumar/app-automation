@@ -40,7 +40,7 @@ public class ProfileTest extends AndroidBaseTest {
 
         ProfilePage profilePage = new ProfilePage(driver);
         profilePage.gotToPersonalDetailsSection();
-        profilePage.editEmail(newEmail);
+        profilePage.editEmail(newEmail, otp);
     }
 
     @Test(groups = {"profile"}, description = "Profile", dataProvider = "editUserPhoneNumberData", dataProviderClass = ProfileDataProvider.class)
@@ -56,6 +56,21 @@ public class ProfileTest extends AndroidBaseTest {
         ProfilePage profilePage = new ProfilePage(driver);
         profilePage.gotToPersonalDetailsSection();
         profilePage.editPhoneNumber(newPhoneNumber);
+    }
+
+    @Test(groups = {"profile"}, description = "Profile", dataProvider = "changeUserPinData", dataProviderClass = ProfileDataProvider.class)
+    public void changePin(String phoneNumber, String oldPasscode, String otp, String newPassCode)  {
+
+        log.info("Change user pin test");
+        SignInPage signInPage = new SignInPage(driver);
+        signInPage.signIn(phoneNumber, oldPasscode, otp);
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToProfilePage();
+
+        ProfilePage profilePage = new ProfilePage(driver);
+        profilePage.gotToLoginSettingsSection();
+        profilePage.changePin(oldPasscode, newPassCode, otp);
     }
 
     @Test(groups = {"profile"}, description = "Profile", dataProvider = "userSignInData", dataProviderClass = ProfileDataProvider.class)
@@ -87,22 +102,8 @@ public class ProfileTest extends AndroidBaseTest {
         profilePage.verifyEmailFromPersonalDetailsPage(otp);
     }
 
-    @Test(groups = {"profile"}, description = "Profile", dataProvider = "userSignInData", dataProviderClass = ProfileDataProvider.class)
-    public void verifyPaymentMethods(String phoneNumber, String passcode, String otp)  {
 
-        log.info("Verify user payment methods test");
-        SignInPage signInPage = new SignInPage(driver);
-        signInPage.signIn(phoneNumber, passcode, otp);
-
-        HomePage homePage = new HomePage(driver);
-        homePage.goToProfilePage();
-
-        ProfilePage profilePage = new ProfilePage(driver);
-        profilePage.gotToPaymentMethodsSection();
-        profilePage.verifyPaymentMethods();
-    }
-
-    @Test(groups = {"profile"}, description = "Profile", dataProvider = "userSignInData", dataProviderClass = ProfileDataProvider.class)
+    @Test(groups = {"profile"}, description = "Profile", dataProvider = "addBankAccountData", dataProviderClass = ProfileDataProvider.class)
     public void addBankAccountAsPaymentMethod(String phoneNumber, String passcode, String otp,
                                               String bankUserName, String bankPassword, String bankOtp)  {
 
@@ -179,36 +180,6 @@ public class ProfileTest extends AndroidBaseTest {
         profilePage.verifyHelpAndSupport();
     }
 
-    @Test(groups = {"profile"}, description = "Profile", dataProvider = "changeUserPinData", dataProviderClass = ProfileDataProvider.class)
-    public void changePin(String phoneNumber, String oldPasscode, String otp, String newPassCode)  {
-
-        log.info("Change user pin test");
-        SignInPage signInPage = new SignInPage(driver);
-        signInPage.signIn(phoneNumber, oldPasscode, otp);
-
-        HomePage homePage = new HomePage(driver);
-        homePage.goToProfilePage();
-
-        ProfilePage profilePage = new ProfilePage(driver);
-        profilePage.gotToLoginSettingsSection();
-        profilePage.changePin(oldPasscode, newPassCode, otp);
-    }
-
-    @Test(groups = {"profile"}, description = "Profile", dataProvider = "userSignInData", dataProviderClass = ProfileDataProvider.class)
-    public void enableBiometric(String phoneNumber, String passcode, String otp)  {
-
-        log.info("Enable biometric test");
-        SignInPage signInPage = new SignInPage(driver);
-        signInPage.signIn(phoneNumber, passcode, otp);
-
-        HomePage homePage = new HomePage(driver);
-        homePage.goToProfilePage();
-
-        ProfilePage profilePage = new ProfilePage(driver);
-        profilePage.gotToLoginSettingsSection();
-        profilePage.enableBiometric(passcode);
-    }
-
     @Test(groups = {"profile"}, description = "Profile", dataProvider = "userSignInData", dataProviderClass = ProfileDataProvider.class)
     public void logoutConfirm(String phoneNumber, String passCode, String otp)  {
 
@@ -238,6 +209,22 @@ public class ProfileTest extends AndroidBaseTest {
         profilePage.gotToLogoutSection();
         profilePage.logOutCancel();
     }
+
+    @Test(groups = {"profile"}, description = "Profile", dataProvider = "userSignInData", dataProviderClass = ProfileDataProvider.class)
+    public void enableBiometric(String phoneNumber, String passcode, String otp)  {
+
+        log.info("Enable biometric test");
+        SignInPage signInPage = new SignInPage(driver);
+        signInPage.signIn(phoneNumber, passcode, otp);
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToProfilePage();
+
+        ProfilePage profilePage = new ProfilePage(driver);
+        profilePage.gotToLoginSettingsSection();
+        profilePage.enableBiometric(passcode);
+    }
+
 
     @Test(groups = {"profile"}, description = "Profile", dataProvider = "userSignInData", dataProviderClass = ProfileDataProvider.class)
     public void activateAccount(String phoneNumber, String passCode, String otp)  {
