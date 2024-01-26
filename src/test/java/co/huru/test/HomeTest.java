@@ -15,7 +15,7 @@ public class HomeTest extends AndroidBaseTest {
     @Test(groups = {"Home"}, description = "Home Page", dataProvider = "signInData", dataProviderClass = SignInDataProvider.class)
     public void kycCardTest(String phoneNumber, String passcode, String otp)  {
 
-        log.info("Sign In Test");
+        log.info("Home Test");
         SignInPage signInPage = new SignInPage(driver);
         signInPage.signIn(phoneNumber, passcode, otp);
 
