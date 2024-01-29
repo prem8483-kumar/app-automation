@@ -22,8 +22,8 @@ public class HomePage extends AndroidActions {
 
 	private final By homeTab = By.id("com.huru:id/homeFragment");
 	private final By payBillsTab = By.id("com.huru:id/payBillsFragment");
-	private final By sendMoneyTab = By.id("com.huru:id/transactionsFragment");
-	private final By transactionsTab = By.id("com.huru:id/sendMoneyFragment");
+	private final By transactionsTab = By.id("com.huru:id/transactionsFragment");
+	private final By sendMoneyTab = By.id("com.huru:id/sendMoneyFragment");
 	private final By profileTab = By.id("com.huru:id/accountFragment");
 
 	//ToDo: Ask to add id for rest elements

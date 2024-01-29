@@ -7,6 +7,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+
 public class SendMoneyPage extends AndroidActions {
 
 	private static final Logger log = LogManager.getLogger(SendMoneyPage.class);
@@ -55,11 +59,11 @@ public class SendMoneyPage extends AndroidActions {
 	private final By daughter = AppiumBy.xpath("//android.widget.TextView[@text=\"Daughter\"]");
 	private final By nickNameTextBox = AppiumBy.xpath("//android.widget.EditText[5]");
 
-	private final By bankDetailsSection = AppiumBy.xpath("//android.widget.TextView[@text=\"Personal details\"]");
+	private final By bankDetailsSection = AppiumBy.xpath("//android.widget.TextView[@text=\"Bank details\"]");
 	private final By accountNumberTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
 	private final By ifscCodeTextBox = AppiumBy.xpath("//android.widget.EditText[2]");
 
-	private final By addressSection = AppiumBy.xpath("//android.widget.TextView[@text=\"Personal details\"]");
+	private final By addressSection = AppiumBy.xpath("//android.widget.TextView[@text=\"Address\"]");
 	private final By addressTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
 	private final By cityTextBox = AppiumBy.xpath("//android.widget.EditText[2]");
 
@@ -70,7 +74,7 @@ public class SendMoneyPage extends AndroidActions {
 	private final By totalPaymentDetailsCta = AppiumBy.accessibilityId("id_total_to_pay_display_cta");
 	private final By knowAboutFeesCta = AppiumBy.accessibilityId("id_payment_breakdown_know_about_fee_cta");
 	private final By feeInfoIcon = AppiumBy.accessibilityId("id_review_screen_fee_info_icon");
-	private final By noteTextBox = AppiumBy.xpath("//android.widget.EditText");
+	private final By paymentNoteTextBox = AppiumBy.xpath("//android.widget.EditText");
 	private final By tncLink = AppiumBy.accessibilityId("id_review_screen_tnc_clickable_text");
 	private final By tncBackButton = AppiumBy.xpath("//android.widget.Button");
 
@@ -85,14 +89,20 @@ public class SendMoneyPage extends AndroidActions {
 	private final By addPaymentMethodCta = AppiumBy.accessibilityId("id_payment_method_add_cta");
 
 	//Do Payment
-	private final By confirmPaymentButton = AppiumBy.id("BUTTON_ID__PAYMENT__SUBMIT");
-	private final By cancelPaymentButton = AppiumBy.xpath("//android.view.View[@resource-id=\"STEP_PAYMENT_DETAILS\"]/android.view.View[1]/android.widget.Button");
-	private final By otpTextBox = AppiumBy.id("genericMfa");
-	private final By submitOtpButton = AppiumBy.id("BUTTON_ID__MFA__SUBMIT");
-	private final By closeOtpScreen = AppiumBy.xpath("//android.view.View[@resource-id=\"STEP_MFA\"]/android.view.View[1]/android.widget.Button");
-	private final By paymentDoneButton = AppiumBy.id("BUTTON_ID__SUCCESS__CLOSE");
+	private final By confirmPaymentButton = By.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__PAYMENT__SUBMIT\"]");
+	private final By cancelPaymentButton = By.xpath("//android.view.View[@resource-id=\"STEP_PAYMENT_DETAILS\"]/android.view.View[1]/android.widget.Button");
+	private final By otpTextBox = By.id("genericMfa");
+	private final By submitOtpButton = By.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__MFA__SUBMIT\"]");
+	private final By closeOtpScreen = By.xpath("//android.view.View[@resource-id=\"STEP_MFA\"]/android.view.View[1]/android.widget.Button");
+	private final By paymentDoneButton = By.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__SUCCESS__CLOSE\"]");
 
 	private final By viewPaymentDetailsLink = AppiumBy.id("//android.widget.TextView[@text=\"View details\"]");
+
+	public void waitForSendMoneyPage()
+	{
+		log.info("Wait for Send money page to load");
+		waitForElementToBeVisible(amountTextBox);
+	}
 
 	public void navigateBack()
 	{
@@ -100,7 +110,7 @@ public class SendMoneyPage extends AndroidActions {
 		waitForElementToBeVisible(backButton).click();
 	}
 
-	public void next()
+	public void clickOnContinue()
 	{
 		log.info("Next/Continue");
 		waitForElementToBeVisible(continueButton).click();
@@ -115,6 +125,7 @@ public class SendMoneyPage extends AndroidActions {
 	public void enterAmountToSend(String amount)
 	{
 		log.info("Enter amount to send");
+		waitForElementToBeVisible(amountTextBox).clear();
 		waitForElementToBeVisible(amountTextBox).sendKeys(amount);
 	}
 
@@ -141,6 +152,13 @@ public class SendMoneyPage extends AndroidActions {
 		}
 	}
 
+	public void selectTransactionPurposeAndFundSource(String purpose, String fundSource)
+	{
+		selectTransactionPurpose(purpose);
+		selectFundSource(fundSource);
+		clickOnContinue();
+
+	}
 	public void selectTransactionPurpose(String purpose)
 	{
 		log.info("Select purpose of transaction");
@@ -168,7 +186,6 @@ public class SendMoneyPage extends AndroidActions {
 		log.info("Add recipient");
 		waitForElementToBeVisible(addNewRecipient).click();
 
-		waitForElementToBeVisible(personalDetailsSection).click();
 		waitForElementToBeVisible(firstNameTextBox).sendKeys(firstName);
 		waitForElementToBeVisible(lastNameTextBox).sendKeys(lastName);
 		waitForElementToBeVisible(mobileNumberTextBox).sendKeys(mobileNumber);
@@ -185,6 +202,7 @@ public class SendMoneyPage extends AndroidActions {
 		waitForElementToBeVisible(cityTextBox).sendKeys(city);
 
 		waitForElementToBeVisible(continueButton).click();
+		waitForElementToBeVisible(paymentNoteTextBox);
 	}
 
 	public void selectRecipient()
@@ -219,27 +237,35 @@ public class SendMoneyPage extends AndroidActions {
 		waitForElementToBeVisible(addPaymentMethodCta).click();
 	}
 
-	public void reviewPayment(String paymentNote)
+	public void reviewPaymentAndContinue(String paymentNote)
 	{
 		log.info("Review payment");
-		waitForElementToBeVisible(totalPaymentDetailsCta).click();
-		waitForElementToBeVisible(knowAboutFeesCta).click();
-		waitForElementToBeVisible(continueButton).click();
+//		waitForElementToBeVisible(totalPaymentDetailsCta).click();
+//		waitForElementToBeVisible(knowAboutFeesCta).click();
+//		waitForElementToBeVisible(continueButton).click();
+//
+//		waitForElementToBeVisible(feeInfoIcon).click();
+//		waitForElementToBeVisible(continueButton).click();
+//
+//		waitForElementToBeVisible(tncLink).click();
+//		waitForElementToBeVisible(tncBackButton).click();
 
-		waitForElementToBeVisible(feeInfoIcon).click();
-		waitForElementToBeVisible(continueButton).click();
-
-		waitForElementToBeVisible(tncLink).click();
-		waitForElementToBeVisible(tncBackButton).click();
-
-		waitForElementToBeVisible(noteTextBox).sendKeys(paymentNote);
+		waitForElementToBeVisible(paymentNoteTextBox).sendKeys(paymentNote);
 		waitForElementToBeVisible(continueButton).click();
 	}
 
 	public void confirmPayment(String otp)
 	{
+
 		log.info("Confirm payment");
 		waitForElementToBeVisible(confirmPaymentButton).click();
+
+		Set<String> handles = driver.getContextHandles();
+		for(String handle: handles) {
+			log.debug(handle);
+		}
+
+		driver.context("WEBVIEW_com.huru");
 		waitForElementToBeVisible(otpTextBox).sendKeys(otp);
 		waitForElementToBeVisible(submitOtpButton).click();
 		waitForElementToBeVisible(paymentDoneButton).click();
@@ -255,6 +281,5 @@ public class SendMoneyPage extends AndroidActions {
 		log.info("View payment details");
 		waitForElementToBeVisible(viewPaymentDetailsLink).click();
 		waitForElementToBeVisible(continueButton).click();
-
 	}
 }
