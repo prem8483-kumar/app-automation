@@ -5,15 +5,13 @@ import co.huru.listeners.TestListener;
 import co.huru.pageObjects.SignUpPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.*;
+
 import java.io.IOException;
 import java.net.URL;
-import org.testng.annotations.AfterClass;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 
 //@Listeners({ com.epam.reportportal.testng.ReportPortalTestNGListener.class, co.huru.listeners.TestListener.class })
 @Listeners({ TestListener.class })
@@ -23,7 +21,7 @@ public class AndroidBaseTest extends AppiumUtils{
 
 	public AndroidDriver driver;
 
-	@BeforeClass(alwaysRun=true)
+	@BeforeMethod(alwaysRun=true)
 	public void createDriver() throws IOException
 	{
 		log.info("Creating driver");
@@ -37,11 +35,12 @@ public class AndroidBaseTest extends AppiumUtils{
 
 	@BeforeMethod(alwaysRun = true)
 	public void navigateValueProps() {
+		log.info("Continue value props");
 		SignUpPage signUpPage = new SignUpPage(driver);
 		signUpPage.navigateValueProps();
 	}
 
-	@AfterClass(alwaysRun=true)
+	@AfterMethod(alwaysRun=true)
 	public void quitDriver()
 	{
 		log.info("Quiting driver");

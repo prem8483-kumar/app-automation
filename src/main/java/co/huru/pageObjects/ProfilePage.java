@@ -133,17 +133,25 @@ public class ProfilePage extends AndroidActions {
 		log.info("Enter otp");
 		waitForElementToBeVisible(otpView);
 		sendNumericKeysUsingKeyboard(otp);
+
+		log.info("Verify updated email");
 		waitForElementToBeVisible(emailVerifyButton).click();
 		waitForElementToBeVisible(personalDetailsSection).click();
 		assertEquals(waitForElementToBeVisible(emailText).getText(), email);
 	}
 
-	public void editPhoneNumber(String phoneNumber)
+	public void editPhoneNumber(String phoneNumber, String otp)
 	{
 		log.info("Edit phone number");
 		waitForElementToBeVisible(editPhoneNumberLink).click();
 		waitForElementToBeVisible(phoneNumberTextBox).sendKeys(phoneNumber);
 		waitForElementToBeVisible(phoneNumberSaveButton).click();
+
+		log.info("Enter otp");
+		waitForElementToBeVisible(otpView);
+		sendNumericKeysUsingKeyboard(otp);
+
+		log.info("Verify updated phone");
 		assertEquals(waitForElementToBeVisible(phoneNumberText).getText(), phoneNumber);
 	}
 
@@ -302,7 +310,6 @@ public class ProfilePage extends AndroidActions {
 
 		log.info("Enter otp");
 		waitForElementToBeVisible(otpView);
-		waitForElementToBeVisible(otpTextBox_1).click();
 		sendNumericKeysUsingKeyboard(otp);
 
 		log.info("Wait for home page");

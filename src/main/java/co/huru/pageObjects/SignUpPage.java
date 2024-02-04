@@ -41,6 +41,7 @@ public class SignUpPage extends AndroidActions {
 	private final By passcodeView = By.id("com.huru:id/passcodeView");
 	private final By passCodeTextBox_1 = By.xpath("//android.widget.LinearLayout[1]/android.widget.EditText");
 	private final By confirmPasscodeButton = By.id("com.huru:id/set_passcode_continue");
+	private final By passcodeError = By.id("com.huru:id/passcode_error");
 
 	private final By biometricImage = By.id("com.huru:id/biometricIv");
 	private final By biometricHeader = By.id("com.huru:id/phone_validation_header");
@@ -78,6 +79,18 @@ public class SignUpPage extends AndroidActions {
 		sendNumericKeysUsingKeyboard(otp);
 	}
 
+	public void waitForResendOtpLink()
+	{
+		log.info("Wait for resend otp link");
+		waitForElementToBeVisible(resendOtpLink);
+	}
+
+	public void clickResendOtpLink()
+	{
+		log.info("Click resend otp link");
+		waitForElementToBeVisible(resendOtpLink).click();
+	}
+
 	public void enterName(String name)
 	{
 		log.info("Enter name");
@@ -110,6 +123,12 @@ public class SignUpPage extends AndroidActions {
 		waitForElementToBeVisible(passCodeTextBox_1).click();
 		sendNumericKeysUsingKeyboard(passcode);
 		waitForElementToBeVisible(confirmPasscodeButton).click();
+	}
+
+	public void validatePinError()
+	{
+		log.info("Validate pin error");
+		waitForElementToBeVisible(passcodeError);
 	}
 
 	public void skipBiometric()

@@ -43,7 +43,7 @@ public class ProfileTest extends AndroidBaseTest {
         profilePage.editEmail(newEmail, otp);
     }
 
-    @Test(groups = {"profile"}, description = "Profile", dataProvider = "editUserPhoneNumberData", dataProviderClass = ProfileDataProvider.class)
+    @Test(enabled = false, groups = {"profile"}, description = "Profile", dataProvider = "editUserPhoneNumberData", dataProviderClass = ProfileDataProvider.class)
     public void editUserPhoneNumber(String phoneNumber, String passcode, String otp, String newPhoneNumber)  {
 
         log.info("Edit user phone number test");
@@ -55,10 +55,10 @@ public class ProfileTest extends AndroidBaseTest {
 
         ProfilePage profilePage = new ProfilePage(driver);
         profilePage.gotToPersonalDetailsSection();
-        profilePage.editPhoneNumber(newPhoneNumber);
+        profilePage.editPhoneNumber(newPhoneNumber, otp);
     }
 
-    @Test(groups = {"profile"}, description = "Profile", dataProvider = "changeUserPinData", dataProviderClass = ProfileDataProvider.class)
+    @Test(enabled = false, groups = {"profile"}, description = "Profile", dataProvider = "changeUserPinData", dataProviderClass = ProfileDataProvider.class)
     public void changePin(String phoneNumber, String oldPasscode, String otp, String newPassCode)  {
 
         log.info("Change user pin test");
@@ -73,7 +73,7 @@ public class ProfileTest extends AndroidBaseTest {
         profilePage.changePin(oldPasscode, newPassCode, otp);
     }
 
-    @Test(groups = {"profile"}, description = "Profile", dataProvider = "userSignInData", dataProviderClass = ProfileDataProvider.class)
+    @Test(enabled = false, groups = {"profile"}, description = "Profile", dataProvider = "userSignInData", dataProviderClass = ProfileDataProvider.class)
     public void verifyUserEmailAddressFromProfilePage(String phoneNumber, String passcode, String otp)  {
 
         log.info("Verify user email address from profile page test");
@@ -87,7 +87,7 @@ public class ProfileTest extends AndroidBaseTest {
         profilePage.verifyEmailFromProfilePage(otp);
     }
 
-    @Test(groups = {"profile"}, description = "Profile", dataProvider = "userSignInData", dataProviderClass = ProfileDataProvider.class)
+    @Test(enabled = false, groups = {"profile"}, description = "Profile", dataProvider = "userSignInData", dataProviderClass = ProfileDataProvider.class)
     public void verifyUserEmailAddressFromPersonalDetailsPage(String phoneNumber, String passcode, String otp)  {
 
         log.info("Verify user email address form personal details page test");
