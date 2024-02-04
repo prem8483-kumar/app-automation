@@ -15,7 +15,7 @@ public class ProfileDataProvider {
     @DataProvider(name = "editUserNameData")
     public Object[][] editUserNameData() {
         return new Object[][] {
-                {"523333333", "100900", "123456", "kumar"},
+                {"523333333", "100900", "123456", DataGenerator.generateRandomName()},
         };
     }
 
@@ -36,7 +36,7 @@ public class ProfileDataProvider {
     @DataProvider(name = "changeUserPinData")
     public Object[][] changeUserPinData() {
         return new Object[][] {
-                {"523333333", "100900", "123456", "100900"},
+                {"523333333", "100900", "123456", DataGenerator.generateRandomPin()},
         };
     }
 

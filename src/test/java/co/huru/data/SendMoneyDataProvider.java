@@ -7,7 +7,7 @@ public class SendMoneyDataProvider {
     @DataProvider(name = "sendMoneyData")
     public Object[][] sendMoneyData() {
         return new Object[][] {
-                {"581111111", "123789", "123456", "1000", "India", "LuLu", "Savings", "Savings", "To Save", "1111"},
+                {"581111111", "246135", "123456", "1000", "India", "LuLu", "Savings", "Savings", "To Save", "1111"},
         };
     }
 
@@ -21,7 +21,7 @@ public class SendMoneyDataProvider {
     @DataProvider(name = "addBankAccountData")
     public Object[][] addBankAccountData() {
         return new Object[][] {
-                {"581111111", "123789", "123456", "mr.lazaroschaefer", "CvwxAhXTfBaFKvS", "1111"},
+                {"581111111", "246135", "123456", "mr.lazaroschaefer", "CvwxAhXTfBaFKvS", "1111"},
         };
     }
 }

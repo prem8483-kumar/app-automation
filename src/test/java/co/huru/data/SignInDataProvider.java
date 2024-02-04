@@ -1,5 +1,6 @@
 package co.huru.data;
 
+import co.huru.utils.DataGenerator;
 import org.testng.annotations.DataProvider;
 
 public class SignInDataProvider {
@@ -14,7 +15,7 @@ public class SignInDataProvider {
     @DataProvider(name = "forgotPinData")
     public Object[][] forgotPinData() {
         return new Object[][] {
-                {"581111111", "246135", "123456"},
+                {"581111111", DataGenerator.generateRandomPin(), "123456"},
         };
     }
 

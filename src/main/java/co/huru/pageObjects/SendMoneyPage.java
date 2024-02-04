@@ -260,12 +260,8 @@ public class SendMoneyPage extends AndroidActions {
 		log.info("Confirm payment");
 		waitForElementToBeVisible(confirmPaymentButton).click();
 
-		Set<String> handles = driver.getContextHandles();
-		for(String handle: handles) {
-			log.debug(handle);
-		}
+		//driver.context("WEBVIEW_com.huru");
 
-		driver.context("WEBVIEW_com.huru");
 		waitForElementToBeVisible(otpTextBox).sendKeys(otp);
 		waitForElementToBeVisible(submitOtpButton).click();
 		waitForElementToBeVisible(paymentDoneButton).click();
