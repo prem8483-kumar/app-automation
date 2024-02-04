@@ -1,5 +1,6 @@
 package co.huru.data;
 
+import co.huru.utils.DataGenerator;
 import org.testng.annotations.DataProvider;
 
 public class ProfileDataProvider {
@@ -21,14 +22,14 @@ public class ProfileDataProvider {
     @DataProvider(name = "editUserEmailData")
     public Object[][] editUserEmailData() {
         return new Object[][] {
-                {"523333333", "100900", "123456", "edit1@gmail.com"},
+                {"523333333", "100900", "123456", DataGenerator.generateRandomEmail()},
         };
     }
 
     @DataProvider(name = "editUserPhoneNumberData")
     public Object[][] editUserPhoneNumberData() {
         return new Object[][] {
-                {"523333333", "100900", "123456", "523333333"},
+                {"523333333", "100900", "123456", DataGenerator.generateRandomMobileNumber()},
         };
     }
 

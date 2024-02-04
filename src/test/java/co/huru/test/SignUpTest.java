@@ -16,6 +16,7 @@ public class SignUpTest extends AndroidBaseTest {
 
         log.info("Sign Up Test");
         SignUpPage signUpPage = new SignUpPage(driver);
+
         signUpPage.enterPhoneNumber(phoneNumber);
         signUpPage.enterOtp(otp);
         signUpPage.enterName(name);
