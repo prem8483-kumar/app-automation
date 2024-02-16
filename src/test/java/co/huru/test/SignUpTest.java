@@ -17,12 +17,24 @@ public class SignUpTest extends AndroidBaseTest {
         log.info("Sign Up Test");
         SignUpPage signUpPage = new SignUpPage(driver);
 
-        signUpPage.enterPhoneNumber(phoneNumber);
+        signUpPage.verifyPhoneNumberScreen();
+        signUpPage.enterPhoneNumberAndContinue(phoneNumber);
+
+        signUpPage.verifyOtpScreen();
         signUpPage.enterOtp(otp);
-        signUpPage.enterName(name);
-        signUpPage.enterEmail(email);
-        signUpPage.enterPasscode(passcode);
-        signUpPage.confirmPasscode(passcode);
+
+        signUpPage.verifyNameScreen();
+        signUpPage.enterNameAndContinue(name);
+
+        signUpPage.verifyEmailScreen();
+        signUpPage.enterEmailAndContinue(email);
+
+        signUpPage.verifySetPinScreen();
+        signUpPage.enterPin(passcode);
+
+        signUpPage.verifyConfirmPinScreen();
+        signUpPage.enterPinAndConfirm(passcode);
+
         signUpPage.skipBiometric();
         signUpPage.waitForHomePage();
     }
@@ -32,19 +44,84 @@ public class SignUpTest extends AndroidBaseTest {
 
         log.info("Sign Up Test");
         SignUpPage signUpPage = new SignUpPage(driver);
-        signUpPage.enterPhoneNumber(phoneNumber);
+        signUpPage.enterPhoneNumberAndContinue(phoneNumber);
 
         signUpPage.waitForResendOtpLink();
         signUpPage.clickResendOtpLink();
         signUpPage.enterOtp(otp);
 
-        signUpPage.enterName(name);
-        signUpPage.enterEmail(email);
-        signUpPage.enterPasscode(passcode);
-        signUpPage.confirmPasscode(passcode);
+        signUpPage.enterNameAndContinue(name);
+        signUpPage.enterEmailAndContinue(email);
+        signUpPage.enterPin(passcode);
+        signUpPage.enterPinAndConfirm(passcode);
         signUpPage.skipBiometric();
         signUpPage.waitForHomePage();
     }
+
+    @Test(groups = {"signUp"}, description = "Sign Up", dataProvider = "signUpData", dataProviderClass = SignUpDataProvider.class)
+    public void dropOffAtOtpScreenAndRestartSignUpTest(String phoneNumber, String otp, String passcode, String name, String email)  {
+
+        log.info("Sign Up Test");
+        SignUpPage signUpPage = new SignUpPage(driver);
+
+        signUpPage.enterPhoneNumberAndContinue(phoneNumber);
+
+        log.info("Get app package");
+        String appPackage = driver.getCurrentPackage();
+        log.info(appPackage);
+
+        log.info("Kill app");
+        driver.terminateApp(appPackage);
+
+        log.info("Restart app");
+        driver.activateApp(appPackage);
+
+        log.info("Continue signup");
+        signUpPage.enterPhoneNumberAndContinue(phoneNumber);
+        signUpPage.enterOtp(otp);
+
+        signUpPage.enterNameAndContinue(name);
+        signUpPage.enterEmailAndContinue(email);
+        signUpPage.enterPin(passcode);
+        signUpPage.enterPinAndConfirm(passcode);
+        signUpPage.skipBiometric();
+        signUpPage.waitForHomePage();
+    }
+
+    @Test(groups = {"signUp"}, description = "Sign Up", dataProvider = "signUpData", dataProviderClass = SignUpDataProvider.class)
+    public void dropOffAtOtpScreenAndRestartSignUpAfter30SecondsTest(String phoneNumber, String otp, String passcode, String name, String email) throws InterruptedException {
+
+        log.info("Sign Up Test");
+        SignUpPage signUpPage = new SignUpPage(driver);
+
+        signUpPage.enterPhoneNumberAndContinue(phoneNumber);
+
+        log.info("Get app package");
+        String appPackage = driver.getCurrentPackage();
+        log.info(appPackage);
+
+        log.info("Kill app");
+        driver.terminateApp(appPackage);
+
+        Thread.sleep(30000);
+
+        log.info("Restart app");
+        driver.activateApp(appPackage);
+
+        log.info("Continue signup");
+        signUpPage.enterPhoneNumberAndContinue(phoneNumber);
+        signUpPage.clickResendOtpLink();
+        signUpPage.enterOtp(otp);
+
+        signUpPage.enterNameAndContinue(name);
+        signUpPage.enterEmailAndContinue(email);
+        signUpPage.enterPin(passcode);
+        signUpPage.enterPinAndConfirm(passcode);
+        signUpPage.skipBiometric();
+        signUpPage.waitForHomePage();
+    }
+
+
 
     @Test(groups = {"signUp"}, description = "Sign Up", dataProvider = "signUpData", dataProviderClass = SignUpDataProvider.class)
     public void dropOffAtNameScreenAndRestartSignUpTest(String phoneNumber, String otp, String passcode, String name, String email)  {
@@ -52,7 +129,7 @@ public class SignUpTest extends AndroidBaseTest {
         log.info("Sign Up Test");
         SignUpPage signUpPage = new SignUpPage(driver);
 
-        signUpPage.enterPhoneNumber(phoneNumber);
+        signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
 
         log.info("Get app package");
@@ -66,10 +143,10 @@ public class SignUpTest extends AndroidBaseTest {
         driver.activateApp(appPackage);
 
         log.info("Continue signup");
-        signUpPage.enterName(name);
-        signUpPage.enterEmail(email);
-        signUpPage.enterPasscode(passcode);
-        signUpPage.confirmPasscode(passcode);
+        signUpPage.enterNameAndContinue(name);
+        signUpPage.enterEmailAndContinue(email);
+        signUpPage.enterPin(passcode);
+        signUpPage.enterPinAndConfirm(passcode);
         signUpPage.skipBiometric();
         signUpPage.waitForHomePage();
     }
@@ -80,10 +157,10 @@ public class SignUpTest extends AndroidBaseTest {
         log.info("Sign Up Test");
         SignUpPage signUpPage = new SignUpPage(driver);
 
-        signUpPage.enterPhoneNumber(phoneNumber);
+        signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
-        signUpPage.enterName(name);
-        signUpPage.enterEmail(email);
+        signUpPage.enterNameAndContinue(name);
+        signUpPage.enterEmailAndContinue(email);
 
         log.info("Get app package");
         String appPackage = driver.getCurrentPackage();
@@ -96,10 +173,10 @@ public class SignUpTest extends AndroidBaseTest {
         driver.activateApp(appPackage);
 
         log.info("Continue signup");
-        signUpPage.enterName(name);
-        signUpPage.enterEmail(email);
-        signUpPage.enterPasscode(passcode);
-        signUpPage.confirmPasscode(passcode);
+        signUpPage.enterNameAndContinue(name);
+        signUpPage.enterEmailAndContinue(email);
+        signUpPage.enterPin(passcode);
+        signUpPage.enterPinAndConfirm(passcode);
         signUpPage.skipBiometric();
         signUpPage.waitForHomePage();
     }
@@ -109,7 +186,7 @@ public class SignUpTest extends AndroidBaseTest {
 
         log.info("Sign Up Test");
         SignUpPage signUpPage = new SignUpPage(driver);
-        signUpPage.enterPhoneNumber(phoneNumber);
+        signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.navigateBack();
         signUpPage.verifyPhoneNumberPreFilled(phoneNumber);
 
@@ -120,7 +197,7 @@ public class SignUpTest extends AndroidBaseTest {
 
         log.info("Sign Up Test");
         SignUpPage signUpPage = new SignUpPage(driver);
-        signUpPage.enterPhoneNumber(phoneNumber);
+        signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
         signUpPage.navigateBack();
         signUpPage.verifyPhoneNumberPreFilled(phoneNumber);
@@ -132,9 +209,9 @@ public class SignUpTest extends AndroidBaseTest {
 
         log.info("Sign Up Test");
         SignUpPage signUpPage = new SignUpPage(driver);
-        signUpPage.enterPhoneNumber(phoneNumber);
+        signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
-        signUpPage.enterName(name);
+        signUpPage.enterNameAndContinue(name);
         signUpPage.navigateBack();
         signUpPage.verifyNamePreFilled(name);
 
@@ -145,10 +222,10 @@ public class SignUpTest extends AndroidBaseTest {
 
         log.info("Sign Up Test");
         SignUpPage signUpPage = new SignUpPage(driver);
-        signUpPage.enterPhoneNumber(phoneNumber);
+        signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
-        signUpPage.enterName(name);
-        signUpPage.enterEmail(email);
+        signUpPage.enterNameAndContinue(name);
+        signUpPage.enterEmailAndContinue(email);
         signUpPage.navigateBack();
         signUpPage.verifyPhoneNumberPreFilled(phoneNumber);
     }
@@ -158,13 +235,13 @@ public class SignUpTest extends AndroidBaseTest {
 
         log.info("Sign Up Test");
         SignUpPage signUpPage = new SignUpPage(driver);
-        signUpPage.enterPhoneNumber(phoneNumber);
+        signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
-        signUpPage.enterName(name);
-        signUpPage.enterEmail(email);
-        signUpPage.enterPasscode(passcode);
+        signUpPage.enterNameAndContinue(name);
+        signUpPage.enterEmailAndContinue(email);
+        signUpPage.enterPin(passcode);
         signUpPage.navigateBack();
-        signUpPage.enterPasscode(passcode);
+        signUpPage.enterPin(passcode);
     }
 
     @Test(groups = {"signUp"}, description = "Sign Up", dataProvider = "signUpData", dataProviderClass = SignUpDataProvider.class)
@@ -172,12 +249,12 @@ public class SignUpTest extends AndroidBaseTest {
 
         log.info("Sign Up Test");
         SignUpPage signUpPage = new SignUpPage(driver);
-        signUpPage.enterPhoneNumber(phoneNumber);
+        signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
-        signUpPage.enterName(name);
-        signUpPage.enterEmail(email);
-        signUpPage.enterPasscode(passcode);
-        signUpPage.confirmPasscode(passcode);
+        signUpPage.enterNameAndContinue(name);
+        signUpPage.enterEmailAndContinue(email);
+        signUpPage.enterPin(passcode);
+        signUpPage.enterPinAndConfirm(passcode);
         signUpPage.navigateBack();
         //ToDo
         log.info(driver.currentActivity());

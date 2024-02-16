@@ -1,0 +1,27 @@
+package co.huru.constants;
+
+public class AppConstant {
+
+    public final static String PHONE_NUMBER_SCREEN_HEADER = "Mobile number";
+    public final static String OTP_SCREEN_HEADER = "Enter OTP";
+    public final static String PIN_SCREEN_HEADER = "Please enter your PIN";
+    public final static String SIGN_UP_PIN_SCREEN_HEADER = "Create login PIN";
+    public final static String CONFIRM_PIN_SCREEN_HEADER = "Confirm PIN";
+    public final static String NAME_SCREEN_HEADER = "Your name";
+    public final static String EMAIL_SCREEN_HEADER = "Email address";
+
+
+    public final static String PHONE_NUMBER_ERROR_MESSAGE = "Enter a valid mobile number, 9 digits & starting with 50, 52, 54, 55, 56, 58";
+    public final static String PIN_ERROR_MESSAGE = "PIN is invalid";
+    public final static String OTP_ERROR_MESSAGE = "Invalid otp";
+
+    public final static String SAME_PIN_AS_PREVIOUS_ERROR_MESSAGE = "PIN should not match with previous passcodes";
+
+    public final static String SET_PIN_ERROR_MESSAGE = "Invalid PIN. Please try again.";
+    public final static String PIN_NOT_MATCH_ERROR_MESSAGE = "Your PIN do not match. Please try again.";
+
+    public final static String NAME_ERROR_MESSAGE = "";
+    public final static String EMAIL_ERROR_MESSAGE = "Must be a valid Email";
+
+
+}

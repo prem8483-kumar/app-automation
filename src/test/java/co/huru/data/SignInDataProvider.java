@@ -40,4 +40,28 @@ public class SignInDataProvider {
                 {"585555555", "123456", "automation", "581111111", "246135", "123456"},
         };
     }
+
+    @DataProvider(name = "invalidPhoneNumberData")
+    public Object[][] invalidPhoneNumberData() {
+        return new Object[][] {
+                {"5811111"},
+                {"5811111111"},
+                {"998888888"},
+        };
+    }
+
+    @DataProvider(name = "invalidPinData")
+    public Object[][] invalidPinData() {
+        return new Object[][] {
+                {"581111111", "111111"},
+        };
+    }
+
+    @DataProvider(name = "invalidOtpData")
+    public Object[][] invalidOtpData() {
+        return new Object[][] {
+                {"581111111", "246135", "111111"},
+        };
+    }
+
 }

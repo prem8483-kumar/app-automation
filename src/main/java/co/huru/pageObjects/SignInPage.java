@@ -1,13 +1,13 @@
 package co.huru.pageObjects;
 
+import co.huru.constants.AppConstant;
 import co.huru.utils.AndroidActions;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class SignInPage extends AndroidActions {
 
@@ -20,9 +20,14 @@ public class SignInPage extends AndroidActions {
 
 	private final By backButton = By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
 
+	private final By phoneNumberScreenHeader = By.id("com.huru:id/phone_validation_header");
+	private final By pinScreenHeader = By.id("com.huru:id/passcodeHeader");
+	private final By otpScreenHeader = By.id("com.huru:id/phone_validation_header");
+
 	private final By phoneNumberTextBox = By.id("com.huru:id/phoneNumberEt");
 	private final By disclaimerCheckBox = By.id("com.huru:id/disclaimer_cb");
 	private final By phoneNumberContinueButton = By.id("com.huru:id/continueBtn");
+	private final By phoneNumberError = By.id("com.huru:id/phone_error_message");
 
 	private final By passcodeView = By.id("com.huru:id/passcodeView");
 	private final By passcodeTextBox_1 = By.xpath("//android.widget.LinearLayout[@resource-id=\"com.huru:id/passcodeView\"]/android.widget.LinearLayout[1]/android.widget.EditText");
@@ -44,14 +49,53 @@ public class SignInPage extends AndroidActions {
 		waitForElementToBeVisible(backButton).click();
 	}
 
-	public void enterPhoneNumber(String phoneNumber)
+	public void verifyPhoneNumberScreen() {
+		log.info("Verify screen header");
+		assertEquals(waitForElementToBeVisible(phoneNumberScreenHeader).getText(), AppConstant.PHONE_NUMBER_SCREEN_HEADER);
+	}
+
+	public void verifyOtpScreen() {
+		log.info("Verify screen header");
+		assertEquals(waitForElementToBeVisible(otpScreenHeader).getText(), AppConstant.OTP_SCREEN_HEADER);
+	}
+
+	public void verifyPinScreen() {
+		log.info("Verify screen header");
+		assertEquals(waitForElementToBeVisible(pinScreenHeader).getText(), AppConstant.PIN_SCREEN_HEADER);
+	}
+
+	public void enterPhoneNumberAndContinue(String phoneNumber)
 	{
 		log.info("Enter phone number");
 		waitForElementToBeVisible(phoneNumberTextBox).sendKeys(phoneNumber);
 		waitForElementToBeVisible(phoneNumberContinueButton).click();
 	}
 
-	public void enterPasscode(String passcode)
+	public void enterPhoneNumber(String phoneNumber)
+	{
+		log.info("Enter phone number");
+		waitForElementToBeVisible(phoneNumberTextBox).sendKeys(phoneNumber);
+	}
+
+	public void clickOnDisclaimerCheckBox()
+	{
+		log.info("Click disclaimer check box");
+		waitForElementToBeVisible(disclaimerCheckBox).click();
+	}
+
+	public void validateDisclaimerCheckBoxSelected(boolean selected)
+	{
+		log.info("Validate disclaimer check box selected");
+		assertEquals(waitForElementToBeVisible(disclaimerCheckBox).isSelected(), selected);
+	}
+
+	public void validatePhoneNumberContinueButtonEnabled(boolean enabled)
+	{
+		log.info("Validate phone number continue button disabled");
+		assertEquals(waitForElementToBeVisible(phoneNumberContinueButton).isEnabled(), enabled);
+	}
+
+	public void enterPin(String passcode)
 	{
 		log.info("Enter passcode");
 		waitForElementToBeVisible(passcodeView);
@@ -83,10 +127,16 @@ public class SignInPage extends AndroidActions {
 		sendNumericKeysUsingKeyboard(otp);
 	}
 
+	public void validatePhoneNumberError()
+	{
+		log.info("Validate phone number error");
+		assertEquals(waitForElementToBeVisible(phoneNumberError).getText(), AppConstant.PHONE_NUMBER_ERROR_MESSAGE);
+	}
+
 	public void validatePinError()
 	{
 		log.info("Validate pin error");
-		waitForElementToBeVisible(passcodeError);
+		assertEquals(waitForElementToBeVisible(passcodeError).getText(), AppConstant.PIN_ERROR_MESSAGE);
 	}
 
 	public void validateForgotPinLinkDisabled()
@@ -99,7 +149,8 @@ public class SignInPage extends AndroidActions {
 	public void validateOtpError()
 	{
 		log.info("Validate otp error");
-		waitForElementToBeVisible(otpError);
+		assertEquals(waitForElementToBeVisible(otpError).getText(), AppConstant.OTP_ERROR_MESSAGE);
+
 	}
 
 	public void waitForResendOtpLink()
@@ -128,8 +179,8 @@ public class SignInPage extends AndroidActions {
 
 	public void signIn(String phoneNumber, String passcode, String otp) {
 		log.info("Sign In");
-		enterPhoneNumber(phoneNumber);
-		enterPasscode(passcode);
+		enterPhoneNumberAndContinue(phoneNumber);
+		enterPin(passcode);
 		enterOtp(otp);
 		waitForHomePage();
 	}
