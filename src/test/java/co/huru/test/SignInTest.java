@@ -65,27 +65,8 @@ public class SignInTest extends AndroidBaseTest {
         signInPage.waitForHomePage();
     }
 
-    @Test(enabled = false, groups = {"signIn"}, description = "Sign In", dataProvider = "forgotPinData", dataProviderClass = SignInDataProvider.class)
+    @Test(groups = {"signIn"}, description = "Sign In", dataProvider = "forgotPinData", dataProviderClass = SignInDataProvider.class)
     public void forgotPasscodeTest(String phoneNumber, String newPasscode, String otp)  {
-
-        log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
-        SignUpPage signUpPage = new SignUpPage(driver);
-
-        signInPage.enterPhoneNumberAndContinue(phoneNumber);
-        signInPage.clickForgotPasswordLink();
-
-        signUpPage.enterOtp(otp);
-        signUpPage.enterPin(newPasscode);
-        signUpPage.enterPinAndConfirm(newPasscode);
-
-        signInPage.enterPin(newPasscode);
-        signInPage.enterOtp(otp);
-        signInPage.waitForHomePage();
-    }
-
-    @Test(enabled = false, groups = {"signIn"}, description = "Sign In", dataProvider = "forgotPinData", dataProviderClass = SignInDataProvider.class)
-    public void forgotPasscodeUsingEidTest(String phoneNumber, String newPasscode, String otp)  {
 
         log.info("Sign In Test");
         SignInPage signInPage = new SignInPage(driver);
@@ -109,8 +90,7 @@ public class SignInTest extends AndroidBaseTest {
         log.info("Sign In Test");
         SignInPage signInPage = new SignInPage(driver);
         signInPage.navigateBack();
-
-        //ToDo Validate app is closed
+        signInPage.validateAppClosed();
     }
 
     @Test(groups = {"signIn"}, description = "Sign In", dataProvider = "signInData", dataProviderClass = SignInDataProvider.class)

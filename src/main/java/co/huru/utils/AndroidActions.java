@@ -6,17 +6,19 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.appmanagement.ApplicationState;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
+
+import static org.testng.Assert.assertEquals;
 
 public class AndroidActions extends AppiumUtils {
 
@@ -32,11 +34,56 @@ public class AndroidActions extends AppiumUtils {
 				.pollingEvery(Duration.ofSeconds(Long.parseLong(EnvConfig.getProperty("pollingTimeInSeconds"))))
 				.ignoring(ElementNotInteractableException.class);
 	}
-	
+
+	public void killAndRestartApp()
+	{
+		log.info("Get app package");
+		String appPackage = driver.getCurrentPackage();
+
+		log.info("Kill app");
+		driver.terminateApp(appPackage);
+
+		log.info("Restart app");
+		driver.activateApp(appPackage);
+	}
+
+	public void killWaitAndRestartApp(long waitTimeInMillis)
+	{
+		log.info("Get app package");
+		String appPackage = driver.getCurrentPackage();
+
+		log.info("Kill app");
+		driver.terminateApp(appPackage);
+
+        try {
+            Thread.sleep(waitTimeInMillis);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        log.info("Restart app");
+		driver.activateApp(appPackage);
+	}
+
+	public void validateAppClosed()
+	{
+		log.info("Get app package");
+		String appPackage = driver.getCurrentPackage();
+
+		log.info("Get app state");
+		assertEquals(driver.queryAppState(appPackage), ApplicationState.NOT_RUNNING);
+	}
+
 	public WebElement waitForElementToBeVisible(By locator)
 	{
 		log.info("Waiting for element to be visible with locator: " +  locator);
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	}
+
+	public WebElement waitForElementToBeClickable(By locator)
+	{
+		log.info("Waiting for element to be clickable with locator: " +  locator);
+		return wait.until(ExpectedConditions.elementToBeClickable(locator));
 	}
 
 	public boolean waitForElementToBeNotVisible(By locator)
@@ -83,6 +130,11 @@ public class AndroidActions extends AppiumUtils {
 				default: log.info("Wrong Key");
 			}
 		}
+	}
+
+	public void clickDeviceBackButton()
+	{
+		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}
 
 }

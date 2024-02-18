@@ -26,7 +26,6 @@ public class SignInDataProvider {
         };
     }
 
-
     @DataProvider(name = "signInWithInvalidOtpData")
     public Object[][] signInWithInvalidOtpData() {
         return new Object[][] {
@@ -61,6 +60,27 @@ public class SignInDataProvider {
     public Object[][] invalidOtpData() {
         return new Object[][] {
                 {"581111111", "246135", "111111"},
+        };
+    }
+
+    @DataProvider(name = "invalidPinMaxAttemptData")
+    public Object[][] invalidPinMaxAttemptData() {
+        return new Object[][] {
+                {"581111111", "111111", "100900", "123456"},
+        };
+    }
+
+    @DataProvider(name = "invalidOtpMaxAttemptData")
+    public Object[][] invalidOtpMaxAttemptData() {
+        return new Object[][] {
+                {"581111111", "100900", "111111", "123456"},
+        };
+    }
+
+    @DataProvider(name = "forgotPinMaxAttemptData")
+    public Object[][] forgotPinMaxAttemptData() {
+        return new Object[][] {
+                {"581111111", "100900", "123456"},
         };
     }
 

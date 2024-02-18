@@ -1,5 +1,6 @@
 package co.huru.test;
 
+import co.huru.configs.EnvConfig;
 import co.huru.data.SignInDataProvider;
 import co.huru.pageObjects.SignInPage;
 import co.huru.utils.AndroidBaseTest;
@@ -11,139 +12,161 @@ public class SignInBreachTest extends AndroidBaseTest {
 
     private static final Logger log = LogManager.getLogger(SignInBreachTest.class);
 
-    @Test(enabled = false, groups = {"signIn"}, description = "Sign In", dataProvider = "signInData", dataProviderClass = SignInDataProvider.class)
-    public void signInUsingResendOtpMaxAttemptTest(String phoneNumber, String passcode, String otp)  {
-
-        log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
-        signInPage.enterPhoneNumberAndContinue(phoneNumber);
-        signInPage.enterPin(passcode);
-
-        for(int i=1; i<=5; i++) {
-            signInPage.waitForResendOtpLink();
-            signInPage.clickResendOtpLink();
-        }
-
-        signInPage.validateOtpError();
-
-        //ToDO: Navigate back test
-    }
-
-
-    @Test(enabled = false, groups = {"signIn"}, description = "Sign In", dataProvider = "signInWithInvalidPinData", dataProviderClass = SignInDataProvider.class)
-    public void signInWithInvalidPinMaxAttemptTest(String phoneNumber, String passcode)  {
+    @Test(groups = {"signInBreach"}, description = "Sign In", dataProvider = "signInWithInvalidPinData", dataProviderClass = SignInDataProvider.class)
+    public void invalidPinMaxAttemptTest(String phoneNumber, String invalidPin, String validPin, String otp)  {
 
         log.info("Sign In Test");
         SignInPage signInPage = new SignInPage(driver);
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
 
-        signInPage.enterPin(passcode);
-        signInPage.validatePinError();
-        for(int i=2; i<=5; i++) {
+        log.info("Enter invalid pin for max attempt allowed");
+        for(int i = 1; i <= Integer.parseInt(EnvConfig.getProperty("invalidPinMaxAttempt")); i++) {
             signInPage.clickOnPasscodeTextBox();
-            signInPage.enterPin(passcode);
+            signInPage.enterPin(invalidPin);
+
             signInPage.validatePinError();
         }
-        signInPage.validateForgotPinLinkDisabled();
 
-        //ToDO: Navigate back test
+        log.info("Enter invalid pin again");
+        signInPage.clickOnPasscodeTextBox();
+        signInPage.enterPin(invalidPin);
 
-    }
+        log.info("Validate too many attempt screen");
+        signInPage.validateTooManyAttemptScreen();
 
-    @Test(enabled = false, groups = {"signIn"}, description = "Sign In", dataProvider = "signInWithInvalidOtpData", dataProviderClass = SignInDataProvider.class)
-    public void signInWithInvalidOtpMaxAttemptTest(String phoneNumber, String passcode, String otp)  {
+        log.info("Kill and restart app");
+        signInPage.killAndRestartApp();
 
-        log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
-        signInPage.enterPhoneNumberAndContinue(phoneNumber);
-        signInPage.enterPin(passcode);
+        log.info("Validate too many attempt screen");
+        signInPage.validateTooManyAttemptScreen();
 
+        log.info("Click on device back button");
+        signInPage.clickDeviceBackButton();
+
+        log.info("Enter valid pin");
+        signInPage.enterPin(validPin);
         signInPage.enterOtp(otp);
-        signInPage.validateOtpError();
-        for(int i=2; i<=5; i++) {
-            signInPage.enterOtp(otp);
-            signInPage.validateOtpError();
-        }
-
-        //ToDo: wait for timer and generate otp link
-
-        //ToDO: Navigate back test
-
+        signInPage.waitForHomePage();
     }
 
-    @Test(enabled = false, groups = {"signIn"}, description = "Sign In", dataProvider = "signInWithInvalidOtpData", dataProviderClass = SignInDataProvider.class)
-    public void retryAfterBreachOtpTest(String phoneNumber, String passcode, String otp)  {
+    @Test(groups = {"signInBreach"}, description = "Sign In", dataProvider = "invalidOtpMaxAttemptData", dataProviderClass = SignInDataProvider.class)
+    public void invalidOtpMaxAttemptTest(String phoneNumber, String pin, String invalidOtp, String validOtp)  {
 
         log.info("Sign In Test");
         SignInPage signInPage = new SignInPage(driver);
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
-        signInPage.enterPin(passcode);
+        signInPage.enterPin(pin);
 
+        log.info("Enter invalid otp for max attempt allowed");
+        for(int i=1; i <= Integer.parseInt(EnvConfig.getProperty("invalidOtpMaxAttempt")); i++) {
+
+            signInPage.clearOtpTextBox();
+            signInPage.enterOtp(invalidOtp);
+            signInPage.validateOtpError();
+
+            signInPage.clickOnVerifyOtp();
+        }
+
+        log.info("Enter otp again");
+        signInPage.clearOtpTextBox();
+        signInPage.enterOtp(invalidOtp);
+
+        log.info("Validate too many attempt screen");
+        signInPage.validateTooManyAttemptScreen();
+
+        log.info("Kill and restart app");
+        signInPage.killAndRestartApp();
+
+        log.info("Validate too many attempt screen");
+        signInPage.validateTooManyAttemptScreen();
+
+        log.info("Enter valid otp");
+        signInPage.enterOtp(validOtp);
+        signInPage.waitForHomePage();
+    }
+
+
+    @Test(groups = {"signInBreach"}, description = "Sign In", dataProvider = "invalidOtpMaxAttemptData", dataProviderClass = SignInDataProvider.class)
+    public void retryAfterInvalidOtpMaxAttemptTest(String phoneNumber, String pin, String invalidOtp, String validOtp)  {
+
+        log.info("Sign In Test");
+        SignInPage signInPage = new SignInPage(driver);
+        signInPage.enterPhoneNumberAndContinue(phoneNumber);
+        signInPage.enterPin(pin);
+
+        log.info("Enter invalid otp for max attempt allowed");
+        for(int i=1; i <= Integer.parseInt(EnvConfig.getProperty("invalidOtpMaxAttempt")); i++) {
+
+            signInPage.clearOtpTextBox();
+            signInPage.enterOtp(invalidOtp);
+            signInPage.validateOtpError();
+
+            signInPage.clickOnVerifyOtp();
+        }
+
+        log.info("Enter otp again");
+        signInPage.clearOtpTextBox();
+        signInPage.enterOtp(invalidOtp);
+
+        log.info("Validate too many attempt screen");
+        signInPage.validateTooManyAttemptScreen();
+
+        log.info("Kill and restart app");
+        signInPage.killAndRestartApp();
+
+        log.info("Validate too many attempt screen");
+        signInPage.validateTooManyAttemptScreen();
+
+        log.info("Wait for retry button to be clickable and click");
+        signInPage.waitForRetryButtonToBeClickable();
+        signInPage.clickOnRetryButton();
+
+        log.info("Enter invalid otp");
+        signInPage.enterOtp(invalidOtp);
+        signInPage.validateOtpError();
+
+        log.info("Enter valid otp");
+        signInPage.clearOtpTextBox();
+        signInPage.enterOtp(validOtp);
+        signInPage.waitForHomePage();
+    }
+
+    @Test(groups = {"signInBreach"}, description = "Sign In", dataProvider = "forgotPinMaxAttemptData", dataProviderClass = SignInDataProvider.class)
+    public void forgotPinMaxAttemptTest(String phoneNumber, String pin, String otp)  {
+
+        log.info("Sign In Test");
+        SignInPage signInPage = new SignInPage(driver);
+        signInPage.enterPhoneNumberAndContinue(phoneNumber);
+
+        log.info("Click forgot pin link for max allowed attempt");
+        for(int i=1; i<=Integer.parseInt(EnvConfig.getProperty("forgotPinMaxAttempt")); i++) {
+            signInPage.clickForgotPasswordLink();
+            signInPage.navigateBack();
+        }
+
+        log.info("Click forgot pin link again");
+        signInPage.clickForgotPasswordLink();
+        signInPage.validateTooManyAttemptScreen();
+
+        log.info("Kill and restart app");
+        signInPage.killAndRestartApp();
+        signInPage.validateTooManyAttemptScreen();
+
+        log.info("Click on device back button and click again forgot pin link");
+        signInPage.clickDeviceBackButton();
+        signInPage.enterPhoneNumberAndContinue(phoneNumber);
+        signInPage.clickForgotPasswordLink();
+        signInPage.validateTooManyAttemptScreen();
+
+        log.info("Click on device back button and sign in with valid pin and otp");
+        signInPage.clickDeviceBackButton();
+        signInPage.enterPhoneNumberAndContinue(phoneNumber);
+        signInPage.enterPin(pin);
         signInPage.enterOtp(otp);
-        signInPage.validateOtpError();
-        for(int i=2; i<=5; i++) {
-            signInPage.enterOtp(otp);
-            signInPage.validateOtpError();
-        }
-
-        //should come to enter otp screen
+        signInPage.waitForHomePage();
     }
 
-    @Test(enabled = false, groups = {"signIn"}, description = "Sign In", dataProvider = "signInWithInvalidOtpData", dataProviderClass = SignInDataProvider.class)
-    public void killAppAndEnterCorrectOtpAfterBreachOtpTest(String phoneNumber, String passcode, String otp)  {
-
-        log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
-        signInPage.enterPhoneNumberAndContinue(phoneNumber);
-        signInPage.enterPin(passcode);
-
-        signInPage.enterOtp(otp);
-        signInPage.validateOtpError();
-        for(int i=2; i<=5; i++) {
-            signInPage.enterOtp(otp);
-            signInPage.validateOtpError();
-        }
-    }
-
-    @Test(enabled = false, groups = {"signIn"}, description = "Sign In", dataProvider = "signInWithInvalidOtpData", dataProviderClass = SignInDataProvider.class)
-    public void killAppAndEnterInCorrectOtpAfterBreachOtpTest(String phoneNumber, String passcode, String otp)  {
-
-        log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
-        signInPage.enterPhoneNumberAndContinue(phoneNumber);
-        signInPage.enterPin(passcode);
-
-        signInPage.enterOtp(otp);
-        signInPage.validateOtpError();
-        for(int i=2; i<=5; i++) {
-            signInPage.enterOtp(otp);
-            signInPage.validateOtpError();
-        }
-    }
-
-
-    @Test(enabled = false, groups = {"signIn"}, description = "Sign In", dataProvider = "signInWithInvalidPinData", dataProviderClass = SignInDataProvider.class)
-    public void forgotPinMaxAttemptTest(String phoneNumber, String passcode)  {
-
-        log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
-        signInPage.enterPhoneNumberAndContinue(phoneNumber);
-
-        signInPage.enterPin(passcode);
-        signInPage.validatePinError();
-        for(int i=2; i<=5; i++) {
-            signInPage.clickOnPasscodeTextBox();
-            signInPage.enterPin(passcode);
-            signInPage.validatePinError();
-        }
-        signInPage.validateForgotPinLinkDisabled();
-
-        //ToDO: Navigate back test
-
-    }
-
-
-    @Test(enabled = false, groups = {"signIn"}, description = "Sign In", dataProvider = "signInData", dataProviderClass = SignInDataProvider.class)
+    @Test(enabled = false, groups = {"signInBreach"}, description = "Sign In", dataProvider = "signInData", dataProviderClass = SignInDataProvider.class)
     public void signInWithExpiredPinTest(String phoneNumber, String passcode)  {
 
         //ToDo: Expire PIN before test

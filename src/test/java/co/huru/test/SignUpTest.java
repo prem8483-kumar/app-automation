@@ -66,15 +66,8 @@ public class SignUpTest extends AndroidBaseTest {
 
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
 
-        log.info("Get app package");
-        String appPackage = driver.getCurrentPackage();
-        log.info(appPackage);
-
-        log.info("Kill app");
-        driver.terminateApp(appPackage);
-
-        log.info("Restart app");
-        driver.activateApp(appPackage);
+        log.info("Kill and restart app");
+        signUpPage.killAndRestartApp();
 
         log.info("Continue signup");
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
@@ -96,17 +89,8 @@ public class SignUpTest extends AndroidBaseTest {
 
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
 
-        log.info("Get app package");
-        String appPackage = driver.getCurrentPackage();
-        log.info(appPackage);
-
-        log.info("Kill app");
-        driver.terminateApp(appPackage);
-
-        Thread.sleep(30000);
-
-        log.info("Restart app");
-        driver.activateApp(appPackage);
+        log.info("Kill wait and restart app");
+        signUpPage.killWaitAndRestartApp(30000);
 
         log.info("Continue signup");
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
@@ -132,15 +116,8 @@ public class SignUpTest extends AndroidBaseTest {
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
 
-        log.info("Get app package");
-        String appPackage = driver.getCurrentPackage();
-        log.info(appPackage);
-
-        log.info("Kill app");
-        driver.terminateApp(appPackage);
-
-        log.info("Restart app");
-        driver.activateApp(appPackage);
+        log.info("Kill and restart app");
+        signUpPage.killAndRestartApp();
 
         log.info("Continue signup");
         signUpPage.enterNameAndContinue(name);
@@ -162,15 +139,8 @@ public class SignUpTest extends AndroidBaseTest {
         signUpPage.enterNameAndContinue(name);
         signUpPage.enterEmailAndContinue(email);
 
-        log.info("Get app package");
-        String appPackage = driver.getCurrentPackage();
-        log.info(appPackage);
-
-        log.info("Kill app");
-        driver.terminateApp(appPackage);
-
-        log.info("Restart app");
-        driver.activateApp(appPackage);
+        log.info("Kill and restart app");
+        signUpPage.killAndRestartApp();
 
         log.info("Continue signup");
         signUpPage.enterNameAndContinue(name);
@@ -256,7 +226,6 @@ public class SignUpTest extends AndroidBaseTest {
         signUpPage.enterPin(passcode);
         signUpPage.enterPinAndConfirm(passcode);
         signUpPage.navigateBack();
-        //ToDo
-        log.info(driver.currentActivity());
+        signUpPage.validateAppClosed();
     }
 }

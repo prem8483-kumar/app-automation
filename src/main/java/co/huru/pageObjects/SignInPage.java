@@ -3,6 +3,8 @@ package co.huru.pageObjects;
 import co.huru.constants.AppConstant;
 import co.huru.utils.AndroidActions;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -34,6 +36,13 @@ public class SignInPage extends AndroidActions {
 	private final By passcodeContinueButton = By.id("com.huru:id/set_passcode_continue");
 	private final By forgotPasscodeLink = By.id("com.huru:id/forgot_passcode");
 	private final By passcodeError = By.id("com.huru:id/passcode_error");
+
+	private final By tooManyAttemptImage = By.id("com.huru:id/img_view");
+	private final By tooManyAttemptHeader = By.id("com.huru:id/too_many_attempt_header");
+	private final By tooManyAttemptBody = By.id("com.huru:id/too_many_attempt_body");
+	private final By tryAgainTimerText = By.id("com.huru:id/try_again_timer");
+	private final By tryAgainTimerValue = By.id("com.huru:id/try_again_timer_value");
+	private final By retryButton = By.id("com.huru:id/password_expired_continue");
 
 	private final By otpView = By.id("com.huru:id/otpView");
 	private final By otpTextBox_1 = By.xpath("//androidx.compose.ui.platform.ComposeView[@resource-id=\"com.huru:id/otpView\"]/android.view.View/android.view.View[1]/android.widget.EditText/android.view.View");
@@ -97,14 +106,14 @@ public class SignInPage extends AndroidActions {
 
 	public void enterPin(String passcode)
 	{
-		log.info("Enter passcode");
+		log.info("Enter pin");
 		waitForElementToBeVisible(passcodeView);
 		sendNumericKeysUsingKeyboard(passcode);
 	}
 
 	public void clickOnPasscodeTextBox()
 	{
-		log.info("Click on passcode text box");
+		log.info("Click on pin text box");
 		waitForElementToBeVisible(passcodeTextBox_1).click();
 	}
 
@@ -120,11 +129,25 @@ public class SignInPage extends AndroidActions {
 		waitForElementToBeVisible(otpTextBox_1).click();
 	}
 
+	public void clearOtpTextBox()
+	{
+		log.info("Clear otp text box");
+		for(int i=1; i<=6; i++) {
+			driver.pressKey(new KeyEvent(AndroidKey.DEL));
+		}
+	}
+
 	public void enterOtp(String otp)
 	{
 		log.info("Enter otp");
 		waitForElementToBeVisible(otpView);
 		sendNumericKeysUsingKeyboard(otp);
+	}
+
+	public void clickOnVerifyOtp()
+	{
+		log.info("Click verify otp");
+		waitForElementToBeVisible(verifyOtpButton).click();
 	}
 
 	public void validatePhoneNumberError()
@@ -145,6 +168,46 @@ public class SignInPage extends AndroidActions {
 		assertTrue(waitForElementToBeNotVisible(forgotPasscodeLink));
 	}
 
+	public void validateTooManyAttemptScreen()
+	{
+		log.info("Validate too many attempt image, header and body ");
+		waitForElementToBeVisible(tooManyAttemptImage);
+		waitForElementToBeVisible(tooManyAttemptHeader);
+		waitForElementToBeVisible(tooManyAttemptBody);
+
+		log.info("Validate retry timer");
+		waitForElementToBeVisible(tryAgainTimerText);
+		waitForElementToBeVisible(tryAgainTimerValue);
+
+		log.info("Validate retry button disabled");
+		assertFalse(waitForElementToBeVisible(retryButton).isEnabled());
+
+	}
+
+	public void validateRetryTimer()
+	{
+		log.info("Validate retry timer");
+		waitForElementToBeVisible(tryAgainTimerText);
+		waitForElementToBeVisible(tryAgainTimerValue);
+	}
+
+	public void validateRetryButtonEnabled(boolean enabled)
+	{
+		log.info("Validate retry button enabled");
+		assertEquals(waitForElementToBeVisible(retryButton).isEnabled(), enabled);
+	}
+
+	public void waitForRetryButtonToBeClickable()
+	{
+		log.info(" wait for retry button to be clickable");
+		waitForElementToBeClickable(retryButton).click();
+	}
+
+	public void clickOnRetryButton()
+	{
+		log.info("Click retry button");
+		waitForElementToBeVisible(retryButton).click();
+	}
 
 	public void validateOtpError()
 	{
