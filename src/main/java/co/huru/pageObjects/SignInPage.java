@@ -240,10 +240,10 @@ public class SignInPage extends AndroidActions {
 		assertEquals(waitForElementToBeVisible(phoneNumberTextBox).getText(), phoneNumber);
 	}
 
-	public void signIn(String phoneNumber, String passcode, String otp) {
+	public void signIn(String phoneNumber, String pin, String otp) {
 		log.info("Sign In");
 		enterPhoneNumberAndContinue(phoneNumber);
-		enterPin(passcode);
+		enterPin(pin);
 		enterOtp(otp);
 		waitForHomePage();
 	}

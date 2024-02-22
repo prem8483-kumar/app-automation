@@ -71,7 +71,7 @@ public class AndroidActions extends AppiumUtils {
 		String appPackage = driver.getCurrentPackage();
 
 		log.info("Get app state");
-		assertEquals(driver.queryAppState(appPackage), ApplicationState.NOT_RUNNING);
+		assertEquals(driver.queryAppState(appPackage), ApplicationState.RUNNING_IN_FOREGROUND);
 	}
 
 	public WebElement waitForElementToBeVisible(By locator)

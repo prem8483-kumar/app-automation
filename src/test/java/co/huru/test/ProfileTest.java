@@ -4,6 +4,7 @@ import co.huru.data.ProfileDataProvider;
 import co.huru.pageObjects.HomePage;
 import co.huru.pageObjects.ProfilePage;
 import co.huru.pageObjects.SignInPage;
+import co.huru.pageObjects.SignUpPage;
 import co.huru.utils.AndroidBaseTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,11 +45,11 @@ public class ProfileTest extends AndroidBaseTest {
     }
 
     @Test(groups = {"profile"}, description = "Profile", dataProvider = "editUserPhoneNumberData", dataProviderClass = ProfileDataProvider.class)
-    public void editUserPhoneNumber(String phoneNumber, String passcode, String otp, String newPhoneNumber)  {
+    public void editUserPhoneNumber(String phoneNumber, String otp, String pin, String name, String email, String newPhoneNumber)  {
 
         log.info("Edit user phone number test");
-        SignInPage signInPage = new SignInPage(driver);
-        signInPage.signIn(phoneNumber, passcode, otp);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        signUpPage.signUp(phoneNumber, otp, pin, name, email);
 
         HomePage homePage = new HomePage(driver);
         homePage.goToProfilePage();
@@ -56,21 +57,31 @@ public class ProfileTest extends AndroidBaseTest {
         ProfilePage profilePage = new ProfilePage(driver);
         profilePage.gotToPersonalDetailsSection();
         profilePage.editPhoneNumber(newPhoneNumber, otp);
+
+        profilePage.gotToLogoutSection();
+        profilePage.logOut();
+
+        SignInPage signInPage = new SignInPage(driver);
+        signInPage.signIn(newPhoneNumber, pin, otp);
     }
 
     @Test(groups = {"profile"}, description = "Profile", dataProvider = "changeUserPinData", dataProviderClass = ProfileDataProvider.class)
-    public void changePin(String phoneNumber, String oldPasscode, String otp, String newPassCode)  {
+    public void changePin(String phoneNumber, String otp, String pin, String name, String email,
+                          String newPin)  {
 
         log.info("Change user pin test");
-        SignInPage signInPage = new SignInPage(driver);
-        signInPage.signIn(phoneNumber, oldPasscode, otp);
+        SignUpPage signUpPage = new SignUpPage(driver);
+        signUpPage.signUp(phoneNumber, otp, pin, name, email);
 
         HomePage homePage = new HomePage(driver);
         homePage.goToProfilePage();
 
         ProfilePage profilePage = new ProfilePage(driver);
         profilePage.gotToLoginSettingsSection();
-        profilePage.changePin(oldPasscode, newPassCode, otp);
+        profilePage.changePin(pin, newPin, otp);
+
+        SignInPage signInPage = new SignInPage(driver);
+        signInPage.signIn(phoneNumber, newPin, otp);
     }
 
     //Already being covered in edit email flow
@@ -104,8 +115,8 @@ public class ProfileTest extends AndroidBaseTest {
         profilePage.verifyEmailFromPersonalDetailsPage(otp);
     }
 
-
-    @Test(groups = {"profile"}, description = "Profile", dataProvider = "addBankAccountData", dataProviderClass = ProfileDataProvider.class)
+    //add account button removed
+    @Test(enabled = false, groups = {"profile"}, description = "Profile", dataProvider = "addBankAccountData", dataProviderClass = ProfileDataProvider.class)
     public void addBankAccountAsPaymentMethod(String phoneNumber, String passcode, String otp,
                                               String bankUserName, String bankPassword, String bankOtp)  {
 

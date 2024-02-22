@@ -29,21 +29,23 @@ public class ProfileDataProvider {
     @DataProvider(name = "editUserPhoneNumberData")
     public Object[][] editUserPhoneNumberData() {
         return new Object[][] {
-                {"523333333", "100900", "123456", DataGenerator.generateRandomMobileNumber()},
+                {DataGenerator.generateRandomMobileNumber(), "123456", DataGenerator.generateRandomPin(), DataGenerator.generateRandomName(), DataGenerator.generateRandomEmail(),
+                        DataGenerator.generateRandomMobileNumber()},
         };
     }
 
     @DataProvider(name = "changeUserPinData")
     public Object[][] changeUserPinData() {
         return new Object[][] {
-                {"523333333", "100900", "123456", DataGenerator.generateRandomPin()},
+                {DataGenerator.generateRandomMobileNumber(), "123456", DataGenerator.generateRandomPin(), DataGenerator.generateRandomName(), DataGenerator.generateRandomEmail(),
+                        DataGenerator.generateRandomPin()},
         };
     }
 
     @DataProvider(name = "addBankAccountData")
     public Object[][] addBankAccountData() {
         return new Object[][] {
-                {"581111111", "123789", "123456", "mr.lazaroschaefer", "CvwxAhXTfBaFKvS", "1111"},
+                {"523333333", "100900", "123456", "mr.lazaroschaefer", "CvwxAhXTfBaFKvS", "1111"},
         };
     }
 }

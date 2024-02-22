@@ -3,6 +3,7 @@ package co.huru.test;
 import co.huru.configs.EnvConfig;
 import co.huru.data.SignInDataProvider;
 import co.huru.pageObjects.SignInPage;
+import co.huru.pageObjects.SignUpPage;
 import co.huru.utils.AndroidBaseTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,6 +12,25 @@ import org.testng.annotations.Test;
 public class SignInBreachTest extends AndroidBaseTest {
 
     private static final Logger log = LogManager.getLogger(SignInBreachTest.class);
+
+    @Test(groups = {"signIn"}, description = "Sign In", dataProvider = "forgotPinData", dataProviderClass = SignInDataProvider.class)
+    public void forgotPasscodeTest(String phoneNumber, String newPasscode, String otp)  {
+
+        log.info("Sign In Test");
+        SignInPage signInPage = new SignInPage(driver);
+        SignUpPage signUpPage = new SignUpPage(driver);
+
+        signInPage.enterPhoneNumberAndContinue(phoneNumber);
+        signInPage.clickForgotPasswordLink();
+
+        signUpPage.enterOtp(otp);
+        signUpPage.enterPin(newPasscode);
+        signUpPage.enterPinAndConfirm(newPasscode);
+
+        signInPage.enterPin(newPasscode);
+        signInPage.enterOtp(otp);
+        signInPage.waitForHomePage();
+    }
 
     @Test(groups = {"signInBreach"}, description = "Sign In", dataProvider = "signInWithInvalidPinData", dataProviderClass = SignInDataProvider.class)
     public void invalidPinMaxAttemptTest(String phoneNumber, String invalidPin, String validPin, String otp)  {

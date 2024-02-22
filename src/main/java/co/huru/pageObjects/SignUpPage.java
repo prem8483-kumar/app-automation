@@ -61,6 +61,19 @@ public class SignUpPage extends AndroidActions {
 
 	private final By homeTab = By.id("com.huru:id/homeFragment");
 
+	public void signUp(String phoneNumber, String otp, String passcode, String name, String email)  {
+
+		log.info("Sign Up Method");
+		enterPhoneNumberAndContinue(phoneNumber);
+		enterOtp(otp);
+		enterNameAndContinue(name);
+		enterEmailAndContinue(email);
+		enterPin(passcode);
+		enterPinAndConfirm(passcode);
+		skipBiometric();
+		waitForHomePage();
+	}
+
 	public void navigateValueProps()
 	{
 		log.info("Navigate value prop");

@@ -65,25 +65,6 @@ public class SignInTest extends AndroidBaseTest {
         signInPage.waitForHomePage();
     }
 
-    @Test(groups = {"signIn"}, description = "Sign In", dataProvider = "forgotPinData", dataProviderClass = SignInDataProvider.class)
-    public void forgotPasscodeTest(String phoneNumber, String newPasscode, String otp)  {
-
-        log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
-        SignUpPage signUpPage = new SignUpPage(driver);
-
-        signInPage.enterPhoneNumberAndContinue(phoneNumber);
-        signInPage.clickForgotPasswordLink();
-
-        signUpPage.enterOtp(otp);
-        signUpPage.enterPin(newPasscode);
-        signUpPage.enterPinAndConfirm(newPasscode);
-
-        signInPage.enterPin(newPasscode);
-        signInPage.enterOtp(otp);
-        signInPage.waitForHomePage();
-    }
-
     @Test(groups = {"signIn"}, description = "Sign In")
     public void navigateBackFromPhoneNumberScreen()  {
 

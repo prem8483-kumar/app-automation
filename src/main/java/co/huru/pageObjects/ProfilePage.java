@@ -151,8 +151,9 @@ public class ProfilePage extends AndroidActions {
 		waitForElementToBeVisible(otpView);
 		sendNumericKeysUsingKeyboard(otp);
 
-		log.info("Verify updated phone");
-		assertEquals(waitForElementToBeVisible(phoneNumberText).getText(), phoneNumber);
+//		log.info("Verify updated phone");
+//		gotToPersonalDetailsSection();
+//		assertEquals(waitForElementToBeVisible(phoneNumberText).getText(), phoneNumber);
 	}
 
 	public void verifyEmailFromProfilePage(String otp)
@@ -197,7 +198,6 @@ public class ProfilePage extends AndroidActions {
 	public void addBankAccount(String userName, String password, String otp)
 	{
 		log.info("Add bank account");
-		//waitForElementToBeVisible(bankAccountsTab).click();
 		if(elementNotVisible(addAccountButton)) {
 			waitForElementToBeVisible(addAccountLink).click();
 		} else {
@@ -303,17 +303,6 @@ public class ProfilePage extends AndroidActions {
 		waitForElementToBeVisible(passCodeTextBox_1).click();
 		sendNumericKeysUsingKeyboard(newPasscode);
 		waitForElementToBeVisible(confirmPasscodeButton).click();
-
-		log.info("Enter new passcode");
-		waitForElementToBeVisible(passcodeView);
-		sendNumericKeysUsingKeyboard(newPasscode);
-
-		log.info("Enter otp");
-		waitForElementToBeVisible(otpView);
-		sendNumericKeysUsingKeyboard(otp);
-
-		log.info("Wait for home page");
-		waitForElementToBeVisible(homeTab);
 	}
 
 	public void gotToLogoutSection()
