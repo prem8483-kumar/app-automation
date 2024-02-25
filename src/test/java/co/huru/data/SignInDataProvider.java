@@ -19,17 +19,12 @@ public class SignInDataProvider {
         };
     }
 
-    @DataProvider(name = "signInWithInvalidPinData")
-    public Object[][] signInWithInvalidPinData() {
+    @DataProvider(name = "forgotPinData")
+    public Object[][] forgotPinData() {
         return new Object[][] {
-                {"581111111", "111111"},
-        };
-    }
-
-    @DataProvider(name = "signInWithInvalidOtpData")
-    public Object[][] signInWithInvalidOtpData() {
-        return new Object[][] {
-                {"581111111", "246135", "111111"},
+                {DataGenerator.generateRandomMobileNumber(), "123456", DataGenerator.generateRandomPin(), DataGenerator.generateRandomName(), DataGenerator.generateRandomEmail(),
+                        DataGenerator.generateRandomPin()
+                },
         };
     }
 
@@ -45,28 +40,30 @@ public class SignInDataProvider {
     @DataProvider(name = "invalidPinData")
     public Object[][] invalidPinData() {
         return new Object[][] {
-                {"581111111", "111111"},
+                {"523333333", "111111"},
         };
     }
 
     @DataProvider(name = "invalidOtpData")
     public Object[][] invalidOtpData() {
         return new Object[][] {
-                {"581111111", "246135", "111111"},
+                {"523333333", "100900", "111111"},
         };
     }
 
     @DataProvider(name = "invalidPinMaxAttemptData")
     public Object[][] invalidPinMaxAttemptData() {
         return new Object[][] {
-                {"581111111", "111111", "100900", "123456"},
+                {DataGenerator.generateRandomMobileNumber(), "123456", DataGenerator.generateRandomPin(), DataGenerator.generateRandomName(), DataGenerator.generateRandomEmail()},
         };
     }
 
     @DataProvider(name = "invalidOtpMaxAttemptData")
     public Object[][] invalidOtpMaxAttemptData() {
         return new Object[][] {
-                {"581111111", "100900", "111111", "123456"},
+                {DataGenerator.generateRandomMobileNumber(), "123456", DataGenerator.generateRandomPin(), DataGenerator.generateRandomName(), DataGenerator.generateRandomEmail(),
+                        "111111"
+                },
         };
     }
 
@@ -74,13 +71,6 @@ public class SignInDataProvider {
     public Object[][] forgotPinMaxAttemptData() {
         return new Object[][] {
                 {"581111111", "100900", "123456"},
-        };
-    }
-
-    @DataProvider(name = "forgotPinData")
-    public Object[][] forgotPinData() {
-        return new Object[][] {
-                {"581111111", DataGenerator.generateRandomPin(), "123456"},
         };
     }
 }

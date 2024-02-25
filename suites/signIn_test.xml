@@ -15,7 +15,7 @@
     </groups>
 
     <classes>
-      <class name="co.huru.test.SignInTest"/>
+      <class name="co.huru.test.signIn.SignInTest"/>
     </classes>
 
   </test>

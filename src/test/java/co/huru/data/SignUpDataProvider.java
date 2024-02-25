@@ -15,7 +15,7 @@ public class SignUpDataProvider {
     @DataProvider(name = "invalidNameData")
     public Object[][] invalidNameData() {
         return new Object[][] {
-                {DataGenerator.generateRandomMobileNumber(), "123456", " "},
+                {DataGenerator.generateRandomMobileNumber(), "123456", ""},
                 {DataGenerator.generateRandomMobileNumber(), "123456", "123"},
                 {DataGenerator.generateRandomMobileNumber(), "123456", "@#%"},
                 {DataGenerator.generateRandomMobileNumber(), "123456", "abc123"},
@@ -27,7 +27,7 @@ public class SignUpDataProvider {
     @DataProvider(name = "invalidEmailData")
     public Object[][] invalidEmailData() {
         return new Object[][] {
-                {DataGenerator.generateRandomMobileNumber(), "123456", "Validate", " "},
+                {DataGenerator.generateRandomMobileNumber(), "123456", "Validate", ""},
                 {DataGenerator.generateRandomMobileNumber(), "123456", "Validate", "123"},
                 {DataGenerator.generateRandomMobileNumber(), "123456", "Validate", "@#&"},
                 {DataGenerator.generateRandomMobileNumber(), "123456", "Validate", "ABC123"},
@@ -41,16 +41,16 @@ public class SignUpDataProvider {
     @DataProvider(name = "setInvalidPinData")
     public Object[][] setInvalidPinData() {
         return new Object[][] {
-                {"581111111", "123456", "name", "email@gmail.com", "111111"},
-                {"581111111", "123456", "name", "email@gmail.com", "123456"},
-                {"581111111", "123456", "name", "email@gmail.com", "135531"},
+                {DataGenerator.generateRandomMobileNumber(), "123456", "name", "email@gmail.com", "111111"},
+                {DataGenerator.generateRandomMobileNumber(), "123456", "name", "email@gmail.com", "123456"},
+                {DataGenerator.generateRandomMobileNumber(), "123456", "name", "email@gmail.com", "135531"},
         };
     }
 
     @DataProvider(name = "confirmInvalidPinData")
     public Object[][] confirmInvalidPinData() {
         return new Object[][] {
-                {"581111111", "123456", "name", "email@gmail.com", "100900", "1111111"},
+                {DataGenerator.generateRandomMobileNumber(), "123456", "name", "email@gmail.com", "100900", "1111111"},
         };
     }
 }

@@ -1,0 +1,25 @@
+{
+  "user": {
+    "profile": {
+      "phoneNumber": "523333333",
+      "pin": "100900",
+      "otp": "123456"
+    },
+    "recipients": [
+      {
+        "firstName": "Prem",
+        "lastName": "Kumar",
+        "nickName": "Bro",
+        "mobileNumber": "8888888888",
+        "address": {
+          "address": "Test Address",
+          "city": "Pune"
+        },
+        "bankAccount": {
+          "accountNumber": "196700000000",
+          "ifscCode": "ICIC0001967"
+        }
+      }
+    ]
+  }
+}

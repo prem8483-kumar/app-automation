@@ -1,4 +1,4 @@
-package co.huru.test;
+package co.huru.test.signIn;
 
 import co.huru.data.SignInDataProvider;
 import co.huru.pageObjects.SignInPage;
@@ -21,7 +21,7 @@ public class SignInErrorTest extends AndroidBaseTest {
         signInPage.enterPhoneNumber(phoneNumber);
         if(phoneNumber.length() < 9) {
             //Valid phone number
-            signInPage.validateDisclaimerCheckBoxSelected(true);
+            signInPage.validateDisclaimerCheckBoxSelected("true");
             signInPage.validatePhoneNumberContinueButtonEnabled(false);
 
             signInPage.clickOnDisclaimerCheckBox();
@@ -29,7 +29,7 @@ public class SignInErrorTest extends AndroidBaseTest {
 
         } else if(phoneNumber.length() > 9) {
             //Valid phone number
-            signInPage.validateDisclaimerCheckBoxSelected(true);
+            signInPage.validateDisclaimerCheckBoxSelected("true");
             signInPage.validatePhoneNumberContinueButtonEnabled(true);
 
             signInPage.clickOnDisclaimerCheckBox();
@@ -40,7 +40,7 @@ public class SignInErrorTest extends AndroidBaseTest {
 
         } else {
             //Invalid phone number
-            signInPage.validateDisclaimerCheckBoxSelected(true);
+            signInPage.validateDisclaimerCheckBoxSelected("true");
             signInPage.validatePhoneNumberError();
 
             signInPage.clickOnDisclaimerCheckBox();
@@ -73,7 +73,7 @@ public class SignInErrorTest extends AndroidBaseTest {
 
 
     @Test(groups = {"signIn"}, description = "Sign In", dataProvider = "signInData", dataProviderClass = SignInDataProvider.class)
-    public void forgotPinSetNewPinSameAsOldPinTest(String phoneNumber, String passcode, String otp)  {
+    public void forgotPinSetNewPinSameAsOldPinTest(String phoneNumber, String pin, String otp)  {
 
         log.info("Sign In Test");
         SignInPage signInPage = new SignInPage(driver);
@@ -82,8 +82,8 @@ public class SignInErrorTest extends AndroidBaseTest {
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.clickForgotPasswordLink();
         signUpPage.enterOtp(otp);
-        signUpPage.enterPin(passcode);
-        signUpPage.enterPinAndConfirm(passcode);
+        signUpPage.enterPin(pin);
+        signUpPage.enterPinAndConfirm(pin);
 
         signUpPage.validateSamePinAsPreviousError();
     }

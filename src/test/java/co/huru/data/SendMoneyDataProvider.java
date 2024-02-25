@@ -2,6 +2,8 @@ package co.huru.data;
 
 import org.testng.annotations.DataProvider;
 
+import static co.huru.utils.DataObjectMapper.getTestDataObject;
+
 public class SendMoneyDataProvider {
 
     @DataProvider(name = "sendMoneyData")
@@ -14,14 +16,8 @@ public class SendMoneyDataProvider {
     @DataProvider(name = "addRecipientData")
     public Object[][] addRecipientData() {
         return new Object[][] {
-                {"581111111", "246135", "123456", "prem", "kumar", "8888888888", "Bro", "196600509966", "ICIC0001967", "nda street", "pune"},
-        };
-    }
-
-    @DataProvider(name = "addBankAccountData")
-    public Object[][] addBankAccountData() {
-        return new Object[][] {
-                {"581111111", "246135", "123456", "mr.lazaroschaefer", "CvwxAhXTfBaFKvS", "1111"},
+                {getTestDataObject("src/test/resources/testData/addRecipient.json")},
         };
     }
 }
+

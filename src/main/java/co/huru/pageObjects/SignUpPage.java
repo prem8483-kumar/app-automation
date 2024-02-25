@@ -182,14 +182,14 @@ public class SignUpPage extends AndroidActions {
 
 	public void enterPin(String passcode)
 	{
-		log.info("Enter passcode");
+		log.info("Enter Pin");
 		waitForElementToBeVisible(passcodeView);
 		sendNumericKeysUsingKeyboard(passcode);
 	}
 
 	public void enterPinAndConfirm(String passcode)
 	{
-		log.info("Confirm passcode");
+		log.info("Confirm Pin");
 		waitForElementToBeVisible(passcodeView);
 		waitForElementToBeVisible(passCodeTextBox_1).click();
 		sendNumericKeysUsingKeyboard(passcode);
@@ -224,6 +224,12 @@ public class SignUpPage extends AndroidActions {
 	{
 		log.info("Validate pin error");
 		assertEquals(waitForElementToBeVisible(emailError).getText(), AppConstant.EMAIL_ERROR_MESSAGE);
+	}
+
+	public void validateEmailRequiredError()
+	{
+		log.info("Validate pin error");
+		assertEquals(waitForElementToBeVisible(emailError).getText(), AppConstant.EMAIL_REQUIRED_ERROR_MESSAGE);
 	}
 
 	public void skipBiometric()

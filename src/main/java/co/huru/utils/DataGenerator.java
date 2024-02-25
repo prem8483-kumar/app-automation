@@ -47,4 +47,8 @@ public class DataGenerator {
         return RandomStringUtils.random(length, useLetters, useNumbers);
     }
 
+    public static String reverseString(String data) {
+        return new StringBuilder(data).reverse().toString();
+    }
+
 }

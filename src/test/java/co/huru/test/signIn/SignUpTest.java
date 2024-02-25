@@ -1,4 +1,4 @@
-package co.huru.test;
+package co.huru.test.signIn;
 
 import co.huru.data.SignUpDataProvider;
 import co.huru.pageObjects.SignUpPage;

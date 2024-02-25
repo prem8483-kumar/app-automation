@@ -1,4 +1,4 @@
-package co.huru.test;
+package co.huru.test.profile;
 
 import co.huru.data.ProfileDataProvider;
 import co.huru.pageObjects.HomePage;
@@ -59,7 +59,7 @@ public class ProfileTest extends AndroidBaseTest {
         profilePage.editPhoneNumber(newPhoneNumber, otp);
 
         profilePage.gotToLogoutSection();
-        profilePage.logOut();
+        profilePage.logOutConfirm();
 
         SignInPage signInPage = new SignInPage(driver);
         signInPage.signIn(newPhoneNumber, pin, otp);
@@ -205,7 +205,7 @@ public class ProfileTest extends AndroidBaseTest {
 
         ProfilePage profilePage = new ProfilePage(driver);
         profilePage.gotToLogoutSection();
-        profilePage.logOut();
+        profilePage.logOutConfirm();
     }
 
     @Test(groups = {"profile"}, description = "Profile", dataProvider = "userSignInData", dataProviderClass = ProfileDataProvider.class)

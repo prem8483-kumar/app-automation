@@ -305,6 +305,14 @@ public class ProfilePage extends AndroidActions {
 		waitForElementToBeVisible(confirmPasscodeButton).click();
 	}
 
+	public void logOut()
+	{
+		log.info("Logout");
+		gotToLogoutSection();
+		logOutConfirm();
+
+	}
+
 	public void gotToLogoutSection()
 	{
 		log.info("Go to logout section");
@@ -312,7 +320,7 @@ public class ProfilePage extends AndroidActions {
 		waitForElementToBeVisible(logoutSection).click();
 	}
 
-	public void logOut()
+	public void logOutConfirm()
 	{
 		log.info("Logout confirm");
 		waitForElementToBeVisible(logoutContinueButton).click();

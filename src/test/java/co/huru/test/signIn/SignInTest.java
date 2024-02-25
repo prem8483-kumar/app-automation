@@ -1,6 +1,8 @@
-package co.huru.test;
+package co.huru.test.signIn;
 
 import co.huru.data.SignInDataProvider;
+import co.huru.pageObjects.HomePage;
+import co.huru.pageObjects.ProfilePage;
 import co.huru.pageObjects.SignInPage;
 import co.huru.pageObjects.SignUpPage;
 import co.huru.utils.AndroidBaseTest;
@@ -31,7 +33,7 @@ public class SignInTest extends AndroidBaseTest {
     }
 
     @Test(groups = {"signUp"}, description = "Sign Up", dataProvider = "signUpSignInData", dataProviderClass = SignInDataProvider.class)
-    public void signUpAndSignInTest(String newPhoneNumber, String newNumberOtp, String name,
+    public void navigateBackFromSignUpAndSignInTest(String newPhoneNumber, String newNumberOtp, String name,
                                     String oldPhoneNumber, String oldNUmberPasscode, String oldNumberOtp)  {
 
         log.info("Sign Up Test");
@@ -47,6 +49,33 @@ public class SignInTest extends AndroidBaseTest {
         signInPage.enterPhoneNumberAndContinue(oldPhoneNumber);
         signInPage.enterPin(oldNUmberPasscode);
         signInPage.enterOtp(oldNumberOtp);
+        signInPage.waitForHomePage();
+    }
+
+
+    @Test(groups = {"signIn"}, description = "Sign In", dataProvider = "forgotPinData", dataProviderClass = SignInDataProvider.class)
+    public void forgotPasscodeTest(String phoneNumber, String otp, String pin, String name, String email, String newPin)  {
+
+        log.info("Sign Up");
+        SignUpPage signUpPage = new SignUpPage(driver);
+        signUpPage.signUp(phoneNumber, otp, pin, name, email);
+
+        log.info("Log out");
+        HomePage homePage = new HomePage(driver);
+        homePage.goToProfilePage();
+        ProfilePage profilePage = new ProfilePage(driver);
+        profilePage.logOut();
+
+        log.info("Forgot pin");
+        SignInPage signInPage = new SignInPage(driver);
+        signInPage.enterPhoneNumberAndContinue(phoneNumber);
+        signInPage.clickForgotPasswordLink();
+        signUpPage.enterOtp(otp);
+        signUpPage.enterPin(newPin);
+        signUpPage.enterPinAndConfirm(newPin);
+
+        signInPage.enterPin(newPin);
+        signInPage.enterOtp(otp);
         signInPage.waitForHomePage();
     }
 

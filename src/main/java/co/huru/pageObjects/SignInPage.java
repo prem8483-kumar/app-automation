@@ -92,10 +92,10 @@ public class SignInPage extends AndroidActions {
 		waitForElementToBeVisible(disclaimerCheckBox).click();
 	}
 
-	public void validateDisclaimerCheckBoxSelected(boolean selected)
+	public void validateDisclaimerCheckBoxSelected(String selected)
 	{
 		log.info("Validate disclaimer check box selected");
-		assertEquals(waitForElementToBeVisible(disclaimerCheckBox).isSelected(), selected);
+		assertEquals(waitForElementToBeVisible(disclaimerCheckBox).getAttribute("checked"), selected);
 	}
 
 	public void validatePhoneNumberContinueButtonEnabled(boolean enabled)

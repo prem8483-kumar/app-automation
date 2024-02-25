@@ -1,4 +1,4 @@
-package co.huru.test;
+package co.huru.test.signIn;
 
 import co.huru.data.SignUpDataProvider;
 import co.huru.pageObjects.SignUpPage;
@@ -33,7 +33,12 @@ public class SignUpErrorTest extends AndroidBaseTest {
         signUpPage.enterOtp(otp);
         signUpPage.enterNameAndContinue(name);
         signUpPage.enterEmailAndContinue(email);
-        signUpPage.validateEmailError();
+
+        if(email.isEmpty()) {
+            signUpPage.validateEmailRequiredError();
+        } else {
+            signUpPage.validateEmailError();
+        }
     }
 
     @Test(groups = {"signUp"}, description = "Sign Up", dataProvider = "setInvalidPinData", dataProviderClass = SignUpDataProvider.class)
@@ -63,7 +68,7 @@ public class SignUpErrorTest extends AndroidBaseTest {
         signUpPage.enterEmailAndContinue(email);
         signUpPage.enterPin(pin);
 
-        signUpPage.enterPin(confirmPin);
+        signUpPage.enterPinAndConfirm(confirmPin);
         signUpPage.validatePinNotMatchError();
     }
 

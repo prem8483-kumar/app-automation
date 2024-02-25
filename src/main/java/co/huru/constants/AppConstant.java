@@ -21,7 +21,9 @@ public class AppConstant {
     public final static String PIN_NOT_MATCH_ERROR_MESSAGE = "Your PIN do not match. Please try again.";
 
     public final static String NAME_ERROR_MESSAGE = "";
+
     public final static String EMAIL_ERROR_MESSAGE = "Must be a valid Email";
+    public final static String EMAIL_REQUIRED_ERROR_MESSAGE = "Field is required.";
 
 
 }
