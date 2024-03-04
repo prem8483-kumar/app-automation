@@ -14,6 +14,6 @@ public class BankAccount {
     private String ifscCode;
 
     private String userName;
-    private String passWord;
+    private String password;
     private String otp;
 }

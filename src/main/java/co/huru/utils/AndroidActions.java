@@ -1,7 +1,7 @@
 package co.huru.utils;
 
 import co.huru.configs.EnvConfig;
-import co.huru.pageObjects.SignInPage;
+import co.huru.pageObjects.signIn.SignInPage;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;

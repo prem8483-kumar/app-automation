@@ -2,7 +2,7 @@ package co.huru.utils;
 
 import co.huru.configs.EnvConfig;
 import co.huru.listeners.TestListener;
-import co.huru.pageObjects.SignUpPage;
+import co.huru.pageObjects.signIn.SignUpPage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.*;
@@ -15,7 +15,7 @@ import io.appium.java_client.android.options.UiAutomator2Options;
 
 //@Listeners({ com.epam.reportportal.testng.ReportPortalTestNGListener.class, co.huru.listeners.TestListener.class })
 @Listeners({ TestListener.class })
-public class AndroidBaseTest extends AppiumUtils{
+public class AndroidBaseTest extends AppiumUtils {
 
 	private static final Logger log = LogManager.getLogger(AndroidBaseTest.class);
 

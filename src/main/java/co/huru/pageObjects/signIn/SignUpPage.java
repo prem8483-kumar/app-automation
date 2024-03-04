@@ -1,4 +1,4 @@
-package co.huru.pageObjects;
+package co.huru.pageObjects.signIn;
 
 import co.huru.constants.AppConstant;
 import co.huru.utils.AndroidActions;

@@ -1,0 +1,16 @@
+{
+  "user": {
+    "profile": {
+      "phoneNumber": "523333333",
+      "pin": "100900",
+      "otp": "123456"
+    },
+    "bankAccounts": [
+      {
+        "userName": "mr.lazaroschaefer",
+        "password": "CvwxAhXTfBaFKvS",
+        "otp": "1111"
+      }
+    ]
+  }
+}

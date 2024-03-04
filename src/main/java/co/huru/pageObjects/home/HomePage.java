@@ -1,4 +1,4 @@
-package co.huru.pageObjects;
+package co.huru.pageObjects.home;
 
 import co.huru.utils.AndroidActions;
 import io.appium.java_client.AppiumBy;
@@ -6,8 +6,6 @@ import io.appium.java_client.android.AndroidDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
-
-import io.appium.java_client.AppiumBy;
 
 public class HomePage extends AndroidActions {
 

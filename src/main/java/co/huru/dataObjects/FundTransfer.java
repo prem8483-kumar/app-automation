@@ -12,9 +12,8 @@ public class FundTransfer {
     private String amount;
     private String receiverCountry;
     private String exchange;
-    private String purpose;
-    private String fundSource;
     private String transferPurpose;
+    private String fundSource;
 
     private Recipient recipient;
     private BankAccount bankAccount;

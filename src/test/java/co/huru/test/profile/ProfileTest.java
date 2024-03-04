@@ -1,10 +1,10 @@
 package co.huru.test.profile;
 
 import co.huru.data.ProfileDataProvider;
-import co.huru.pageObjects.HomePage;
-import co.huru.pageObjects.ProfilePage;
-import co.huru.pageObjects.SignInPage;
-import co.huru.pageObjects.SignUpPage;
+import co.huru.pageObjects.home.HomePage;
+import co.huru.pageObjects.profile.ProfilePage;
+import co.huru.pageObjects.signIn.SignInPage;
+import co.huru.pageObjects.signIn.SignUpPage;
 import co.huru.utils.AndroidBaseTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

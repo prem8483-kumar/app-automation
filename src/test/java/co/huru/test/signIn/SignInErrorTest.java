@@ -1,8 +1,8 @@
 package co.huru.test.signIn;
 
 import co.huru.data.SignInDataProvider;
-import co.huru.pageObjects.SignInPage;
-import co.huru.pageObjects.SignUpPage;
+import co.huru.pageObjects.signIn.SignInPage;
+import co.huru.pageObjects.signIn.SignUpPage;
 import co.huru.utils.AndroidBaseTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

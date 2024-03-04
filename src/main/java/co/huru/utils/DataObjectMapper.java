@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class DataObjectMapper {
 
-    public static Object getTestDataObject(String dataFile) {
+    public static TestData getTestDataObject(String dataFile) {
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             return objectMapper.readValue(new File(dataFile), TestData.class);

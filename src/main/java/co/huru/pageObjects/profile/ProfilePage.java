@@ -1,4 +1,4 @@
-package co.huru.pageObjects;
+package co.huru.pageObjects.profile;
 
 import co.huru.utils.AndroidActions;
 import io.appium.java_client.AppiumBy;
