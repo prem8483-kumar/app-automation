@@ -29,7 +29,7 @@ public class SelectRecipientPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		waitForElementToBeVisible(header).click();
+		waitForElementToBeVisible(header);
 	}
 
 	public void navigateBack()

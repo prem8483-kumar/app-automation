@@ -13,6 +13,7 @@ public class Recipient {
     private String lastName;
     private String mobileNumber;
     private String nickName;
+    private String relationship;
 
     private BankAccount bankAccount;
     private Address address;

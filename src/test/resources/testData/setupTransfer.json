@@ -7,9 +7,10 @@
     },
     "fundTransfers": [
       {
-        "amount": "100",
+        "senderAmount": "100",
+        "receiverAmount": "100",
         "receiverCountry": "India",
-        "exchange": "LuLu",
+        "exchangeHouse": "LuLu",
         "fundSource": "Savings",
         "transferPurpose": "Savings"
       }

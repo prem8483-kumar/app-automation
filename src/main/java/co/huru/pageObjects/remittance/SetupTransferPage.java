@@ -27,8 +27,12 @@ public class SetupTransferPage extends AndroidActions {
 	private final By transferTab = AppiumBy.accessibilityId("id_mode_of_transfer_tab_text");
 	private final By cashPickupTab = AppiumBy.xpath("//android.widget.TextView[@text=\"Cash Pickup\"]");
 	private final By walletTab = AppiumBy.xpath("//android.widget.TextView[@text=\"Wallet\"]");
+	private final By comingSoonBanner = AppiumBy.xpath("//android.widget.TextView[@text=\"Coming soon\"]");
 
-	private final By amountTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
+	private final By exchangeIcon = AppiumBy.accessibilityId("exchange_icon");
+	private final By receiverAmountTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
+
+	private final By senderAmountTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
 	private final By minimumAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Min single transaction amount AED 50\"]");
 	private final By maximumAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Max single transaction amount AED 15000\"]");
 
@@ -40,6 +44,9 @@ public class SetupTransferPage extends AndroidActions {
 	private final By selectGccExchange = AppiumBy.xpath("//android.widget.TextView[@text=\"GCC\"]");
 	private final By selectFirstExchange = AppiumBy.xpath("//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]");
 
+	private final By exchangeQuoteBreakup = AppiumBy.xpath("//android.widget.TextView[@text=\"Quote breakdown\"]");
+	private final By exchangeFeeInfoIcon = AppiumBy.xpath("//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[2]/android.view.View[1]");
+
 	private final By selectFamilySupportPurposeOfTransaction = AppiumBy.xpath("//android.widget.TextView[@text=\"Family support\"]");
 	private final By selectSavingsPurposeOfTransaction = AppiumBy.xpath("(//android.widget.TextView[@text=\"Savings\"])[1]");
 
@@ -49,7 +56,7 @@ public class SetupTransferPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		waitForElementToBeVisible(header).click();
+		waitForElementToBeVisible(header);
 	}
 
 	public void navigateBack()
@@ -64,6 +71,30 @@ public class SetupTransferPage extends AndroidActions {
 		waitForElementToBeVisible(continueButton).click();
 	}
 
+	public void clickOnTransferTab()
+	{
+		log.info("Click on transfer tab");
+		waitForElementToBeVisible(transferTab).click();
+	}
+
+	public void clickOnCashPickupTab()
+	{
+		log.info("Click on cash pickup tab");
+		waitForElementToBeVisible(cashPickupTab).click();
+	}
+
+	public void clickOnWalletTab()
+	{
+		log.info("Click on wallet tab");
+		waitForElementToBeVisible(walletTab).click();
+	}
+
+	public void verifyComingSoonBanner()
+	{
+		log.info("Verify coming soon banner");
+		waitForElementToBeVisible(comingSoonBanner);
+	}
+
 	public void validateContinueButtonNotVisible()
 	{
 		log.info("Validate continue button not visible");
@@ -76,11 +107,24 @@ public class SetupTransferPage extends AndroidActions {
 		waitForElementToBeVisible(closeScreen).click();
 	}
 
-	public void enterAmountToSend(String amount)
+	public void clickOnExchangeIcon()
 	{
-		log.info("Enter amount to send");
-		waitForElementToBeVisible(amountTextBox).clear();
-		waitForElementToBeVisible(amountTextBox).sendKeys(amount);
+		log.info("Click on exchange icon");
+		waitForElementToBeVisible(exchangeIcon).click();
+	}
+
+	public void enterSenderAmount(String amount)
+	{
+		log.info("Enter sender amount");
+		waitForElementToBeVisible(senderAmountTextBox).clear();
+		waitForElementToBeVisible(senderAmountTextBox).sendKeys(amount);
+	}
+
+	public void enterReceiverAmount(String amount)
+	{
+		log.info("Enter receiver amount");
+		waitForElementToBeVisible(receiverAmountTextBox).clear();
+		waitForElementToBeVisible(receiverAmountTextBox).sendKeys(amount);
 	}
 
 	public void validateMinimumAmountError()
@@ -111,6 +155,18 @@ public class SetupTransferPage extends AndroidActions {
 	{
 		log.info("Select first available exchange");
 		waitForElementToBeVisible(selectFirstExchange).click();
+	}
+
+	public void clickOnExchangeBreakup()
+	{
+		log.info("Click on exchange breakup");
+		waitForElementToBeVisible(exchangeQuoteBreakup).click();
+	}
+
+	public void clickOnExchangeFeeInfoIcon()
+	{
+		log.info("Click on exchange fee info icon");
+		waitForElementToBeVisible(exchangeFeeInfoIcon).click();
 	}
 
 	public void selectExchange(String exchange)
@@ -166,11 +222,24 @@ public class SetupTransferPage extends AndroidActions {
 		}
 	}
 
+	public void verifyFamilySupportPurposeSelected()
+	{
+		log.info("Check family support purpose selected");
+		assertTrue(waitForElementToBeVisible(selectFamilySupportPurposeOfTransaction).isSelected());
+	}
+
+	public void verifySalarySourceSelected()
+	{
+		log.info("Check salary source selected");
+		assertTrue(waitForElementToBeVisible(selectSalarySourceFund).isSelected());
+	}
+
 	public void setupTransfer(String amount, String receiverCountry, String exchange, String purpose, String fundSource)
 	{
 		log.info("Setup transfer");
-		enterAmountToSend(amount);
+		enterSenderAmount(amount);
 		selectReceiverCountry(receiverCountry);
+		//ToDo: Sometimes all exchanges does not load
 		//selectExchange(exchange);
 		selectAvailableExchange();
 		clickOnContinue();

@@ -39,13 +39,15 @@ public class AddRecipientTest extends AndroidBaseTest {
         setupTransferPage.selectExchangeAndContinueToRecipientScreen("LuLu");
 
         SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        selectRecipientPage.verifyScreenHeader();
         selectRecipientPage.clickOnAddRecipient();
 
         AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
         Recipient recipient = testData.getUser().getRecipients().get(0);
 
-        addRecipientPage.addRecipient(recipient.getFirstName(), recipient.getLastName(), recipient.getMobileNumber(),
-                recipient.getNickName(), recipient.getBankAccount().getAccountNumber(), recipient.getBankAccount().getIfscCode(),
+        addRecipientPage.verifyScreenHeader();
+        addRecipientPage.addRecipient(recipient.getFirstName(), recipient.getLastName(), recipient.getMobileNumber(), recipient.getNickName(), recipient.getRelationship(),
+                recipient.getBankAccount().getAccountNumber(), recipient.getBankAccount().getIfscCode(),
                 recipient.getAddress().getAddress(), recipient.getAddress().getCity());
 
         selectRecipientPage.verifyScreenHeader();
@@ -293,8 +295,23 @@ public class AddRecipientTest extends AndroidBaseTest {
         selectRecipientPage.clickOnAddRecipient();
 
         AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
+        Recipient recipient = testData.getUser().getRecipients().get(0);
+
         addRecipientPage.clickOnContinue();
         addRecipientPage.validateIncompleteSectionsError();
+
+        addRecipientPage.enterPersonalDetails(recipient.getFirstName(), recipient.getLastName(), recipient.getMobileNumber(),
+                recipient.getNickName(), recipient.getRelationship());
+        addRecipientPage.clickOnContinue();
+        addRecipientPage.validateBankDetailsSectionError();
+        addRecipientPage.validateAddressSectionError();
+
+        addRecipientPage.enterPersonalDetails(recipient.getFirstName(), recipient.getLastName(), recipient.getMobileNumber(),
+                recipient.getNickName(), recipient.getRelationship());
+        addRecipientPage.clickOnBankDetailsSection();
+        addRecipientPage.enterBankDetails(recipient.getBankAccount().getAccountNumber(), recipient.getBankAccount().getIfscCode());
+        addRecipientPage.clickOnContinue();
+        addRecipientPage.validateAddressError();
     }
 
 }

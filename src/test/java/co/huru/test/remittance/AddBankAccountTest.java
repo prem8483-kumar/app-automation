@@ -48,6 +48,8 @@ public class AddBankAccountTest extends AndroidBaseTest {
 
         AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
         BankAccount bankAccount = testData.getUser().getBankAccounts().get(0);
+
+        addBankAccountPage.verifyScreenHeader();
         addBankAccountPage.addBankAccount(bankAccount.getUserName(), bankAccount.getPassword(), bankAccount.getOtp());
 
     }

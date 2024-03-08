@@ -61,7 +61,7 @@ public class AddRecipientPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		waitForElementToBeVisible(header).click();
+		waitForElementToBeVisible(header);
 	}
 
 	public void navigateBack()
@@ -118,6 +118,32 @@ public class AddRecipientPage extends AndroidActions {
 		waitForElementToBeVisible(selectRelationship).click();
 	}
 
+	public void selectRelationship(String relationship)
+	{
+		log.info("Select relationship");
+		clickOnSelectRelationShip();
+		switch (relationship) {
+			case "Self":
+				waitForElementToBeVisible(selfAccount).click();
+				break;
+			case "Father":
+				waitForElementToBeVisible(father).click();
+				break;
+			case "Mother":
+				waitForElementToBeVisible(mother).click();
+				break;
+			case "Spouse":
+				waitForElementToBeVisible(spouse).click();
+				break;
+			case "Son":
+				waitForElementToBeVisible(son).click();
+				break;
+			case "Daughter":
+				waitForElementToBeVisible(daughter).click();
+				break;
+		}
+	}
+
 	public void clickOnBankDetailsSection()
 	{
 		log.info("Click on bank details section");
@@ -154,28 +180,52 @@ public class AddRecipientPage extends AndroidActions {
 		waitForElementToBeVisible(cityTextBox).sendKeys(city);
 	}
 
-	public void addRecipient(String firstName, String lastName, String mobileNumber, String nickName,
+	public void addRecipient(String firstName, String lastName, String mobileNumber, String nickName, String relationship,
 							 String accountNumber, String ifscCode,
 							 String address, String city)
 	{
 		log.info("Add recipient");
-		waitForElementToBeVisible(firstNameTextBox).sendKeys(firstName);
-		waitForElementToBeVisible(lastNameTextBox).sendKeys(lastName);
-		waitForElementToBeVisible(mobileNumberTextBox).sendKeys(mobileNumber);
-		waitForElementToBeVisible(selectRelationship).click();
-		waitForElementToBeVisible(selfAccount).click();
-		waitForElementToBeVisible(nickNameTextBox).sendKeys(nickName);
+		enterFirstName(firstName);
+		enterLastName(lastName);
+		enterMobileNumber(mobileNumber);
+		selectRelationship(relationship);
+		enterNickName(nickName);
 
-		waitForElementToBeVisible(bankDetailsSection).click();
-		waitForElementToBeVisible(accountNumberTextBox).sendKeys(accountNumber);
-		waitForElementToBeVisible(ifscCodeTextBox).sendKeys(ifscCode);
+		clickOnBankDetailsSection();
+		enterAccountNumber(accountNumber);
+		enterIfscCode(ifscCode);
 
-		waitForElementToBeVisible(addressSection).click();
-		waitForElementToBeVisible(addressTextBox).sendKeys(address);
-		waitForElementToBeVisible(cityTextBox).sendKeys(city);
+		clickOnAddressSection();
+		enterAddress(address);
+		enterCity(city);
 
-		waitForElementToBeVisible(continueButton).click();
-		waitForElementToBeVisible(continueButton).click();
+		//ToDO: Issue - Double click required
+		clickOnContinue();
+		clickOnContinue();
+	}
+
+	public void enterPersonalDetails(String firstName, String lastName, String mobileNumber, String nickName, String relationship)
+	{
+		log.info("Enter personal details");
+		enterFirstName(firstName);
+		enterLastName(lastName);
+		enterMobileNumber(mobileNumber);
+		enterNickName(nickName);
+		selectRelationship(relationship);
+	}
+
+	public void enterBankDetails(String accountNumber, String ifscCode)
+	{
+		log.info("Enter bank details");
+		enterAccountNumber(accountNumber);
+		enterIfscCode(ifscCode);
+	}
+
+	public void enterAddress(String address, String city)
+	{
+		log.info("Enter address");
+		enterAddress(address);
+		enterCity(city);
 	}
 
 	public void validateFirstNameError()
@@ -183,7 +233,6 @@ public class AddRecipientPage extends AndroidActions {
 		log.info("Validate first name error");
 		waitForElementToBeVisible(firstNameError);
 	}
-
 
 	public void validateLastNameError()
 	{
@@ -252,10 +301,8 @@ public class AddRecipientPage extends AndroidActions {
 	public void validateIncompleteSectionsError()
 	{
 		log.info("Validate incomplete sections error");
-		waitForElementToBeVisible(bankDetailsSectionError);
-		waitForElementToBeVisible(personalDetailsSectionError);
-		waitForElementToBeVisible(addressSectionError);
+		validatePersonalDetailsSectionError();
+		validateBankDetailsSectionError();
+		validateAddressSectionError();
 	}
-
-
 }

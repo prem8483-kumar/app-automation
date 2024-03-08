@@ -36,20 +36,24 @@ public class SendMoneyTest extends AndroidBaseTest {
 
         SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
         FundTransfer fundTransfer = testData.getFundTransfers().get(0);
-        setupTransferPage.setupTransfer(fundTransfer.getAmount(), fundTransfer.getReceiverCountry(), fundTransfer.getExchange(),
+        setupTransferPage.setupTransfer(fundTransfer.getSenderAmount(), fundTransfer.getReceiverCountry(), fundTransfer.getExchangeHouse(),
                 fundTransfer.getTransferPurpose(), fundTransfer.getFundSource());
 
         SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
         selectRecipientPage.selectFirstRecipient();
 
         ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.verifyScreenHeader();
         reviewTransferPage.clickOnGoToPayment();
 
         SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.verifyScreenHeader();
         selectPaymentPage.clickOnPayButton();
 
         PaymentPage paymentPage = new PaymentPage(driver);
         ConfirmPayment confirmPayment = testData.getFundTransfers().get(0).getConfirmPayment();
+
+        paymentPage.verifyScreenHeader();
         paymentPage.confirmPayment(confirmPayment.getOtp());
     }
 }

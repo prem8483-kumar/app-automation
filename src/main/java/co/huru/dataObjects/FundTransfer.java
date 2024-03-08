@@ -9,9 +9,10 @@ import lombok.*;
 @NoArgsConstructor
 public class FundTransfer {
 
-    private String amount;
+    private String senderAmount;
+    private String receiverAmount;
     private String receiverCountry;
-    private String exchange;
+    private String exchangeHouse;
     private String transferPurpose;
     private String fundSource;
 
