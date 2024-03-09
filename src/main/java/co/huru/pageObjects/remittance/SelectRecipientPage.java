@@ -22,9 +22,7 @@ public class SelectRecipientPage extends AndroidActions {
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
 
 	private final By addRecipient = AppiumBy.accessibilityId("ic_new_recipient_forward");
-
-	//Select Recipient
-	private final By selectFirstRecipient = AppiumBy.xpath("//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]");
+	private final By selectFirstRecipient = AppiumBy.accessibilityId("id_recipient_item_row0");
 
 	public void verifyScreenHeader()
 	{

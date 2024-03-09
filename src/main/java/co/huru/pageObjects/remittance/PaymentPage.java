@@ -23,13 +23,13 @@ public class PaymentPage extends AndroidActions {
 
 	//Do Payment
 	private final By confirmPaymentButton = By.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__PAYMENT__SUBMIT\"]");
-	private final By cancelPaymentButton = By.xpath("//android.view.View[@resource-id=\"STEP_PAYMENT_DETAILS\"]/android.view.View[1]/android.widget.Button");
 	private final By otpTextBox = By.xpath("//android.widget.EditText[@resource-id=\"genericMfa\"]");;
 	private final By submitOtpButton = By.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__MFA__SUBMIT\"]");
-	private final By closeOtpScreen = By.xpath("//android.view.View[@resource-id=\"STEP_MFA\"]/android.view.View[1]/android.widget.Button");
 	private final By paymentDoneButton = By.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__SUCCESS__CLOSE\"]");
-
 	private final By viewPaymentDetailsLink = AppiumBy.id("//android.widget.TextView[@text=\"View details\"]");
+
+	private final By cancelPaymentButton = By.xpath("//android.view.View[@resource-id=\"STEP_PAYMENT_DETAILS\"]/android.view.View[1]/android.widget.Button");
+	private final By closeOtpScreen = By.xpath("//android.view.View[@resource-id=\"STEP_MFA\"]/android.view.View[1]/android.widget.Button");
 
 	public void verifyScreenHeader()
 	{

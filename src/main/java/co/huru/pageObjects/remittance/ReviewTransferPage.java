@@ -24,12 +24,14 @@ public class ReviewTransferPage extends AndroidActions {
 
 	private final By totalPaymentDetailsCta = AppiumBy.accessibilityId("id_total_to_pay_display_cta");
 	private final By knowAboutFeesCta = AppiumBy.accessibilityId("id_payment_breakdown_know_about_fee_cta");
+
 	private final By feeInfoIcon = AppiumBy.accessibilityId("id_review_screen_fee_info_icon");
 	private final By paymentNoteTextBox = AppiumBy.xpath("//android.widget.EditText");
+
 	private final By tncLink = AppiumBy.accessibilityId("id_review_screen_tnc_clickable_text");
 	private final By tncBackButton = AppiumBy.xpath("//android.widget.Button");
 
-	private final By goToPaymentCta = AppiumBy.xpath("//android.widget.TextView[@text=\"Go to payment\"]");
+	private final By goToPaymentCta = AppiumBy.accessibilityId("id_huru_button_text");
 
 	public void verifyScreenHeader()
 	{

@@ -23,24 +23,26 @@ public class AddRecipientPage extends AndroidActions {
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
 
 	//Add Recipient
-	private final By personalDetailsSection = AppiumBy.xpath("//android.widget.TextView[@text=\"Personal details\"]");
+	private final By personalDetailsSection = AppiumBy.accessibilityId("id_section_header_boxRECIPIENT_PERSONAL_DETAILS");
 	private final By firstNameTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
 	private final By lastNameTextBox = AppiumBy.xpath("//android.widget.EditText[2]");
 	private final By mobileNumberTextBox = AppiumBy.xpath("//android.widget.EditText[3]");
+
 	private final By selectRelationship = AppiumBy.xpath("//android.widget.EditText[4]");
-	private final By selfAccount = AppiumBy.xpath("//android.widget.TextView[@text=\"Self account\"]");
-	private final By father = AppiumBy.xpath("//android.widget.TextView[@text=\"Father\"]");
-	private final By mother = AppiumBy.xpath("//android.widget.TextView[@text=\"Mother\"]");
-	private final By spouse = AppiumBy.xpath("//android.widget.TextView[@text=\"Spouse\"]");
-	private final By son = AppiumBy.xpath("//android.widget.TextView[@text=\"Son\"]");
-	private final By daughter = AppiumBy.xpath("//android.widget.TextView[@text=\"Daughter\"]");
+	private final By selfAccount = AppiumBy.accessibilityId("id_item Self account");
+	private final By father = AppiumBy.accessibilityId("id_item Father");
+	private final By mother = AppiumBy.accessibilityId("id_item Mother");
+	private final By spouse = AppiumBy.accessibilityId("id_item Spouse");
+	private final By son = AppiumBy.accessibilityId("id_item Son");
+	private final By daughter = AppiumBy.accessibilityId("id_item Daughter");
+
 	private final By nickNameTextBox = AppiumBy.xpath("//android.widget.EditText[5]");
 
-	private final By bankDetailsSection = AppiumBy.xpath("//android.widget.TextView[@text=\"Bank details\"]");
+	private final By bankDetailsSection = AppiumBy.accessibilityId("id_section_header_boxRECIPIENT_BANK_DETAILS");
 	private final By accountNumberTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
 	private final By ifscCodeTextBox = AppiumBy.xpath("//android.widget.EditText[2]");
 
-	private final By addressSection = AppiumBy.xpath("//android.widget.TextView[@text=\"Address\"]");
+	private final By addressSection = AppiumBy.xpath("id_section_header_boxRECIPIENT_ADDRESS_DETAILS");
 	private final By addressTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
 	private final By cityTextBox = AppiumBy.xpath("//android.widget.EditText[2]");
 

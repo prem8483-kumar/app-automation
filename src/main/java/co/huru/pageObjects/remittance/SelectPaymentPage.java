@@ -21,6 +21,9 @@ public class SelectPaymentPage extends AndroidActions {
 	private final By continueButton = AppiumBy.xpath("//android.widget.Button");
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
 
+	private final By totalToPayDetailsCta = AppiumBy.accessibilityId("id_total_to_pay_display_cta");
+	private final By knowAboutFeeCta = AppiumBy.accessibilityId("id_payment_breakdown_know_about_fee_cta");
+
 	private final By useCashbackBalanceButton = AppiumBy.accessibilityId("id_cashback_toggle_button");
 	private final By addPromoCodeCta = AppiumBy.accessibilityId("id_promo_code_add_cta");
 	private final By addPromoCodeTextBox = AppiumBy.xpath("//android.widget.EditText");

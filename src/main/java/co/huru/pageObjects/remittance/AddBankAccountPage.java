@@ -21,7 +21,7 @@ public class AddBankAccountPage extends AndroidActions {
 	private final By continueButton = AppiumBy.xpath("//android.widget.Button");
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
 
-	private final By choseYourBankButton = AppiumBy.xpath("//android.widget.TextView[@text=\"Choose your bank\"]");
+	private final By choseYourBankButton = AppiumBy.accessibilityId("id_huru_button_text");
 	private final By selectLeanMockBank = By.xpath("//android.widget.TextView[@text=\"Lean Mockbank\"]");
 
 	private final By connectToBankButton = By.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__INITIAL__SUBMIT\"]");

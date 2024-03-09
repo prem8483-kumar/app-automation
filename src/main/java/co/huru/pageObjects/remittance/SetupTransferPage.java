@@ -24,12 +24,12 @@ public class SetupTransferPage extends AndroidActions {
 	private final By continueButton = AppiumBy.xpath("//android.widget.Button");
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
 
-	private final By transferTab = AppiumBy.accessibilityId("id_mode_of_transfer_tab_text");
-	private final By cashPickupTab = AppiumBy.xpath("//android.widget.TextView[@text=\"Cash Pickup\"]");
-	private final By walletTab = AppiumBy.xpath("//android.widget.TextView[@text=\"Wallet\"]");
+	private final By transferTab = AppiumBy.accessibilityId("id_mode_of_transfer_tab_textBank Transfer");
+	private final By cashPickupTab = AppiumBy.accessibilityId("id_mode_of_transfer_tab_textCash Pickup");
+	private final By walletTab = AppiumBy.xpath("id_mode_of_transfer_tab_textWallet");
 	private final By comingSoonBanner = AppiumBy.xpath("//android.widget.TextView[@text=\"Coming soon\"]");
 
-	private final By exchangeIcon = AppiumBy.accessibilityId("exchange_icon");
+	private final By exchangeIcon = AppiumBy.accessibilityId("id_currency_field_reverse_arrow");
 	private final By receiverAmountTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
 
 	private final By senderAmountTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
@@ -37,21 +37,21 @@ public class SetupTransferPage extends AndroidActions {
 	private final By maximumAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Max single transaction amount AED 15000\"]");
 
 	private final By receiverCountryDropdown = AppiumBy.accessibilityId("receiver_country_dropdown_icon");
-	private final By selectIndia = AppiumBy.xpath("//android.widget.TextView[@text=\"INR (Indian Rupee)\"]");
-	private final By selectPakistan = AppiumBy.xpath("//android.widget.TextView[@text=\"PKR (Pakistani Rupee)\"]");
+	private final By selectIndia = AppiumBy.accessibilityId("id_receiver_currency_rowINR (Indian Rupee)");
+	private final By selectPakistan = AppiumBy.accessibilityId("id_receiver_currency_rowPKR (Pakistani Rupee)");
 
-	private final By selectLuluExchange = AppiumBy.xpath("//android.widget.TextView[@text=\"LuLu Exchange\"]");
-	private final By selectGccExchange = AppiumBy.xpath("//android.widget.TextView[@text=\"GCC\"]");
-	private final By selectFirstExchange = AppiumBy.xpath("//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[2]/android.view.View[2]");
+	private final By selectLuluExchange = AppiumBy.accessibilityId("id_eh_rp_nameLuLu Exchange");
+	private final By selectGccExchange = AppiumBy.xpath("id_eh_rp_nameGCC");
+	private final By selectFirstExchange = AppiumBy.accessibilityId("id_eh_details_row0");
 
-	private final By exchangeQuoteBreakup = AppiumBy.xpath("//android.widget.TextView[@text=\"Quote breakdown\"]");
-	private final By exchangeFeeInfoIcon = AppiumBy.xpath("//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[2]/android.view.View[1]");
+	private final By exchangeQuoteBreakup = AppiumBy.accessibilityId("id_quote_breakup_cta");
+	private final By exchangeFeeInfoIcon = AppiumBy.xpath("//android.view.View[@content-desc=\"id_quote_breakdown_exchange_house_fee_row\"]/android.view.View");
 
-	private final By selectFamilySupportPurposeOfTransaction = AppiumBy.xpath("//android.widget.TextView[@text=\"Family support\"]");
-	private final By selectSavingsPurposeOfTransaction = AppiumBy.xpath("(//android.widget.TextView[@text=\"Savings\"])[1]");
+	private final By selectFamilySupportPurposeOfTransaction = AppiumBy.accessibilityId("id_radio_button_rowPurpose of transactionFamily support");
+	private final By selectSavingsPurposeOfTransaction = AppiumBy.accessibilityId("id_radio_button_rowPurpose of transactionSavings");
 
-	private final By selectSalarySourceFund = AppiumBy.xpath("//android.widget.TextView[@text=\"Salary\"]");
-	private final By selectSavingsSourceFund = AppiumBy.xpath("(//android.widget.TextView[@text=\"Savings\"])[2]");
+	private final By selectSalarySourceFund = AppiumBy.accessibilityId("id_radio_button_rowSource of fundSalary");
+	private final By selectSavingsSourceFund = AppiumBy.accessibilityId("id_radio_button_rowSource of fundSavings");
 
 	public void verifyScreenHeader()
 	{
