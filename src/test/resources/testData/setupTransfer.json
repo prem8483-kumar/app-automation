@@ -1,19 +1,19 @@
 {
   "user": {
     "profile": {
-      "phoneNumber": "523333333",
+      "phoneNumber": "543333333",
       "pin": "100900",
       "otp": "123456"
-    },
-    "fundTransfers": [
-      {
-        "senderAmount": "100",
-        "receiverAmount": "100",
-        "receiverCountry": "India",
-        "exchangeHouse": "LuLu",
-        "fundSource": "Savings",
-        "transferPurpose": "Savings"
-      }
-    ]
+    }
+  },
+  "fundTransfers": [
+  {
+    "senderAmount": "100",
+    "receiverAmount": "1500",
+    "receiverCountry": "India",
+    "exchangeHouse": "LuLu",
+    "fundSource": "Savings",
+    "transferPurpose": "Savings"
   }
+]
 }

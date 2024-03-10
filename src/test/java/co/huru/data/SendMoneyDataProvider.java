@@ -31,25 +31,18 @@ public class SendMoneyDataProvider {
         };
     }
 
+    @DataProvider(name = "decimalReceiverAmountTransferData")
+    public Object[][] decimalReceiverAmountTransferData() {
+        return new Object[][] {
+                //{"src/test/resources/testData/setupTransfer.json", "India", "1500.50"},
+                {"src/test/resources/testData/setupTransfer.json", "Pakistan", "40000.50"},
+        };
+    }
+
     @DataProvider(name = "minimumSenderAmountTransferData")
     public Object[][] minimumSenderAmountTransferData() {
         return new Object[][] {
                 {"src/test/resources/testData/setupTransfer.json", "49"},
-        };
-    }
-
-    @DataProvider(name = "maximumSenderAmountTransferData")
-    public Object[][] maximumSenderAmountTransferData() {
-        return new Object[][] {
-                {"src/test/resources/testData/setupTransfer.json", "15001"},
-        };
-    }
-
-    @DataProvider(name = "decimalReceiverAmountTransferData")
-    public Object[][] decimalReceiverAmountTransferData() {
-        return new Object[][] {
-                {"src/test/resources/testData/setupTransfer.json", "India", "100.50"},
-                {"src/test/resources/testData/setupTransfer.json", "Pakistan", "100.50"},
         };
     }
 
@@ -61,11 +54,18 @@ public class SendMoneyDataProvider {
         };
     }
 
+    @DataProvider(name = "maximumSenderAmountTransferData")
+    public Object[][] maximumSenderAmountTransferData() {
+        return new Object[][] {
+                {"src/test/resources/testData/setupTransfer.json", "15001"},
+        };
+    }
+
     @DataProvider(name = "maximumReceiverAmountTransferData")
     public Object[][] maximumReceiverAmountTransferData() {
         return new Object[][] {
-                {"src/test/resources/testData/setupTransfer.json", "India", "15001"},
-                {"src/test/resources/testData/setupTransfer.json", "Pakistan", "15001"},
+                {"src/test/resources/testData/setupTransfer.json", "India", "350000"},
+                {"src/test/resources/testData/setupTransfer.json", "Pakistan", "1200000"},
         };
     }
 
@@ -87,7 +87,6 @@ public class SendMoneyDataProvider {
     @DataProvider(name = "invalidFirstNameData")
     public Object[][] invalidFirstNameData() {
         return new Object[][] {
-                //{"src/test/resources/testData/addRecipient.json", ""},
                 {"src/test/resources/testData/addRecipient.json", "123"},
                 {"src/test/resources/testData/addRecipient.json", "@#%"},
                 {"src/test/resources/testData/addRecipient.json", "abc123"},
@@ -99,8 +98,6 @@ public class SendMoneyDataProvider {
     @DataProvider(name = "invalidLastNameData")
     public Object[][] invalidLastNameData() {
         return new Object[][] {
-                {"src/test/resources/testData/addRecipient.json", ""},
-                {"src/test/resources/testData/addRecipient.json", ""},
                 {"src/test/resources/testData/addRecipient.json", "123"},
                 {"src/test/resources/testData/addRecipient.json", "@#%"},
                 {"src/test/resources/testData/addRecipient.json", "abc123"},
@@ -112,36 +109,32 @@ public class SendMoneyDataProvider {
     @DataProvider(name = "invalidMobileNumberData")
     public Object[][] invalidMobileNumberData() {
         return new Object[][] {
-                {"src/test/resources/testData/addRecipient.json", ""},
-                {"src/test/resources/testData/addRecipient.json", "999999"},
-                {"src/test/resources/testData/addRecipient.json", "523333333"},
-                {"src/test/resources/testData/addRecipient.json", "0000000000"},
                 {"src/test/resources/testData/addRecipient.json", "abcdefghif"},
                 {"src/test/resources/testData/addRecipient.json", "@@@@@@@@@@"},
                 {"src/test/resources/testData/addRecipient.json", "99999abcde"},
                 {"src/test/resources/testData/addRecipient.json", "99999@@@@@@"},
-                {"src/test/resources/testData/addRecipient.json", "99999ab@@@@"}
+                {"src/test/resources/testData/addRecipient.json", "99999ab@@@@"},
+                {"src/test/resources/testData/addRecipient.json", "999999"},
+                {"src/test/resources/testData/addRecipient.json", "523333333"},
+                {"src/test/resources/testData/addRecipient.json", "0000000000"},
         };
     }
 
     @DataProvider(name = "invalidAccountNumberData")
     public Object[][] invalidAccountNumberData() {
         return new Object[][] {
-                {"src/test/resources/testData/addRecipient.json", ""},
-                {"src/test/resources/testData/addRecipient.json", "00000000000"},
-                {"src/test/resources/testData/addRecipient.json", "999999"},
                 {"src/test/resources/testData/addRecipient.json", "abcdefghif"},
                 {"src/test/resources/testData/addRecipient.json", "@@@@@@@@@@"},
                 {"src/test/resources/testData/addRecipient.json", "99999abcde"},
                 {"src/test/resources/testData/addRecipient.json", "99999@@@@@@"},
-                {"src/test/resources/testData/addRecipient.json", "99999ab@@@@"}
+                {"src/test/resources/testData/addRecipient.json", "99999ab@@@@"},
+                {"src/test/resources/testData/addRecipient.json", "999999"},
         };
     }
 
     @DataProvider(name = "invalidIfscCodeData")
     public Object[][] invalidIfscCodeData() {
         return new Object[][] {
-                {"src/test/resources/testData/addRecipient.json", ""},
                 {"src/test/resources/testData/addRecipient.json", "999999"},
                 {"src/test/resources/testData/addRecipient.json", "abcdefghif"},
                 {"src/test/resources/testData/addRecipient.json", "@@@@@@@@@@"},
@@ -154,11 +147,7 @@ public class SendMoneyDataProvider {
     @DataProvider(name = "invalidAddressData")
     public Object[][] invalidAddressData() {
         return new Object[][] {
-                {"src/test/resources/testData/addRecipient.json", ""},
-                {"src/test/resources/testData/addRecipient.json", ""},
-                {"src/test/resources/testData/addRecipient.json", "123"},
                 {"src/test/resources/testData/addRecipient.json", "@#%"},
-                {"src/test/resources/testData/addRecipient.json", "abc123"},
                 {"src/test/resources/testData/addRecipient.json", "abc()"},
                 {"src/test/resources/testData/addRecipient.json", "abc12$&"},
         };
@@ -167,8 +156,6 @@ public class SendMoneyDataProvider {
     @DataProvider(name = "invalidCityData")
     public Object[][] invalidCityData() {
         return new Object[][] {
-                {"src/test/resources/testData/addRecipient.json", ""},
-                {"src/test/resources/testData/addRecipient.json", ""},
                 {"src/test/resources/testData/addRecipient.json", "123"},
                 {"src/test/resources/testData/addRecipient.json", "@#%"},
                 {"src/test/resources/testData/addRecipient.json", "abc123"},

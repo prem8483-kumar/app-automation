@@ -34,7 +34,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
         homePage.goToSendMoneyPage();
 
         SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
-        setupTransferPage.selectExchangeAndContinueToRecipientScreen("LuLu");
+        setupTransferPage.selectAvailableExchangeAndContinue();
 
         SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
         selectRecipientPage.selectFirstRecipient();

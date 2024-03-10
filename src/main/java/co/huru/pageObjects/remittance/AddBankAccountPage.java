@@ -16,7 +16,7 @@ public class AddBankAccountPage extends AndroidActions {
 		super(driver);
 	}
 
-	private final By header = AppiumBy.xpath("");
+	private final By header = AppiumBy.xpath("//android.widget.TextView[@text=\"Add bank account\"]");
 	private final By backButton = AppiumBy.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
 	private final By continueButton = AppiumBy.xpath("//android.widget.Button");
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");

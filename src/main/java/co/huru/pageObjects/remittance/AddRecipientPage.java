@@ -19,7 +19,7 @@ public class AddRecipientPage extends AndroidActions {
 	private final By header = AppiumBy.xpath("//android.widget.TextView[@text=\"Add recipient details\"]");
 
 	private final By backButton = AppiumBy.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
-	private final By continueButton = AppiumBy.xpath("//android.widget.Button");
+	private final By continueButton = AppiumBy.accessibilityId("id_huru_button_text");
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
 
 	//Add Recipient
@@ -42,7 +42,7 @@ public class AddRecipientPage extends AndroidActions {
 	private final By accountNumberTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
 	private final By ifscCodeTextBox = AppiumBy.xpath("//android.widget.EditText[2]");
 
-	private final By addressSection = AppiumBy.xpath("id_section_header_boxRECIPIENT_ADDRESS_DETAILS");
+	private final By addressSection = AppiumBy.accessibilityId("id_section_header_boxRECIPIENT_ADDRESS_DETAILS");
 	private final By addressTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
 	private final By cityTextBox = AppiumBy.xpath("//android.widget.EditText[2]");
 
@@ -203,7 +203,7 @@ public class AddRecipientPage extends AndroidActions {
 
 		//ToDO: Issue - Double click required
 		clickOnContinue();
-		clickOnContinue();
+		//clickOnContinue();
 	}
 
 	public void enterPersonalDetails(String firstName, String lastName, String mobileNumber, String nickName, String relationship)
@@ -285,18 +285,36 @@ public class AddRecipientPage extends AndroidActions {
 	public void validatePersonalDetailsSectionError()
 	{
 		log.info("Validate personal details section error");
+		validateFirstNameError();
+		validateLastNameError();
+		validateMobileNumberError();
+		validateRelationshipRequiredError();
+
+		clickOnPersonalDetailsSection();
 		waitForElementToBeVisible(personalDetailsSectionError);
+
 	}
 
 	public void validateBankDetailsSectionError()
 	{
 		log.info("Validate bank details section error");
+		clickOnBankDetailsSection();
+		validateAccountNumberError();
+		validateIfscCodeError();
+
+		clickOnBankDetailsSection();
 		waitForElementToBeVisible(bankDetailsSectionError);
+
 	}
 
 	public void validateAddressSectionError()
 	{
 		log.info("Validate address section error");
+		clickOnAddressSection();
+		validateAddressError();
+		validateCityError();
+
+		clickOnAddressSection();
 		waitForElementToBeVisible(addressSectionError);
 	}
 

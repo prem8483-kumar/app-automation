@@ -86,6 +86,18 @@ public class AndroidActions extends AppiumUtils {
 		return wait.until(ExpectedConditions.elementToBeClickable(locator));
 	}
 
+	public boolean waitForElementToBeDisplayed(By locator)
+	{
+		log.info("Waiting for element to be clickable with locator: " +  locator);
+		return wait.until(ExpectedConditions.attributeToBe(locator, "displayed", "true"));
+	}
+
+	public boolean waitForElementToBeEnabled(By locator)
+	{
+		log.info("Waiting for element to be clickable with locator: " +  locator);
+		return wait.until(ExpectedConditions.attributeToBe(locator, "enabled", "true"));
+	}
+
 	public boolean waitForElementToBeNotVisible(By locator)
 	{
 		log.info("Waiting for element to be not visible with locator: " +  locator);

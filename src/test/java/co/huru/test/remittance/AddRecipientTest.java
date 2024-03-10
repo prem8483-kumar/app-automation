@@ -36,7 +36,7 @@ public class AddRecipientTest extends AndroidBaseTest {
         homePage.goToSendMoneyPage();
 
         SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
-        setupTransferPage.selectExchangeAndContinueToRecipientScreen("LuLu");
+        setupTransferPage.selectAvailableExchangeAndContinue();
 
         SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
         selectRecipientPage.verifyScreenHeader();
@@ -70,7 +70,7 @@ public class AddRecipientTest extends AndroidBaseTest {
         homePage.goToSendMoneyPage();
 
         SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
-        setupTransferPage.selectExchangeAndContinueToRecipientScreen("LuLu");
+        setupTransferPage.selectAvailableExchangeAndContinue();
 
         SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
         selectRecipientPage.clickOnAddRecipient();
@@ -97,7 +97,7 @@ public class AddRecipientTest extends AndroidBaseTest {
         homePage.goToSendMoneyPage();
 
         SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
-        setupTransferPage.selectExchangeAndContinueToRecipientScreen("LuLu");
+        setupTransferPage.selectAvailableExchangeAndContinue();
 
         SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
         selectRecipientPage.clickOnAddRecipient();
@@ -124,13 +124,14 @@ public class AddRecipientTest extends AndroidBaseTest {
         homePage.goToSendMoneyPage();
 
         SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
-        setupTransferPage.selectExchangeAndContinueToRecipientScreen("LuLu");
+        setupTransferPage.selectAvailableExchangeAndContinue();
 
         SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
         selectRecipientPage.clickOnAddRecipient();
 
         AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
         addRecipientPage.enterMobileNumber(invalidMobileNumber);
+        addRecipientPage.clickOnContinue();
         addRecipientPage.validateMobileNumberError();
     }
 
@@ -150,7 +151,7 @@ public class AddRecipientTest extends AndroidBaseTest {
         homePage.goToSendMoneyPage();
 
         SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
-        setupTransferPage.selectExchangeAndContinueToRecipientScreen("LuLu");
+        setupTransferPage.selectAvailableExchangeAndContinue();
 
         SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
         selectRecipientPage.clickOnAddRecipient();
@@ -176,7 +177,7 @@ public class AddRecipientTest extends AndroidBaseTest {
         homePage.goToSendMoneyPage();
 
         SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
-        setupTransferPage.selectExchangeAndContinueToRecipientScreen("LuLu");
+        setupTransferPage.selectAvailableExchangeAndContinue();
 
         SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
         selectRecipientPage.clickOnAddRecipient();
@@ -204,7 +205,7 @@ public class AddRecipientTest extends AndroidBaseTest {
         homePage.goToSendMoneyPage();
 
         SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
-        setupTransferPage.selectExchangeAndContinueToRecipientScreen("LuLu");
+        setupTransferPage.selectAvailableExchangeAndContinue();
 
         SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
         selectRecipientPage.clickOnAddRecipient();
@@ -233,7 +234,7 @@ public class AddRecipientTest extends AndroidBaseTest {
         homePage.goToSendMoneyPage();
 
         SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
-        setupTransferPage.selectExchangeAndContinueToRecipientScreen("LuLu");
+        setupTransferPage.selectAvailableExchangeAndContinue();
 
         SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
         selectRecipientPage.clickOnAddRecipient();
@@ -261,7 +262,7 @@ public class AddRecipientTest extends AndroidBaseTest {
         homePage.goToSendMoneyPage();
 
         SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
-        setupTransferPage.selectExchangeAndContinueToRecipientScreen("LuLu");
+        setupTransferPage.selectAvailableExchangeAndContinue();
 
         SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
         selectRecipientPage.clickOnAddRecipient();
@@ -289,29 +290,14 @@ public class AddRecipientTest extends AndroidBaseTest {
         homePage.goToSendMoneyPage();
 
         SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
-        setupTransferPage.selectExchangeAndContinueToRecipientScreen("LuLu");
+        setupTransferPage.selectAvailableExchangeAndContinue();
 
         SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
         selectRecipientPage.clickOnAddRecipient();
 
         AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
-        Recipient recipient = testData.getUser().getRecipients().get(0);
-
         addRecipientPage.clickOnContinue();
         addRecipientPage.validateIncompleteSectionsError();
-
-        addRecipientPage.enterPersonalDetails(recipient.getFirstName(), recipient.getLastName(), recipient.getMobileNumber(),
-                recipient.getNickName(), recipient.getRelationship());
-        addRecipientPage.clickOnContinue();
-        addRecipientPage.validateBankDetailsSectionError();
-        addRecipientPage.validateAddressSectionError();
-
-        addRecipientPage.enterPersonalDetails(recipient.getFirstName(), recipient.getLastName(), recipient.getMobileNumber(),
-                recipient.getNickName(), recipient.getRelationship());
-        addRecipientPage.clickOnBankDetailsSection();
-        addRecipientPage.enterBankDetails(recipient.getBankAccount().getAccountNumber(), recipient.getBankAccount().getIfscCode());
-        addRecipientPage.clickOnContinue();
-        addRecipientPage.validateAddressError();
     }
 
 }

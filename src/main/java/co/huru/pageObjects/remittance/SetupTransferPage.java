@@ -26,15 +26,21 @@ public class SetupTransferPage extends AndroidActions {
 
 	private final By transferTab = AppiumBy.accessibilityId("id_mode_of_transfer_tab_textBank Transfer");
 	private final By cashPickupTab = AppiumBy.accessibilityId("id_mode_of_transfer_tab_textCash Pickup");
-	private final By walletTab = AppiumBy.xpath("id_mode_of_transfer_tab_textWallet");
+	private final By walletTab = AppiumBy.accessibilityId("id_mode_of_transfer_tab_textWallet");
 	private final By comingSoonBanner = AppiumBy.xpath("//android.widget.TextView[@text=\"Coming soon\"]");
 
 	private final By exchangeIcon = AppiumBy.accessibilityId("id_currency_field_reverse_arrow");
 	private final By receiverAmountTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
 
+	private final By minimumIndiaReceiverAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Invalid minimum receiving amount. It should be greater than: 1200\"]");
+	private final By maximumIndiaReceiverAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Invalid maximum receiving amount. It should be less than: 340000\"]");
+
+	private final By minimumPakistanReceiverAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Invalid minimum receiving amount. It should be greater than: 3800\"]");
+	private final By maximumPakistanReceiverAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Invalid maximum receiving amount. It should be less than: 1140000\"]");
+
 	private final By senderAmountTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
-	private final By minimumAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Min single transaction amount AED 50\"]");
-	private final By maximumAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Max single transaction amount AED 15000\"]");
+	private final By minimumSenderAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Min single transaction amount AED 50\"]");
+	private final By maximumSenderAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Max single transaction amount AED 15000\"]");
 
 	private final By receiverCountryDropdown = AppiumBy.accessibilityId("receiver_country_dropdown_icon");
 	private final By selectIndia = AppiumBy.accessibilityId("id_receiver_currency_rowINR (Indian Rupee)");
@@ -42,7 +48,7 @@ public class SetupTransferPage extends AndroidActions {
 
 	private final By selectLuluExchange = AppiumBy.accessibilityId("id_eh_rp_nameLuLu Exchange");
 	private final By selectGccExchange = AppiumBy.xpath("id_eh_rp_nameGCC");
-	private final By selectFirstExchange = AppiumBy.accessibilityId("id_eh_details_row0");
+	private final By firstExchange = AppiumBy.accessibilityId("id_eh_details_row0");
 
 	private final By exchangeQuoteBreakup = AppiumBy.accessibilityId("id_quote_breakup_cta");
 	private final By exchangeFeeInfoIcon = AppiumBy.xpath("//android.view.View[@content-desc=\"id_quote_breakdown_exchange_house_fee_row\"]/android.view.View");
@@ -110,7 +116,15 @@ public class SetupTransferPage extends AndroidActions {
 	public void clickOnExchangeIcon()
 	{
 		log.info("Click on exchange icon");
-		waitForElementToBeVisible(exchangeIcon).click();
+
+		waitForExchangeToBeAvailable();
+		waitForElementToBeClickable(exchangeIcon).click();
+	}
+
+	public void waitForExchangeToBeAvailable()
+	{
+		log.info("Wait for exchange to be available");
+		waitForElementToBeVisible(firstExchange);
 	}
 
 	public void enterSenderAmount(String amount)
@@ -127,17 +141,42 @@ public class SetupTransferPage extends AndroidActions {
 		waitForElementToBeVisible(receiverAmountTextBox).sendKeys(amount);
 	}
 
-	public void validateMinimumAmountError()
+	public void validateSenderMinimumAmountError()
 	{
 		log.info("Validate minimum amount error");
-		waitForElementToBeVisible(minimumAmountError);
+		waitForElementToBeVisible(minimumSenderAmountError);
 	}
 
-	public void validateMaximumAmountError()
+	public void validateSenderMaximumAmountError()
 	{
 		log.info("Validate maximum amount error");
-		waitForElementToBeVisible(maximumAmountError);
+		waitForElementToBeVisible(maximumSenderAmountError);
 	}
+
+	public void validateIndiaReceiverMinimumAmountError()
+	{
+		log.info("Validate minimum amount error");
+		waitForElementToBeVisible(minimumIndiaReceiverAmountError);
+	}
+
+	public void validateIndiaReceiverMaximumAmountError()
+	{
+		log.info("Validate maximum amount error");
+		waitForElementToBeVisible(maximumIndiaReceiverAmountError);
+	}
+
+	public void validatePakistanReceiverMinimumAmountError()
+	{
+		log.info("Validate minimum amount error");
+		waitForElementToBeVisible(minimumPakistanReceiverAmountError);
+	}
+
+	public void validatePakistanReceiverMaximumAmountError()
+	{
+		log.info("Validate maximum amount error");
+		waitForElementToBeVisible(maximumPakistanReceiverAmountError);
+	}
+
 
 	public void selectReceiverCountry(String country)
 	{
@@ -154,7 +193,7 @@ public class SetupTransferPage extends AndroidActions {
 	public void selectAvailableExchange()
 	{
 		log.info("Select first available exchange");
-		waitForElementToBeVisible(selectFirstExchange).click();
+		waitForElementToBeClickable(firstExchange).click();
 	}
 
 	public void clickOnExchangeBreakup()
@@ -180,15 +219,10 @@ public class SetupTransferPage extends AndroidActions {
 		}
 	}
 
-	public void selectExchangeAndContinueToRecipientScreen(String exchange)
+	public void selectAvailableExchangeAndContinue()
 	{
 		log.info("Select exchange");
-
-		if (exchange.equalsIgnoreCase("LuLu")) {
-			waitForElementToBeVisible(selectLuluExchange).click();
-		} else if (exchange.equalsIgnoreCase("GCC")){
-			waitForElementToBeVisible(selectGccExchange).click();
-		}
+		selectAvailableExchange();
 
 		clickOnContinue();
 		clickOnContinue();
@@ -239,8 +273,6 @@ public class SetupTransferPage extends AndroidActions {
 		log.info("Setup transfer");
 		enterSenderAmount(amount);
 		selectReceiverCountry(receiverCountry);
-		//ToDo: Sometimes all exchanges does not load
-		//selectExchange(exchange);
 		selectAvailableExchange();
 		clickOnContinue();
 		selectTransactionPurpose(purpose);
