@@ -15,7 +15,7 @@ public class AppConstant {
     public final static String PIN_ERROR_MESSAGE = "PIN is invalid";
     public final static String OTP_ERROR_MESSAGE = "Invalid otp";
 
-    public final static String SAME_PIN_AS_PREVIOUS_ERROR_MESSAGE = "PIN should not match with previous passcodes";
+    public final static String SAME_PIN_AS_PREVIOUS_ERROR_MESSAGE = "PIN should not match with previous PINs";
 
     public final static String SET_PIN_ERROR_MESSAGE = "Invalid PIN. Please try again.";
     public final static String PIN_NOT_MATCH_ERROR_MESSAGE = "Your PIN do not match. Please try again.";
