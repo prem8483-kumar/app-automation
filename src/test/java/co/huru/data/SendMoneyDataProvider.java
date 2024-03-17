@@ -3,10 +3,17 @@ package co.huru.data;
 import org.testng.annotations.DataProvider;
 public class SendMoneyDataProvider {
 
-    @DataProvider(name = "sendMoneyData")
-    public Object[][] sendMoneyData() {
+    @DataProvider(name = "confirmPaymentData")
+    public Object[][] confirmPaymentData() {
         return new Object[][] {
                 {"src/test/resources/testData/sendMoney.json"},
+        };
+    }
+
+    @DataProvider(name = "confirmPaymentInvalidOtpData")
+    public Object[][] confirmPaymentInvalidOtpData() {
+        return new Object[][] {
+                {"src/test/resources/testData/sendMoney.json", "1234"},
         };
     }
 
@@ -76,6 +83,19 @@ public class SendMoneyDataProvider {
         };
     }
 
+    @DataProvider(name = "addBankAccountWithInvalidCredentialsData")
+    public Object[][] addBankAccountWithInvalidCredentialsData() {
+        return new Object[][] {
+                {"src/test/resources/testData/addBankAccount.json", "prem.kumar", "prem@123"},
+        };
+    }
+
+    @DataProvider(name = "addBankAccountWithInvalidOtpData")
+    public Object[][] addBankAccountWithInvalidOtpData() {
+        return new Object[][] {
+                {"src/test/resources/testData/addBankAccount.json", "1234"},
+        };
+    }
 
     @DataProvider(name = "addRecipientData")
     public Object[][] addRecipientData() {

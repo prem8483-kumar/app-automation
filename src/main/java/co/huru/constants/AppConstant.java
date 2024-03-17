@@ -25,7 +25,14 @@ public class AppConstant {
     public final static String EMAIL_ERROR_MESSAGE = "Must be a valid Email";
     public final static String EMAIL_REQUIRED_ERROR_MESSAGE = "Field is required.";
 
+    public final static String PAYMENT_PROCESS_TITLE = "Processing Payment ";
+    public final static String PAYMENT_PROCESS_SUBTITLE = "This should take only few seconds";
 
+    public final static String PAYMENT_PENDING_TITLE = "Money Transfer Pending";
+    public final static String PAYMENT_PENDING_SUBTITLE = "We are processing your payment. We will inform you once it's done. ";
+
+    public final static String TRANSACTIONS_SCREEN_HEADER = "All transactions";
+    public final static String SELECT_BANK_SCREEN_HEADER = "Select your bank";
 
 
 }

@@ -21,7 +21,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
     @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
     public void addBankAccountTest(String testDataFile) {
 
-        log.info("Add Recipient Test");
+        log.info("Add Bank Account Test");
 
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
@@ -43,7 +43,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
         reviewTransferPage.clickOnGoToPayment();
 
         SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
-        selectPaymentPage.clickOnAddPaymentMethod();
+        selectPaymentPage.clickOnChangePaymentMethod();
         selectPaymentPage.clickOnAddBankAccount();
 
         AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
@@ -53,4 +53,330 @@ public class AddBankAccountTest extends AndroidBaseTest {
         addBankAccountPage.addBankAccount(bankAccount.getUserName(), bankAccount.getPassword(), bankAccount.getOtp());
 
     }
+
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountWithInvalidCredentialsData", dataProviderClass = SendMoneyDataProvider.class)
+    public void addBankAccountWithInvalidCredentialsTest(String testDataFile, String userName, String password) {
+
+        log.info("Add Bank Account Test");
+
+        log.info("Get test data");
+        TestData testData = getTestDataObject(testDataFile);
+
+        SignInPage signInPage = new SignInPage(driver);
+        Profile profile = testData.getUser().getProfile();
+        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToSendMoneyPage();
+
+        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        setupTransferPage.selectAvailableExchangeAndContinue();
+
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        selectRecipientPage.selectFirstRecipient();
+
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.clickOnGoToPayment();
+
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.clickOnChangePaymentMethod();
+        selectPaymentPage.clickOnAddBankAccount();
+
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        addBankAccountPage.connectToLeanMockBank();
+        addBankAccountPage.clickOnLogin();
+        addBankAccountPage.verifyUserNameError();
+        addBankAccountPage.verifyPasswordError();
+
+        addBankAccountPage.enterUserName(userName);
+        addBankAccountPage.enterPassword(password);
+        addBankAccountPage.verifyPasswordError();
+    }
+
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountWithInvalidOtpData", dataProviderClass = SendMoneyDataProvider.class)
+    public void addBankAccountWithInvalidOtpTest(String testDataFile, String otp) {
+
+        log.info("Add Bank Account Test");
+
+        log.info("Get test data");
+        TestData testData = getTestDataObject(testDataFile);
+
+        SignInPage signInPage = new SignInPage(driver);
+        Profile profile = testData.getUser().getProfile();
+        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToSendMoneyPage();
+
+        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        setupTransferPage.selectAvailableExchangeAndContinue();
+
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        selectRecipientPage.selectFirstRecipient();
+
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.clickOnGoToPayment();
+
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.clickOnChangePaymentMethod();
+        selectPaymentPage.clickOnAddBankAccount();
+
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        BankAccount bankAccount = testData.getUser().getBankAccounts().get(0);
+
+        addBankAccountPage.connectToLeanMockBank();
+        addBankAccountPage.enterUserName(bankAccount.getUserName());
+        addBankAccountPage.enterPassword(bankAccount.getPassword());
+        addBankAccountPage.clickOnLogin();
+
+        addBankAccountPage.enterOtp(otp);
+        addBankAccountPage.clickOnSubmitOtp();
+        addBankAccountPage.verifyOtpError();
+    }
+
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    public void closeAddBankAccountSetupScreenTest(String testDataFile) {
+
+        log.info("Add Bank Account Test");
+
+        log.info("Get test data");
+        TestData testData = getTestDataObject(testDataFile);
+
+        SignInPage signInPage = new SignInPage(driver);
+        Profile profile = testData.getUser().getProfile();
+        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToSendMoneyPage();
+
+        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        setupTransferPage.selectAvailableExchangeAndContinue();
+
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        selectRecipientPage.selectFirstRecipient();
+
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.clickOnGoToPayment();
+
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.clickOnChangePaymentMethod();
+        selectPaymentPage.clickOnAddBankAccount();
+
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        addBankAccountPage.clickOnChoseYourBank();
+        addBankAccountPage.clickOnLeanMockBank();
+
+        addBankAccountPage.clickOnContinueToBankAccountLoginButton();
+        addBankAccountPage.clickOnBankAccountLoginScreenBackButton();
+
+        addBankAccountPage.clickOnBankAccountSetupScreenCloseButton();
+        addBankAccountPage.verifyBankAccountConnectSurveyScreenHeader();
+        addBankAccountPage.clickOnBankAccountConnectSurveyBackToConnectButton();
+
+        addBankAccountPage.clickOnBankAccountSetupScreenCloseButton();
+        addBankAccountPage.verifyBankAccountConnectSurveyScreenHeader();
+        addBankAccountPage.clickOnBankAccountConnectSurveyConfirmAndCloseButton();
+
+        addBankAccountPage.verifySelectBankScreenHeader();
+    }
+
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    public void closeAddBankAccountLoginScreenTest(String testDataFile) {
+
+        log.info("Add Bank Account Test");
+
+        log.info("Get test data");
+        TestData testData = getTestDataObject(testDataFile);
+
+        SignInPage signInPage = new SignInPage(driver);
+        Profile profile = testData.getUser().getProfile();
+        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToSendMoneyPage();
+
+        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        setupTransferPage.selectAvailableExchangeAndContinue();
+
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        selectRecipientPage.selectFirstRecipient();
+
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.clickOnGoToPayment();
+
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.clickOnChangePaymentMethod();
+        selectPaymentPage.clickOnAddBankAccount();
+
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        addBankAccountPage.connectToLeanMockBank();
+
+        addBankAccountPage.clickOnBankAccountLoginScreenCloseButton();
+        addBankAccountPage.verifyBankAccountConnectSurveyScreenHeader();
+        addBankAccountPage.clickOnBankAccountConnectSurveyBackToConnectButton();
+
+        addBankAccountPage.clickOnBankAccountLoginScreenCloseButton();
+        addBankAccountPage.verifyBankAccountConnectSurveyScreenHeader();
+        addBankAccountPage.clickOnBankAccountConnectSurveyConfirmAndCloseButton();
+
+        addBankAccountPage.verifySelectBankScreenHeader();
+    }
+
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    public void closeAddBankAccountOtpScreenTest(String testDataFile) {
+
+        log.info("Add Bank Account Test");
+
+        log.info("Get test data");
+        TestData testData = getTestDataObject(testDataFile);
+
+        SignInPage signInPage = new SignInPage(driver);
+        Profile profile = testData.getUser().getProfile();
+        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToSendMoneyPage();
+
+        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        setupTransferPage.selectAvailableExchangeAndContinue();
+
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        selectRecipientPage.selectFirstRecipient();
+
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.clickOnGoToPayment();
+
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.clickOnChangePaymentMethod();
+        selectPaymentPage.clickOnAddBankAccount();
+
+        BankAccount bankAccount = testData.getUser().getBankAccounts().get(0);
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        addBankAccountPage.connectToLeanMockBank();
+        addBankAccountPage.enterUserName(bankAccount.getUserName());
+        addBankAccountPage.enterPassword(bankAccount.getPassword());
+        addBankAccountPage.clickOnLogin();
+
+        addBankAccountPage.clickOnBankAccountOtpScreenCloseButton();
+        addBankAccountPage.verifyBankAccountConnectSurveyScreenHeader();
+        addBankAccountPage.clickOnBankAccountConnectSurveyBackToConnectButton();
+
+        addBankAccountPage.clickOnBankAccountOtpScreenCloseButton();
+        addBankAccountPage.verifyBankAccountConnectSurveyScreenHeader();
+        addBankAccountPage.clickOnBankAccountConnectSurveyConfirmAndCloseButton();
+
+        addBankAccountPage.verifySelectBankScreenHeader();
+    }
+
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    public void navigateBackFromAddBankAccountSetupScreenTest(String testDataFile) {
+
+        log.info("Add Bank Account Test");
+
+        log.info("Get test data");
+        TestData testData = getTestDataObject(testDataFile);
+
+        SignInPage signInPage = new SignInPage(driver);
+        Profile profile = testData.getUser().getProfile();
+        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToSendMoneyPage();
+
+        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        setupTransferPage.selectAvailableExchangeAndContinue();
+
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        selectRecipientPage.selectFirstRecipient();
+
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.clickOnGoToPayment();
+
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.clickOnChangePaymentMethod();
+        selectPaymentPage.clickOnAddBankAccount();
+
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        addBankAccountPage.clickOnChoseYourBank();
+        addBankAccountPage.clickOnLeanMockBank();
+
+        addBankAccountPage.clickDeviceBackButton();
+        addBankAccountPage.verifySelectBankScreenHeader();
+    }
+
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    public void navigateBackFromAddBankAccountLoginScreenTest(String testDataFile) {
+
+        log.info("Add Bank Account Test");
+
+        log.info("Get test data");
+        TestData testData = getTestDataObject(testDataFile);
+
+        SignInPage signInPage = new SignInPage(driver);
+        Profile profile = testData.getUser().getProfile();
+        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToSendMoneyPage();
+
+        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        setupTransferPage.selectAvailableExchangeAndContinue();
+
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        selectRecipientPage.selectFirstRecipient();
+
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.clickOnGoToPayment();
+
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.clickOnChangePaymentMethod();
+        selectPaymentPage.clickOnAddBankAccount();
+
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        addBankAccountPage.connectToLeanMockBank();
+
+        addBankAccountPage.clickDeviceBackButton();
+        addBankAccountPage.verifySelectBankScreenHeader();
+    }
+
+
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    public void navigateBackFromAddBankAccountOtpScreenTest(String testDataFile) {
+
+        log.info("Add Bank Account Test");
+
+        log.info("Get test data");
+        TestData testData = getTestDataObject(testDataFile);
+
+        SignInPage signInPage = new SignInPage(driver);
+        Profile profile = testData.getUser().getProfile();
+        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToSendMoneyPage();
+
+        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        setupTransferPage.selectAvailableExchangeAndContinue();
+
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        selectRecipientPage.selectFirstRecipient();
+
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.clickOnGoToPayment();
+
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.clickOnChangePaymentMethod();
+        selectPaymentPage.clickOnAddBankAccount();
+
+        BankAccount bankAccount = testData.getUser().getBankAccounts().get(0);
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        addBankAccountPage.connectToLeanMockBank();
+        addBankAccountPage.enterUserName(bankAccount.getUserName());
+        addBankAccountPage.enterPassword(bankAccount.getPassword());
+        addBankAccountPage.clickOnLogin();
+
+        addBankAccountPage.clickDeviceBackButton();
+        addBankAccountPage.verifySelectBankScreenHeader();
+    }
+
 }

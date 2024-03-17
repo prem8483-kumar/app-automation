@@ -1,11 +1,14 @@
 package co.huru.pageObjects.remittance;
 
+import co.huru.constants.AppConstant;
 import co.huru.utils.AndroidActions;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+
+import static org.testng.Assert.assertEquals;
 
 public class PaymentPage extends AndroidActions {
 
@@ -28,8 +31,14 @@ public class PaymentPage extends AndroidActions {
 	private final By paymentDoneButton = AppiumBy.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__SUCCESS__CLOSE\"]");
 	private final By viewPaymentDetailsLink = AppiumBy.xpath("//android.widget.TextView[@text=\"View details\"]");
 
-	private final By cancelPaymentButton = AppiumBy.xpath("//android.view.View[@resource-id=\"STEP_PAYMENT_DETAILS\"]/android.view.View[1]/android.widget.Button");
+	private final By closePaymentScreen = AppiumBy.xpath("//android.view.View[@resource-id=\"STEP_PAYMENT_DETAILS\"]/android.view.View[1]/android.widget.Button");
 	private final By closeOtpScreen = AppiumBy.xpath("//android.view.View[@resource-id=\"STEP_MFA\"]/android.view.View[1]/android.widget.Button");
+
+	private final By otpError = AppiumBy.xpath("//android.widget.TextView[@text=\"The One Time Password entered is incorrect, please check it and try again\"]");
+
+	private final By paymentProgressBar = AppiumBy.xpath("//android.widget.ProgressBar");
+	private final By paymentStatusTitle = AppiumBy.accessibilityId("id_bs_title");
+	private final By paymentStatusSubtitle = AppiumBy.accessibilityId("id_bs_subtitle");
 
 	public void verifyScreenHeader()
 	{
@@ -57,24 +66,75 @@ public class PaymentPage extends AndroidActions {
 
 	public void confirmPayment(String otp)
 	{
-
 		log.info("Confirm payment");
-		waitForElementToBeVisible(confirmPaymentButton).click();
+		clickOnConfirmPayment();
+		enterOtp(otp);
+		clickOnSubmitOtp();
+		clickOnDone();
+	}
 
+	public void clickOnConfirmPayment()
+	{
+		log.info("Click on confirm payment");
+		waitForElementToBeVisible(confirmPaymentButton).click();
+	}
+
+	public void enterOtp(String otp)
+	{
+		log.info("Enter otp");
 		waitForElementToBeVisible(otpTextBox).sendKeys(otp);
+	}
+
+	public void clickOnSubmitOtp()
+	{
+		log.info("Click on submit otp");
 		waitForElementToBeVisible(submitOtpButton).click();
+	}
+
+	public void clickOnDone()
+	{
+		log.info("Click on done");
 		waitForElementToBeVisible(paymentDoneButton).click();
 	}
 
-	public void cancelPayment()
+	public void clickOnViewPaymentDetails()
 	{
-		log.info("Cancel payment");
+		log.info("Click on payment details");
+		waitForElementToBeVisible(viewPaymentDetailsLink).click();
 	}
 
-	public void viewPaymentDetails()
+
+	public void clickOnClosePaymentScreen()
 	{
-		log.info("View payment details");
-		waitForElementToBeVisible(viewPaymentDetailsLink).click();
-		waitForElementToBeVisible(continueButton).click();
+		log.info("Click on cancel payment");
+		waitForElementToBeVisible(closePaymentScreen).click();
+	}
+
+	public void verifyOtpError()
+	{
+		log.info("Verify otp error");
+		waitForElementToBeVisible(otpError);
+	}
+
+	public void clickOnCloseOtpScreen()
+	{
+		log.info("click on close otp screen");
+		waitForElementToBeVisible(closeOtpScreen).click();
+	}
+
+	public void verifyPaymentProcessModel()
+	{
+		log.info("Verify payment progress model");
+		waitForElementToBeVisible(paymentProgressBar);
+		assertEquals(waitForElementToBeVisible(paymentStatusTitle).getText(), AppConstant.PAYMENT_PROCESS_TITLE);
+		assertEquals(waitForElementToBeVisible(paymentStatusSubtitle).getText(), AppConstant.PAYMENT_PROCESS_SUBTITLE);
+	}
+
+	public void verifyPaymentPendingModel()
+	{
+		log.info("Verify payment pending model");
+		assertEquals(waitForElementToBeVisible(paymentStatusTitle).getText(), AppConstant.PAYMENT_PENDING_TITLE);
+		assertEquals(waitForElementToBeVisible(paymentStatusSubtitle).getText(), AppConstant.PAYMENT_PENDING_SUBTITLE);
 	}
 }
+

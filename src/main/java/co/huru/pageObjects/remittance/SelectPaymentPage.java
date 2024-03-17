@@ -29,11 +29,11 @@ public class SelectPaymentPage extends AndroidActions {
 	private final By addPromoCodeTextBox = AppiumBy.xpath("//android.widget.EditText");
 	private final By addPromoCodeButton = AppiumBy.xpath("//android.widget.TextView[@text=\"Add promo code\"]");
 
-	private final By changePaymentMethodCta = AppiumBy.xpath("//android.widget.TextView[@text=\"Change\"]");
-	private final By firstBankAccount = AppiumBy.xpath("//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View[1]");
+	private final By changePaymentMethodCta = AppiumBy.accessibilityId("id_payment_method_change_cta");
+	private final By paymentMethodsModelHeader = AppiumBy.xpath("//android.widget.TextView[@text=\"Payment method\"]");
+	private final By addBankAccountCta = AppiumBy.xpath("id_payment_method_add_cta");
 
-	private final By addPaymentMethodCta = AppiumBy.xpath("(//android.widget.TextView[@text=\"Add\"])[1]");
-	private final By addBankAccountLink = AppiumBy.xpath("//android.widget.TextView[@text=\"Add\"]");
+	private final By firstBankAccount = AppiumBy.xpath("//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View[1]");
 
 	private final By payButton = AppiumBy.xpath("//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.widget.Button");
 
@@ -61,6 +61,12 @@ public class SelectPaymentPage extends AndroidActions {
 		waitForElementToBeVisible(closeScreen).click();
 	}
 
+	public void clickOnPayButton()
+	{
+		log.info("Click on pay");
+		waitForElementToBeVisible(payButton).click();
+	}
+
 	public void addPromoCode(String promoCode)
 	{
 		log.info("Add promo code");
@@ -81,27 +87,16 @@ public class SelectPaymentPage extends AndroidActions {
 		waitForElementToBeVisible(changePaymentMethodCta).click();
 	}
 
-	public void selectFirstBankAccount()
+	public void verifyPaymentMethodsModel()
 	{
-		log.info("Select first bank account");
-		waitForElementToBeVisible(firstBankAccount).click();
-	}
-
-	public void clickOnAddPaymentMethod()
-	{
-		log.info("Click on add payment method");
-		waitForElementToBeVisible(addPaymentMethodCta).click();
+		log.info("Verify payment methods model");
+		waitForElementToBeVisible(paymentMethodsModelHeader);
 	}
 
 	public void clickOnAddBankAccount()
 	{
 		log.info("Click on add bank account");
-		waitForElementToBeVisible(addBankAccountLink).click();
+		waitForElementToBeVisible(addBankAccountCta).click();
 	}
 
-	public void clickOnPayButton()
-	{
-		log.info("Click on pay");
-		waitForElementToBeVisible(payButton).click();
-	}
 }

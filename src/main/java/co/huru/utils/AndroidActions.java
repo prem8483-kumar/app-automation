@@ -35,6 +35,13 @@ public class AndroidActions extends AppiumUtils {
 				.ignoring(ElementNotInteractableException.class);
 	}
 
+
+	public void minimizeApp(long seconds)
+	{
+		log.info("Minimize app");
+		driver.runAppInBackground(Duration.ofSeconds(seconds));
+	}
+
 	public void killAndRestartApp()
 	{
 		log.info("Get app package");
