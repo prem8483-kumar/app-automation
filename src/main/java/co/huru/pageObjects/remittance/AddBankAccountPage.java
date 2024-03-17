@@ -56,7 +56,7 @@ public class AddBankAccountPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		waitForElementToBeVisible(header);
+		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.ADD_BANK_ACCOUNT_SCREEN_HEADER);
 	}
 
 	public void navigateBack()
@@ -149,19 +149,25 @@ public class AddBankAccountPage extends AndroidActions {
 	public void verifyUserNameError()
 	{
 		log.info("Verify user name error");
-		waitForElementToBeVisible(userNameError);
+		assertEquals(waitForElementToBeVisible(userNameError).getText(), AppConstant.BANK_ACCOUNT_USER_NAME_ERROR_MESSAGE);
 	}
 
 	public void verifyPasswordError()
 	{
 		log.info("Verify password error");
-		waitForElementToBeVisible(passwordError);
+		assertEquals(waitForElementToBeVisible(passwordError).getText(), AppConstant.BANK_ACCOUNT_PASSWORD_ERROR_MESSAGE);
+	}
+
+	public void verifyBankAccountNotFoundError()
+	{
+		log.info("Verify bank account not found error");
+		assertEquals(waitForElementToBeVisible(passwordError).getText(), AppConstant.BANK_ACCOUNT_NOT_FOUND_ERROR_MESSAGE);
 	}
 
 	public void verifyOtpError()
 	{
 		log.info("Verify otp error");
-		waitForElementToBeVisible(otpError);
+		assertEquals(waitForElementToBeVisible(otpError).getText(), AppConstant.BANK_ACCOUNT_OTP_ERROR_MESSAGE);
 	}
 
 	public void addBankAccount(String userName, String password, String otp)

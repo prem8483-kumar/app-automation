@@ -1,11 +1,14 @@
 package co.huru.pageObjects.remittance;
 
+import co.huru.constants.AppConstant;
 import co.huru.utils.AndroidActions;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+
+import static org.testng.Assert.assertEquals;
 
 public class ReviewTransferPage extends AndroidActions {
 
@@ -36,7 +39,7 @@ public class ReviewTransferPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		waitForElementToBeVisible(header);
+		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.REVIEW_TRANSFER_SCREEN_HEADER);
 	}
 
 	public void navigateBack()

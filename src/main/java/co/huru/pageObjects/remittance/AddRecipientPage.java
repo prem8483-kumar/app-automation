@@ -1,11 +1,14 @@
 package co.huru.pageObjects.remittance;
 
+import co.huru.constants.AppConstant;
 import co.huru.utils.AndroidActions;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
+
+import static org.testng.Assert.assertEquals;
 
 public class AddRecipientPage extends AndroidActions {
 
@@ -63,7 +66,7 @@ public class AddRecipientPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		waitForElementToBeVisible(header);
+		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.ADD_RECIPIENT_SCREEN_HEADER);
 	}
 
 	public void navigateBack()
@@ -233,53 +236,53 @@ public class AddRecipientPage extends AndroidActions {
 	public void validateFirstNameError()
 	{
 		log.info("Validate first name error");
-		waitForElementToBeVisible(firstNameError);
+		assertEquals(waitForElementToBeVisible(firstNameError).getText(), AppConstant.RECIPIENT_FIRST_NAME_ERROR_MESSAGE);
 	}
 
 	public void validateLastNameError()
 	{
 		log.info("Validate last name error");
-		waitForElementToBeVisible(lastNameError);
+		assertEquals(waitForElementToBeVisible(lastNameError).getText(), AppConstant.RECIPIENT_LAST_NAME_ERROR_MESSAGE);
 	}
 
 
 	public void validateMobileNumberError()
 	{
 		log.info("Validate mobile number error");
-		waitForElementToBeVisible(mobileNumberError);
+		assertEquals(waitForElementToBeVisible(mobileNumberError).getText(), AppConstant.RECIPIENT_MOBILE_NUMBER_ERROR_MESSAGE);
 	}
 
 
 	public void validateRelationshipRequiredError()
 	{
 		log.info("Validate relationship required error");
-		waitForElementToBeVisible(relationshipRequiredError);
+		assertEquals(waitForElementToBeVisible(relationshipRequiredError).getText(), AppConstant.RECIPIENT_RELATIONSHIP_ERROR_MESSAGE);
 	}
 
 
 	public void validateAccountNumberError()
 	{
 		log.info("Validate account number error");
-		waitForElementToBeVisible(accountNumberError);
+		assertEquals(waitForElementToBeVisible(accountNumberError).getText(), AppConstant.RECIPIENT_ACCOUNT_NUMBER_ERROR_MESSAGE);
 	}
 
 
 	public void validateIfscCodeError()
 	{
 		log.info("Validate ifsc code error");
-		waitForElementToBeVisible(ifscCodeError);
+		assertEquals(waitForElementToBeVisible(ifscCodeError).getText(), AppConstant.RECIPIENT_IFSC_CODE_ERROR_MESSAGE);
 	}
 
 	public void validateAddressError()
 	{
 		log.info("Validate address error");
-		waitForElementToBeVisible(addressError);
+		assertEquals(waitForElementToBeVisible(addressError).getText(), AppConstant.RECIPIENT_ADDRESS_ERROR_MESSAGE);
 	}
 
 	public void validateCityError()
 	{
 		log.info("Validate city error");
-		waitForElementToBeVisible(cityError);
+		assertEquals(waitForElementToBeVisible(cityError).getText(), AppConstant.RECIPIENT_CITY_ERROR_MESSAGE);
 	}
 
 	public void validatePersonalDetailsSectionError()
@@ -291,8 +294,7 @@ public class AddRecipientPage extends AndroidActions {
 		validateRelationshipRequiredError();
 
 		clickOnPersonalDetailsSection();
-		waitForElementToBeVisible(personalDetailsSectionError);
-
+		assertEquals(waitForElementToBeVisible(personalDetailsSectionError).getText(), AppConstant.RECIPIENT_SECTIONS_ERROR_MESSAGE);
 	}
 
 	public void validateBankDetailsSectionError()
@@ -303,8 +305,7 @@ public class AddRecipientPage extends AndroidActions {
 		validateIfscCodeError();
 
 		clickOnBankDetailsSection();
-		waitForElementToBeVisible(bankDetailsSectionError);
-
+		assertEquals(waitForElementToBeVisible(bankDetailsSectionError).getText(), AppConstant.RECIPIENT_SECTIONS_ERROR_MESSAGE);
 	}
 
 	public void validateAddressSectionError()
@@ -315,7 +316,7 @@ public class AddRecipientPage extends AndroidActions {
 		validateCityError();
 
 		clickOnAddressSection();
-		waitForElementToBeVisible(addressSectionError);
+		assertEquals(waitForElementToBeVisible(addressSectionError).getText(), AppConstant.RECIPIENT_SECTIONS_ERROR_MESSAGE);
 	}
 
 	public void validateIncompleteSectionsError()

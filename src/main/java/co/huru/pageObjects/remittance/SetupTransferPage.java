@@ -1,5 +1,6 @@
 package co.huru.pageObjects.remittance;
 
+import co.huru.constants.AppConstant;
 import co.huru.utils.AndroidActions;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
@@ -7,6 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class SetupTransferPage extends AndroidActions {
@@ -62,7 +64,7 @@ public class SetupTransferPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		waitForElementToBeVisible(header);
+		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.SETUP_TRANSFER_SCREEN_HEADER);
 	}
 
 	public void navigateBack()
@@ -144,39 +146,38 @@ public class SetupTransferPage extends AndroidActions {
 	public void validateSenderMinimumAmountError()
 	{
 		log.info("Validate minimum amount error");
-		waitForElementToBeVisible(minimumSenderAmountError);
+		assertEquals(waitForElementToBeVisible(minimumSenderAmountError).getText(), AppConstant.MINIMUM_SENDER_AMOUNT_ERROR_MESSAGE);
 	}
 
 	public void validateSenderMaximumAmountError()
 	{
 		log.info("Validate maximum amount error");
-		waitForElementToBeVisible(maximumSenderAmountError);
+		assertEquals(waitForElementToBeVisible(maximumSenderAmountError).getText(), AppConstant.MAXIMUM_SENDER_AMOUNT_ERROR_MESSAGE);
 	}
 
 	public void validateIndiaReceiverMinimumAmountError()
 	{
 		log.info("Validate minimum amount error");
-		waitForElementToBeVisible(minimumIndiaReceiverAmountError);
+		assertEquals(waitForElementToBeVisible(minimumIndiaReceiverAmountError).getText(), AppConstant.MINIMUM_INDIA_RECEIVER_AMOUNT_ERROR_MESSAGE);
 	}
 
 	public void validateIndiaReceiverMaximumAmountError()
 	{
 		log.info("Validate maximum amount error");
-		waitForElementToBeVisible(maximumIndiaReceiverAmountError);
+		assertEquals(waitForElementToBeVisible(maximumIndiaReceiverAmountError).getText(), AppConstant.MAXIMUM_INDIA_RECEIVER_AMOUNT_ERROR_MESSAGE);
 	}
 
 	public void validatePakistanReceiverMinimumAmountError()
 	{
 		log.info("Validate minimum amount error");
-		waitForElementToBeVisible(minimumPakistanReceiverAmountError);
+		assertEquals(waitForElementToBeVisible(minimumPakistanReceiverAmountError).getText(), AppConstant.MINIMUM_PAKISTAN_RECEIVER_AMOUNT_ERROR_MESSAGE);
 	}
 
 	public void validatePakistanReceiverMaximumAmountError()
 	{
 		log.info("Validate maximum amount error");
-		waitForElementToBeVisible(maximumPakistanReceiverAmountError);
+		assertEquals(waitForElementToBeVisible(maximumPakistanReceiverAmountError).getText(), AppConstant.MAXIMUM_PAKISTAN_RECEIVER_AMOUNT_ERROR_MESSAGE);
 	}
-
 
 	public void selectReceiverCountry(String country)
 	{

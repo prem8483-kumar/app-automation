@@ -90,7 +90,8 @@ public class AddBankAccountTest extends AndroidBaseTest {
 
         addBankAccountPage.enterUserName(userName);
         addBankAccountPage.enterPassword(password);
-        addBankAccountPage.verifyPasswordError();
+        addBankAccountPage.clickOnLogin();
+        addBankAccountPage.verifyBankAccountNotFoundError();
     }
 
     @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountWithInvalidOtpData", dataProviderClass = SendMoneyDataProvider.class)

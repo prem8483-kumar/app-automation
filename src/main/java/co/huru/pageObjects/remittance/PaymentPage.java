@@ -43,7 +43,7 @@ public class PaymentPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		waitForElementToBeVisible(header);
+		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.PAYMENT_SCREEN_HEADER);
 	}
 
 	public void navigateBack()
@@ -113,7 +113,7 @@ public class PaymentPage extends AndroidActions {
 	public void verifyOtpError()
 	{
 		log.info("Verify otp error");
-		waitForElementToBeVisible(otpError);
+		assertEquals(waitForElementToBeVisible(otpError).getText(), AppConstant.BANK_ACCOUNT_OTP_ERROR_MESSAGE);
 	}
 
 	public void clickOnCloseOtpScreen()
