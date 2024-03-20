@@ -6,6 +6,7 @@ import co.huru.dataObjects.TestData;
 import co.huru.dataObjects.Profile;
 import co.huru.pageObjects.remittance.AddRecipientPage;
 import co.huru.pageObjects.home.HomePage;
+import co.huru.pageObjects.remittance.ReviewTransferPage;
 import co.huru.pageObjects.remittance.SelectRecipientPage;
 import co.huru.pageObjects.remittance.SetupTransferPage;
 import co.huru.pageObjects.signIn.SignInPage;
@@ -19,6 +20,39 @@ import static co.huru.utils.DataObjectMapper.getTestDataObject;
 public class AddRecipientTest extends AndroidBaseTest {
 
     private static final Logger log = LogManager.getLogger(AddRecipientTest.class);
+
+    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "addRecipientData", dataProviderClass = SendMoneyDataProvider.class)
+    public void addFirstRecipientTest(String testDataFile) {
+
+        //ToDO: Signup and Add Recipient
+
+        log.info("Add Recipient Test");
+
+        log.info("Get test data");
+        TestData testData = getTestDataObject(testDataFile);
+
+        SignInPage signInPage = new SignInPage(driver);
+        Profile profile = testData.getUser().getProfile();
+        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToSendMoneyPage();
+
+        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        setupTransferPage.selectAvailableExchangeAndContinue();
+
+        AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
+        Recipient recipient = testData.getUser().getRecipients().get(0);
+
+        addRecipientPage.verifyScreenHeader();
+        addRecipientPage.addRecipient(recipient.getFirstName(), recipient.getLastName(), recipient.getMobileNumber(), recipient.getNickName(), recipient.getRelationship(),
+                recipient.getBankAccount().getAccountNumber(), recipient.getBankAccount().getIfscCode(),
+                recipient.getAddress().getAddress(), recipient.getAddress().getCity());
+
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.verifyScreenHeader();
+
+    }
 
     @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "addRecipientData", dataProviderClass = SendMoneyDataProvider.class)
     public void addRecipientTest(String testDataFile) {

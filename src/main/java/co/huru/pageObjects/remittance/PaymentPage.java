@@ -37,8 +37,12 @@ public class PaymentPage extends AndroidActions {
 	private final By otpError = AppiumBy.xpath("//android.widget.TextView[@text=\"The One Time Password entered is incorrect, please check it and try again\"]");
 
 	private final By paymentProgressBar = AppiumBy.xpath("//android.widget.ProgressBar");
-	private final By paymentStatusTitle = AppiumBy.accessibilityId("id_bs_title");
-	private final By paymentStatusSubtitle = AppiumBy.accessibilityId("id_bs_subtitle");
+	private final By paymentProgressTitle = AppiumBy.accessibilityId("id_bs_title");
+	private final By paymentProgressSubtitle = AppiumBy.accessibilityId("id_bs_subtitle");
+
+	private final By paymentPendingTitle = AppiumBy.xpath("//android.widget.TextView[@text=\"Money Transfer Pending\"]");
+	private final By paymentPendingSubtitle = AppiumBy.xpath("//android.widget.TextView[@text=\"We are processing your payment. We will inform you once it's done. \"]");
+
 
 	public void verifyScreenHeader()
 	{
@@ -82,7 +86,8 @@ public class PaymentPage extends AndroidActions {
 	public void enterOtp(String otp)
 	{
 		log.info("Enter otp");
-		waitForElementToBeVisible(otpTextBox).sendKeys(otp);
+		waitForElementToBeClickable(otpTextBox).click();
+		getActions().sendKeys(otp).perform();
 	}
 
 	public void clickOnSubmitOtp()
@@ -126,15 +131,15 @@ public class PaymentPage extends AndroidActions {
 	{
 		log.info("Verify payment progress model");
 		waitForElementToBeVisible(paymentProgressBar);
-		assertEquals(waitForElementToBeVisible(paymentStatusTitle).getText(), AppConstant.PAYMENT_PROCESS_TITLE);
-		assertEquals(waitForElementToBeVisible(paymentStatusSubtitle).getText(), AppConstant.PAYMENT_PROCESS_SUBTITLE);
+		assertEquals(waitForElementToBeVisible(paymentProgressTitle).getText(), AppConstant.PAYMENT_PROCESS_TITLE);
+		assertEquals(waitForElementToBeVisible(paymentProgressSubtitle).getText(), AppConstant.PAYMENT_PROCESS_SUBTITLE);
 	}
 
 	public void verifyPaymentPendingModel()
 	{
 		log.info("Verify payment pending model");
-		assertEquals(waitForElementToBeVisible(paymentStatusTitle).getText(), AppConstant.PAYMENT_PENDING_TITLE);
-		assertEquals(waitForElementToBeVisible(paymentStatusSubtitle).getText(), AppConstant.PAYMENT_PENDING_SUBTITLE);
+		assertEquals(waitForElementToBeVisible(paymentPendingTitle).getText(), AppConstant.PAYMENT_PENDING_TITLE);
+		assertEquals(waitForElementToBeVisible(paymentPendingSubtitle).getText(), AppConstant.PAYMENT_PENDING_SUBTITLE);
 	}
 }
 

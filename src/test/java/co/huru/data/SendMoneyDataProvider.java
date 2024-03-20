@@ -13,7 +13,7 @@ public class SendMoneyDataProvider {
     @DataProvider(name = "confirmPaymentInvalidOtpData")
     public Object[][] confirmPaymentInvalidOtpData() {
         return new Object[][] {
-                {"src/test/resources/testData/sendMoney.json", "1234"},
+                {"src/test/resources/testData/sendMoney.json", "9999"},
         };
     }
 
@@ -93,7 +93,7 @@ public class SendMoneyDataProvider {
     @DataProvider(name = "addBankAccountWithInvalidOtpData")
     public Object[][] addBankAccountWithInvalidOtpData() {
         return new Object[][] {
-                {"src/test/resources/testData/addBankAccount.json", "1234"},
+                {"src/test/resources/testData/addBankAccount.json", "9999"},
         };
     }
 

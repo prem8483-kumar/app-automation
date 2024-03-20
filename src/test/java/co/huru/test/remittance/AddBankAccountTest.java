@@ -19,6 +19,43 @@ public class AddBankAccountTest extends AndroidBaseTest {
     private static final Logger log = LogManager.getLogger(AddBankAccountTest.class);
 
     @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    public void addFirstBankAccountTest(String testDataFile) {
+
+        //ToDo: Signup and add recipient and add bank account
+        log.info("Add Bank Account Test");
+
+        log.info("Get test data");
+        TestData testData = getTestDataObject(testDataFile);
+
+        SignInPage signInPage = new SignInPage(driver);
+        Profile profile = testData.getUser().getProfile();
+        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToSendMoneyPage();
+
+        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        setupTransferPage.selectAvailableExchangeAndContinue();
+
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        selectRecipientPage.selectFirstRecipient();
+
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.clickOnGoToPayment();
+
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.clickOnAddPaymentMethod();
+        selectPaymentPage.clickOnAddFirstBankAccount();
+
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        BankAccount bankAccount = testData.getUser().getBankAccounts().get(0);
+
+        addBankAccountPage.verifyScreenHeader();
+        addBankAccountPage.addBankAccount(bankAccount.getUserName(), bankAccount.getPassword(), bankAccount.getOtp());
+        addBankAccountPage.verifySelectBankScreenHeader();
+    }
+
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
     public void addBankAccountTest(String testDataFile) {
 
         log.info("Add Bank Account Test");
@@ -51,7 +88,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
 
         addBankAccountPage.verifyScreenHeader();
         addBankAccountPage.addBankAccount(bankAccount.getUserName(), bankAccount.getPassword(), bankAccount.getOtp());
-
+        addBankAccountPage.verifySelectBankScreenHeader();
     }
 
     @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountWithInvalidCredentialsData", dataProviderClass = SendMoneyDataProvider.class)

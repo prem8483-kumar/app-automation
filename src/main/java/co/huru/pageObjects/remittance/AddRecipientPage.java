@@ -200,6 +200,7 @@ public class AddRecipientPage extends AndroidActions {
 		enterAccountNumber(accountNumber);
 		enterIfscCode(ifscCode);
 
+		//ToDo: Issue address section was not present once
 		clickOnAddressSection();
 		enterAddress(address);
 		enterCity(city);

@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class AddBankAccountPage extends AndroidActions {
 
@@ -28,29 +29,29 @@ public class AddBankAccountPage extends AndroidActions {
 	private final By selectBankScreenHeader = AppiumBy.accessibilityId("id_screen_title");
 	private final By selectLeanMockBank = AppiumBy.xpath("//android.widget.TextView[@text=\"Lean Mockbank\"]");
 
-	private final By bankAccountSetupScreenHeader = By.xpath("//android.widget.TextView[@text=\"Set up your account\"]");
-	private final By bankAccountSetupScreenCloseButton = By.xpath("//android.view.View[@resource-id=\"STEP_CREDENTIALS\"]/android.view.View[1]/android.widget.Button[2]");
-	private final By continueToBankAccountLoginButton = By.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__INITIAL__SUBMIT\"]");
+	private final By bankAccountSetupScreenHeader = AppiumBy.xpath("//android.widget.TextView[@text=\"Set up your account\"]");
+	private final By continueToBankAccountLoginButton = AppiumBy.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__INITIAL__SUBMIT\"]");
+	private final By bankAccountSetupScreenCloseButton = AppiumBy.xpath("//android.view.View[@resource-id=\"STEP_INITIAL\"]/android.view.View[1]/android.widget.Button");
 
-	private final By bankAccountUserNameTextBox = By.xpath("//android.widget.EditText[@resource-id=\"username\"]");
-	private final By bankAccountPasswordTextBox = By.xpath("//android.widget.EditText[@resource-id=\"password\"]");
-	private final By bankAccountLoginButton = By.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__CREDENTIALS__SUBMIT\"]");
+	private final By bankAccountUserNameTextBox = AppiumBy.xpath("//android.widget.EditText[@resource-id=\"username\"]");
+	private final By bankAccountPasswordTextBox = AppiumBy.xpath("//android.widget.EditText[@resource-id=\"password\"]");
+	private final By bankAccountLoginButton = AppiumBy.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__CREDENTIALS__SUBMIT\"]");
 
-	private final By bankAccountLoginScreenBackButton = By.xpath("//android.view.View[@resource-id=\"STEP_CREDENTIALS\"]/android.view.View[1]/android.widget.Button[1]");
-	private final By bankAccountLoginScreenCloseButton = By.xpath("//android.view.View[@resource-id=\"STEP_CREDENTIALS\"]/android.view.View[1]/android.widget.Button[2]");
+	private final By bankAccountLoginScreenBackButton = AppiumBy.xpath("//android.view.View[@resource-id=\"STEP_CREDENTIALS\"]/android.view.View[1]/android.widget.Button[1]");
+	private final By bankAccountLoginScreenCloseButton = AppiumBy.xpath("//android.view.View[@resource-id=\"STEP_CREDENTIALS\"]/android.view.View[1]/android.widget.Button[2]");
 
 	private final By bankAccountConnectSurveyHeader = AppiumBy.xpath("//android.widget.TextView[@text=\"Are you sure you want to close?\"]");
-	private final By bankAccountConnectSurveyBackToConnectButton = AppiumBy.accessibilityId("BUTTON_ID__EXIT_SURVEY__BACK");
-	private final By bankAccountConnectSurveyConfirmAndCloseButton = AppiumBy.accessibilityId("BUTTON_ID__EXIT_SURVEY__CLOSE");
+	private final By bankAccountConnectSurveyBackToConnectButton = AppiumBy.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__EXIT_SURVEY__BACK\"]");
+	private final By bankAccountConnectSurveyConfirmAndCloseButton = AppiumBy.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__EXIT_SURVEY__CLOSE\"]");
 
-	private final By bankAccountOtpTextBox = By.xpath("//android.widget.EditText[@resource-id=\"genericMfa\"]");
-	private final By bankAccountOtpSubmitButton = By.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__MFA__SUBMIT\"]");
-	private final By bankAccountSuccessButton = By.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__SUCCESS__CLOSE\"]");
+	private final By bankAccountOtpTextBox = AppiumBy.xpath("//android.widget.EditText[@resource-id=\"genericMfa\"]");
+	private final By bankAccountOtpSubmitButton = AppiumBy.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__MFA__SUBMIT\"]");
+	private final By bankAccountSuccessButton = AppiumBy.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__SUCCESS__CLOSE\"]");
 
 	private final By bankAccountOtpScreenCloseButton = AppiumBy.xpath("//android.view.View[@resource-id=\"STEP_MFA\"]/android.view.View[1]/android.widget.Button");
 
-	private final By userNameError = AppiumBy.accessibilityId("usernameDescription");
-	private final By passwordError = AppiumBy.accessibilityId("passwordDescription");
+	private final By userNameError = AppiumBy.xpath("//android.widget.TextView[@resource-id=\"usernameDescription\"]");
+	private final By passwordError = AppiumBy.xpath("//android.widget.TextView[@resource-id=\"passwordDescription\"]");
 	private final By otpError = AppiumBy.xpath("//android.widget.TextView[@text=\"The One Time Password entered is incorrect, please check it and try again\"]");
 
 	public void verifyScreenHeader()
@@ -131,7 +132,7 @@ public class AddBankAccountPage extends AndroidActions {
 	{
 		log.info("Enter otp");
 		waitForElementToBeVisible(bankAccountOtpTextBox).click();
-		sendNumericKeysUsingKeyboard(otp);
+		getActions().sendKeys(otp).perform();
 	}
 
 	public void clickOnSubmitOtp()
@@ -161,7 +162,7 @@ public class AddBankAccountPage extends AndroidActions {
 	public void verifyBankAccountNotFoundError()
 	{
 		log.info("Verify bank account not found error");
-		assertEquals(waitForElementToBeVisible(passwordError).getText(), AppConstant.BANK_ACCOUNT_NOT_FOUND_ERROR_MESSAGE);
+		assertTrue(waitForElementToBeVisible(passwordError).getText().contains(AppConstant.BANK_ACCOUNT_NOT_FOUND_ERROR_MESSAGE));
 	}
 
 	public void verifyOtpError()

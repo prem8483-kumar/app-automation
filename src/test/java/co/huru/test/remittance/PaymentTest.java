@@ -41,6 +41,7 @@ public class PaymentTest extends AndroidBaseTest {
         reviewTransferPage.clickOnGoToPayment();
 
         SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.selectFirstBankAccount();
         selectPaymentPage.clickOnPayButton();
 
         PaymentPage paymentPage = new PaymentPage(driver);
@@ -79,6 +80,7 @@ public class PaymentTest extends AndroidBaseTest {
         reviewTransferPage.clickOnGoToPayment();
 
         SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.selectFirstBankAccount();
         selectPaymentPage.clickOnPayButton();
 
         PaymentPage paymentPage = new PaymentPage(driver);
@@ -111,6 +113,7 @@ public class PaymentTest extends AndroidBaseTest {
         reviewTransferPage.clickOnGoToPayment();
 
         SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.selectFirstBankAccount();
         selectPaymentPage.clickOnPayButton();
 
         PaymentPage paymentPage = new PaymentPage(driver);
@@ -146,6 +149,7 @@ public class PaymentTest extends AndroidBaseTest {
         reviewTransferPage.clickOnGoToPayment();
 
         SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.selectFirstBankAccount();
         selectPaymentPage.clickOnPayButton();
 
         PaymentPage paymentPage = new PaymentPage(driver);
@@ -182,9 +186,12 @@ public class PaymentTest extends AndroidBaseTest {
         reviewTransferPage.clickOnGoToPayment();
 
         SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.selectFirstBankAccount();
         selectPaymentPage.clickOnPayButton();
 
         PaymentPage paymentPage = new PaymentPage(driver);
+        paymentPage.verifyScreenHeader();
+
         paymentPage.clickDeviceBackButton();
         paymentPage.verifyPaymentProcessModel();
         paymentPage.verifyPaymentPendingModel();
@@ -216,10 +223,12 @@ public class PaymentTest extends AndroidBaseTest {
         reviewTransferPage.clickOnGoToPayment();
 
         SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.selectFirstBankAccount();
         selectPaymentPage.clickOnPayButton();
 
         PaymentPage paymentPage = new PaymentPage(driver);
         paymentPage.clickOnConfirmPayment();
+
         paymentPage.clickDeviceBackButton();
         paymentPage.verifyPaymentProcessModel();
         paymentPage.verifyPaymentPendingModel();
@@ -251,6 +260,7 @@ public class PaymentTest extends AndroidBaseTest {
         reviewTransferPage.clickOnGoToPayment();
 
         SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.selectFirstBankAccount();
         selectPaymentPage.clickOnPayButton();
 
         PaymentPage paymentPage = new PaymentPage(driver);
@@ -286,12 +296,14 @@ public class PaymentTest extends AndroidBaseTest {
         reviewTransferPage.clickOnGoToPayment();
 
         SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.selectFirstBankAccount();
         selectPaymentPage.clickOnPayButton();
 
         PaymentPage paymentPage = new PaymentPage(driver);
         paymentPage.clickOnConfirmPayment();
         paymentPage.minimizeApp(3);
 
+        //ToDo: Issue - Payment success on minimizing app on Otp screen
         paymentPage.enterOtp(testData.getFundTransfers().get(0).getConfirmPayment().getOtp());
         paymentPage.clickOnSubmitOtp();
         paymentPage.clickOnDone();

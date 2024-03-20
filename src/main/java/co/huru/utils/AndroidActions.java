@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
@@ -149,6 +150,11 @@ public class AndroidActions extends AppiumUtils {
 				default: log.info("Wrong Key");
 			}
 		}
+	}
+
+	public Actions getActions()
+	{
+		return new Actions(driver);
 	}
 
 	public void clickDeviceBackButton()

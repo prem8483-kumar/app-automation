@@ -32,13 +32,16 @@ public class SelectPaymentPage extends AndroidActions {
 	private final By addPromoCodeTextBox = AppiumBy.xpath("//android.widget.EditText");
 	private final By addPromoCodeButton = AppiumBy.xpath("//android.widget.TextView[@text=\"Add promo code\"]");
 
+	private final By addPaymentMethodCta = AppiumBy.xpath("(//android.widget.TextView[@text=\"Add\"])[1]");
+	private final By addFirstBankAccountCta = AppiumBy.xpath("//android.widget.TextView[@text=\"Add\"]");
+
 	private final By changePaymentMethodCta = AppiumBy.accessibilityId("id_payment_method_change_cta");
 	private final By paymentMethodsModelHeader = AppiumBy.xpath("//android.widget.TextView[@text=\"Payment method\"]");
-	private final By addBankAccountCta = AppiumBy.xpath("id_payment_method_add_cta");
+	private final By addBankAccountCta = AppiumBy.accessibilityId("id_payment_method_add_cta");
 
-	private final By firstBankAccount = AppiumBy.xpath("//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.view.View[1]");
+	private final By firstBankAccount = AppiumBy.xpath("(//android.widget.TextView[@content-desc=\"id_change_payment_method_bank_name\"])[1]");
 
-	private final By payButton = AppiumBy.xpath("//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View/android.view.View[3]/android.widget.Button");
+	private final By payButton = AppiumBy.accessibilityId("id_huru_button_text");
 
 	public void verifyScreenHeader()
 	{
@@ -90,16 +93,41 @@ public class SelectPaymentPage extends AndroidActions {
 		waitForElementToBeVisible(changePaymentMethodCta).click();
 	}
 
+	public void clickOnAddPaymentMethod()
+	{
+		log.info("Click on add payment method");
+		waitForElementToBeVisible(addPaymentMethodCta).click();
+	}
+
 	public void verifyPaymentMethodsModel()
 	{
 		log.info("Verify payment methods model");
 		waitForElementToBeVisible(paymentMethodsModelHeader);
 	}
 
+	public void selectFirstBankAccount()
+	{
+		log.info("Select first bank account");
+		clickOnChangePaymentMethod();
+		clickOnFirstBankAccount();
+	}
+
+	public void clickOnFirstBankAccount()
+	{
+		log.info("Click on first bank account");
+		waitForElementToBeVisible(firstBankAccount).click();
+	}
+
 	public void clickOnAddBankAccount()
 	{
 		log.info("Click on add bank account");
 		waitForElementToBeVisible(addBankAccountCta).click();
+	}
+
+	public void clickOnAddFirstBankAccount()
+	{
+		log.info("Click on add first bank account");
+		waitForElementToBeVisible(addFirstBankAccountCta).click();
 	}
 
 }
