@@ -17,6 +17,7 @@ public class SelectPaymentPage extends AndroidActions {
 	public SelectPaymentPage(AndroidDriver driver)
 	{
 		super(driver);
+		verifyScreenHeader();
 	}
 
 	private final By header = AppiumBy.xpath("//android.widget.TextView[@text=\"Select payment method\"]");
@@ -99,10 +100,10 @@ public class SelectPaymentPage extends AndroidActions {
 		waitForElementToBeVisible(addPaymentMethodCta).click();
 	}
 
-	public void verifyPaymentMethodsModel()
+	public void verifyPaymentMethodsModelHeader()
 	{
 		log.info("Verify payment methods model");
-		waitForElementToBeVisible(paymentMethodsModelHeader);
+		assertEquals(waitForElementToBeVisible(paymentMethodsModelHeader).getText(), AppConstant.PAYMENT_METHOD_MODEL_HEADER);
 	}
 
 	public void selectFirstBankAccount()

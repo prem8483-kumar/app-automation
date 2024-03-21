@@ -17,6 +17,7 @@ public class ReviewTransferPage extends AndroidActions {
 	public ReviewTransferPage(AndroidDriver driver)
 	{
 		super(driver);
+		verifyScreenHeader();
 	}
 
 	private final By header = AppiumBy.xpath("//android.widget.TextView[@text=\"Review transfer\"]");

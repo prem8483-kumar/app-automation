@@ -17,6 +17,7 @@ public class AddRecipientPage extends AndroidActions {
 	public AddRecipientPage(AndroidDriver driver)
 	{
 		super(driver);
+		verifyScreenHeader();
 	}
 
 	private final By header = AppiumBy.xpath("//android.widget.TextView[@text=\"Add recipient details\"]");

@@ -225,7 +225,7 @@ public class SignUpTest extends AndroidBaseTest {
         signUpPage.enterEmailAndContinue(email);
         signUpPage.enterPin(passcode);
         signUpPage.enterPinAndConfirm(passcode);
-        signUpPage.navigateBack();
+        signUpPage.clickDeviceBackButton();
         signUpPage.validateAppClosed();
     }
 }

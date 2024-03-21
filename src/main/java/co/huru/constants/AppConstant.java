@@ -38,7 +38,7 @@ public class AppConstant {
     public final static String SELECT_PAYMENT_SCREEN_HEADER = "Select payment method";
     public final static String ADD_BANK_ACCOUNT_SCREEN_HEADER = "Add bank account";
     public final static String SELECT_BANK_SCREEN_HEADER = "Select your bank";
-
+    public final static String PAYMENT_METHOD_MODEL_HEADER ="Payment method";
     public final static String PAYMENT_SCREEN_HEADER = "Payment Details";
 
     public final static String BANK_ACCOUNT_USER_NAME_ERROR_MESSAGE = "Please enter a Username";

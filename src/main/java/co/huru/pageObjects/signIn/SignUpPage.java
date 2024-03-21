@@ -63,7 +63,7 @@ public class SignUpPage extends AndroidActions {
 
 	public void signUp(String phoneNumber, String otp, String passcode, String name, String email)  {
 
-		log.info("Sign Up Method");
+		log.info("Sign Up");
 		enterPhoneNumberAndContinue(phoneNumber);
 		enterOtp(otp);
 		enterNameAndContinue(name);

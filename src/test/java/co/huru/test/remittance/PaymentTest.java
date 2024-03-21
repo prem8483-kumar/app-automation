@@ -303,7 +303,6 @@ public class PaymentTest extends AndroidBaseTest {
         paymentPage.clickOnConfirmPayment();
         paymentPage.minimizeApp(3);
 
-        //ToDo: Issue - Payment success on minimizing app on Otp screen
         paymentPage.enterOtp(testData.getFundTransfers().get(0).getConfirmPayment().getOtp());
         paymentPage.clickOnSubmitOtp();
         paymentPage.clickOnDone();

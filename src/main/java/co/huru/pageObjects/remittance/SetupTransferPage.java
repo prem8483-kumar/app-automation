@@ -18,6 +18,7 @@ public class SetupTransferPage extends AndroidActions {
 	public SetupTransferPage(AndroidDriver driver)
 	{
 		super(driver);
+		verifyScreenHeader();
 	}
 
 	private final By header = AppiumBy.xpath("(//android.widget.TextView[@text=\"Send money\"])[1]");
@@ -94,7 +95,7 @@ public class SetupTransferPage extends AndroidActions {
 	public void clickOnWalletTab()
 	{
 		log.info("Click on wallet tab");
-		waitForElementToBeVisible(walletTab).click();
+		waitForElementToBeClickable(walletTab).click();
 	}
 
 	public void verifyComingSoonBanner()
@@ -222,9 +223,8 @@ public class SetupTransferPage extends AndroidActions {
 
 	public void selectAvailableExchangeAndContinue()
 	{
-		log.info("Select exchange");
-		selectAvailableExchange();
 
+		selectAvailableExchange();
 		clickOnContinue();
 		clickOnContinue();
 	}

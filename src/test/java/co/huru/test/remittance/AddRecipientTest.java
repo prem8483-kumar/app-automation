@@ -10,7 +10,9 @@ import co.huru.pageObjects.remittance.ReviewTransferPage;
 import co.huru.pageObjects.remittance.SelectRecipientPage;
 import co.huru.pageObjects.remittance.SetupTransferPage;
 import co.huru.pageObjects.signIn.SignInPage;
+import co.huru.pageObjects.signIn.SignUpPage;
 import co.huru.utils.AndroidBaseTest;
+import co.huru.utils.DataGenerator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
@@ -22,18 +24,15 @@ public class AddRecipientTest extends AndroidBaseTest {
     private static final Logger log = LogManager.getLogger(AddRecipientTest.class);
 
     @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "addRecipientData", dataProviderClass = SendMoneyDataProvider.class)
-    public void addFirstRecipientTest(String testDataFile) {
-
-        //ToDO: Signup and Add Recipient
+    public void signUpAndAddRecipientTest(String testDataFile) {
 
         log.info("Add Recipient Test");
 
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
-        Profile profile = testData.getUser().getProfile();
-        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+        SignUpPage signUpPage = new SignUpPage(driver);
+        signUpPage.signUp(DataGenerator.generateRandomMobileNumber(), "123456", "100900", DataGenerator.generateRandomName(), DataGenerator.generateRandomEmail());
 
         HomePage homePage = new HomePage(driver);
         homePage.goToSendMoneyPage();
@@ -41,9 +40,8 @@ public class AddRecipientTest extends AndroidBaseTest {
         SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
         Recipient recipient = testData.getUser().getRecipients().get(0);
-
+        AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
         addRecipientPage.verifyScreenHeader();
         addRecipientPage.addRecipient(recipient.getFirstName(), recipient.getLastName(), recipient.getMobileNumber(), recipient.getNickName(), recipient.getRelationship(),
                 recipient.getBankAccount().getAccountNumber(), recipient.getBankAccount().getIfscCode(),
@@ -84,8 +82,8 @@ public class AddRecipientTest extends AndroidBaseTest {
                 recipient.getBankAccount().getAccountNumber(), recipient.getBankAccount().getIfscCode(),
                 recipient.getAddress().getAddress(), recipient.getAddress().getCity());
 
-        selectRecipientPage.verifyScreenHeader();
-
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.verifyScreenHeader();
     }
 
     @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidFirstNameData", dataProviderClass = SendMoneyDataProvider.class)
