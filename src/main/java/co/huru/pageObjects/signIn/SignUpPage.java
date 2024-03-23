@@ -2,6 +2,7 @@ package co.huru.pageObjects.signIn;
 
 import co.huru.constants.AppConstant;
 import co.huru.utils.AndroidActions;
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,8 +21,7 @@ public class SignUpPage extends AndroidActions {
 
 	private final By launchImage = By.id("com.huru:id/imageView4");
 	private final By signUpButton = By.id("com.huru:id/signUpButton");
-
-	private final By backButton = By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
+	private final By backButton = AppiumBy.accessibilityId("Navigate up");
 
 	private final By phoneNumberScreenHeader = By.id("com.huru:id/phone_validation_header");
 	private final By pinScreenHeader = By.id("com.huru:id/passcodeHeader");
