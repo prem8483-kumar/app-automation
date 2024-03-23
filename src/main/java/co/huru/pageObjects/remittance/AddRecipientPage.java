@@ -20,11 +20,10 @@ public class AddRecipientPage extends AndroidActions {
 		verifyScreenHeader();
 	}
 
-	private final By header = AppiumBy.xpath("//android.widget.TextView[@text=\"Add recipient details\"]");
-
-	private final By backButton = AppiumBy.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
+	private final By header = AppiumBy.accessibilityId("id_screen_title");
 	private final By continueButton = AppiumBy.accessibilityId("id_huru_button_text");
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
+	private final By backButton = AppiumBy.accessibilityId("huru_back_button");
 
 	//Add Recipient
 	private final By personalDetailsSection = AppiumBy.accessibilityId("id_section_header_boxRECIPIENT_PERSONAL_DETAILS");
@@ -39,7 +38,6 @@ public class AddRecipientPage extends AndroidActions {
 	private final By spouse = AppiumBy.accessibilityId("id_item Spouse");
 	private final By son = AppiumBy.accessibilityId("id_item Son");
 	private final By daughter = AppiumBy.accessibilityId("id_item Daughter");
-
 	private final By nickNameTextBox = AppiumBy.xpath("//android.widget.EditText[5]");
 
 	private final By bankDetailsSection = AppiumBy.accessibilityId("id_section_header_boxRECIPIENT_BANK_DETAILS");
@@ -55,8 +53,10 @@ public class AddRecipientPage extends AndroidActions {
 	private final By lastNameError = AppiumBy.xpath("//android.widget.TextView[@text=\"Last name can only have a-z alphabets and max 30 chars\"]");
 	private final By mobileNumberError = AppiumBy.xpath("//android.widget.TextView[@text=\"Enter a valid mobile number\"]");
 	private final By relationshipRequiredError = AppiumBy.xpath("//android.widget.TextView[@text=\"This field is mandatory\"]");
+
 	private final By accountNumberError = AppiumBy.xpath("//android.widget.TextView[@text=\"Enter a valid account number\"]");
 	private final By ifscCodeError = AppiumBy.xpath("//android.widget.TextView[@text=\"Enter a valid 11 digit IFSC code Eg. HDFC0000139, SBIN0015293\"]");
+
 	private final By addressError = AppiumBy.xpath("//android.widget.TextView[@text=\"Please enter receiver's Address, <= 35 Char, no special char\"]");
 	private final By cityError = AppiumBy.xpath("//android.widget.TextView[@text=\"Please enter receiver's City\"]");
 

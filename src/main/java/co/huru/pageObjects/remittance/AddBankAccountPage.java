@@ -21,10 +21,10 @@ public class AddBankAccountPage extends AndroidActions {
 		verifyScreenHeader();
 	}
 
-	private final By header = AppiumBy.xpath("//android.widget.TextView[@text=\"Add bank account\"]");
-	private final By backButton = AppiumBy.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
-	private final By continueButton = AppiumBy.xpath("//android.widget.Button");
+	private final By header = AppiumBy.accessibilityId("id_screen_title");
+	private final By continueButton = AppiumBy.accessibilityId("id_huru_button_text");
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
+	private final By backButton = AppiumBy.accessibilityId("huru_back_button");
 
 	private final By choseYourBankButton = AppiumBy.accessibilityId("id_huru_button_text");
 	private final By selectBankScreenHeader = AppiumBy.accessibilityId("id_screen_title");

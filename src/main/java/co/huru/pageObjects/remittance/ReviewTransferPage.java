@@ -20,11 +20,10 @@ public class ReviewTransferPage extends AndroidActions {
 		verifyScreenHeader();
 	}
 
-	private final By header = AppiumBy.xpath("//android.widget.TextView[@text=\"Review transfer\"]");
-
-	private final By backButton = AppiumBy.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
-	private final By continueButton = AppiumBy.xpath("//android.widget.Button");
+	private final By header = AppiumBy.accessibilityId("id_screen_title");
+	private final By continueButton = AppiumBy.accessibilityId("id_huru_button_text");
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
+	private final By backButton = AppiumBy.accessibilityId("huru_back_button");
 
 	private final By totalPaymentDetailsCta = AppiumBy.accessibilityId("id_total_to_pay_display_cta");
 	private final By knowAboutFeesCta = AppiumBy.accessibilityId("id_payment_breakdown_know_about_fee_cta");

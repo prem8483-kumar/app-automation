@@ -19,12 +19,12 @@ public class PaymentPage extends AndroidActions {
 		super(driver);
 	}
 
-	private final By header = AppiumBy.xpath("//android.widget.TextView[@text=\"Payment Details\"]");
-	private final By backButton = AppiumBy.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
-	private final By continueButton = AppiumBy.xpath("//android.widget.Button");
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
+	private final By continueButton = AppiumBy.accessibilityId("id_huru_button_text");
 
 	//Do Payment
+	private final By header = AppiumBy.xpath("//android.widget.TextView[@text=\"Payment Details\"]");
+
 	private final By confirmPaymentButton = AppiumBy.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__PAYMENT__SUBMIT\"]");
 	private final By otpTextBox = AppiumBy.xpath("//android.widget.EditText[@resource-id=\"genericMfa\"]");
 	private final By submitOtpButton = AppiumBy.xpath("//android.widget.Button[@resource-id=\"BUTTON_ID__MFA__SUBMIT\"]");
@@ -48,12 +48,6 @@ public class PaymentPage extends AndroidActions {
 	{
 		log.info("Verify screen header");
 		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.PAYMENT_SCREEN_HEADER);
-	}
-
-	public void navigateBack()
-	{
-		log.info("Navigate back");
-		waitForElementToBeVisible(backButton).click();
 	}
 
 	public void clickOnContinue()

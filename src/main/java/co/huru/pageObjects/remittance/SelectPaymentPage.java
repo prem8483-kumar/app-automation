@@ -20,10 +20,10 @@ public class SelectPaymentPage extends AndroidActions {
 		verifyScreenHeader();
 	}
 
-	private final By header = AppiumBy.xpath("//android.widget.TextView[@text=\"Select payment method\"]");
-	private final By backButton = AppiumBy.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
-	private final By continueButton = AppiumBy.xpath("//android.widget.Button");
+	private final By header = AppiumBy.xpath("id_screen_title");
+	private final By continueButton = AppiumBy.accessibilityId("id_huru_button_text");
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
+	private final By backButton = AppiumBy.accessibilityId("huru_back_button");
 
 	private final By totalToPayDetailsCta = AppiumBy.accessibilityId("id_total_to_pay_display_cta");
 	private final By knowAboutFeeCta = AppiumBy.accessibilityId("id_payment_breakdown_know_about_fee_cta");
@@ -31,7 +31,7 @@ public class SelectPaymentPage extends AndroidActions {
 	private final By useCashbackBalanceButton = AppiumBy.accessibilityId("id_cashback_toggle_button");
 	private final By addPromoCodeCta = AppiumBy.accessibilityId("id_promo_code_add_cta");
 	private final By addPromoCodeTextBox = AppiumBy.xpath("//android.widget.EditText");
-	private final By addPromoCodeButton = AppiumBy.xpath("//android.widget.TextView[@text=\"Add promo code\"]");
+	private final By addPromoCodeButton = AppiumBy.accessibilityId("huru_progress_button_text");
 
 	private final By addPaymentMethodCta = AppiumBy.xpath("(//android.widget.TextView[@text=\"Add\"])[1]");
 	private final By addFirstBankAccountCta = AppiumBy.xpath("//android.widget.TextView[@text=\"Add\"]");

@@ -21,10 +21,8 @@ public class SetupTransferPage extends AndroidActions {
 		verifyScreenHeader();
 	}
 
-	private final By header = AppiumBy.xpath("(//android.widget.TextView[@text=\"Send money\"])[1]");
-
-	private final By backButton = AppiumBy.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
-	private final By continueButton = AppiumBy.xpath("//android.widget.Button");
+	private final By header = AppiumBy.accessibilityId("id_screen_title");
+	private final By continueButton = AppiumBy.accessibilityId("id_huru_button_text");
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
 
 	private final By transferTab = AppiumBy.accessibilityId("id_mode_of_transfer_tab_textBank Transfer");
@@ -35,22 +33,23 @@ public class SetupTransferPage extends AndroidActions {
 	private final By exchangeIcon = AppiumBy.accessibilityId("id_currency_field_reverse_arrow");
 	private final By receiverAmountTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
 
-	private final By minimumIndiaReceiverAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Invalid minimum receiving amount. It should be greater than: 1200\"]");
-	private final By maximumIndiaReceiverAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Invalid maximum receiving amount. It should be less than: 340000\"]");
+	private final By minimumIndiaReceiverAmountError = AppiumBy.accessibilityId("id_error_msg_title");
+	private final By maximumIndiaReceiverAmountError = AppiumBy.accessibilityId("id_error_msg_title");
 
-	private final By minimumPakistanReceiverAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Invalid minimum receiving amount. It should be greater than: 3800\"]");
-	private final By maximumPakistanReceiverAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Invalid maximum receiving amount. It should be less than: 1140000\"]");
+	private final By minimumPakistanReceiverAmountError = AppiumBy.accessibilityId("id_error_msg_title");
+	private final By maximumPakistanReceiverAmountError = AppiumBy.accessibilityId("id_error_msg_title");
 
 	private final By senderAmountTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
-	private final By minimumSenderAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Min single transaction amount AED 50\"]");
-	private final By maximumSenderAmountError = AppiumBy.xpath("//android.widget.TextView[@text=\"Max single transaction amount AED 15000\"]");
+
+	private final By minimumSenderAmountError = AppiumBy.accessibilityId("id_error_msg_title");
+	private final By maximumSenderAmountError = AppiumBy.accessibilityId("id_error_msg_title");
 
 	private final By receiverCountryDropdown = AppiumBy.accessibilityId("receiver_country_dropdown_icon");
 	private final By selectIndia = AppiumBy.accessibilityId("id_receiver_currency_rowINR (Indian Rupee)");
 	private final By selectPakistan = AppiumBy.accessibilityId("id_receiver_currency_rowPKR (Pakistani Rupee)");
 
 	private final By selectLuluExchange = AppiumBy.accessibilityId("id_eh_rp_nameLuLu Exchange");
-	private final By selectGccExchange = AppiumBy.xpath("id_eh_rp_nameGCC");
+	private final By selectGccExchange = AppiumBy.accessibilityId("id_eh_rp_nameGCC");
 	private final By firstExchange = AppiumBy.accessibilityId("id_eh_details_row0");
 
 	private final By exchangeQuoteBreakup = AppiumBy.accessibilityId("id_quote_breakup_cta");
@@ -66,12 +65,6 @@ public class SetupTransferPage extends AndroidActions {
 	{
 		log.info("Verify screen header");
 		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.SETUP_TRANSFER_SCREEN_HEADER);
-	}
-
-	public void navigateBack()
-	{
-		log.info("Navigate back");
-		waitForElementToBeVisible(backButton).click();
 	}
 
 	public void clickOnContinue()

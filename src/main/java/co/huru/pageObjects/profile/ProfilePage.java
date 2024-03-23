@@ -19,9 +19,9 @@ public class ProfilePage extends AndroidActions {
 		super(driver);
 	}
 
-	private final By homeTab = By.id("com.huru:id/homeFragment");
-	private final By backButton = By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
+	private final By backButton = AppiumBy.accessibilityId("huru_back_button");
 
+	private final By homeTab = By.id("com.huru:id/homeFragment");
 	private final By userAvatarImage = By.id("com.huru:id/userAvatar");
 	private final By userNameText = By.id("com.huru:id/userName");
 

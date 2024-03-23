@@ -19,10 +19,10 @@ public class SelectRecipientPage extends AndroidActions {
 		super(driver);
 	}
 
-	private final By header = AppiumBy.xpath("//android.widget.TextView[@text=\"Select recipient\"]");
-	private final By backButton = AppiumBy.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
-	private final By continueButton = AppiumBy.xpath("//android.widget.Button");
+	private final By header = AppiumBy.accessibilityId("id_screen_title");
+	private final By continueButton = AppiumBy.accessibilityId("id_huru_button_text");
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
+	private final By backButton = AppiumBy.accessibilityId("huru_back_button");
 
 	private final By addRecipient = AppiumBy.accessibilityId("ic_new_recipient_forward");
 	private final By selectFirstRecipient = AppiumBy.accessibilityId("id_recipient_item_row0");
