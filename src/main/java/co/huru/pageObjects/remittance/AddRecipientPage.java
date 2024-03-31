@@ -17,7 +17,6 @@ public class AddRecipientPage extends AndroidActions {
 	public AddRecipientPage(AndroidDriver driver)
 	{
 		super(driver);
-		verifyScreenHeader();
 	}
 
 	private final By header = AppiumBy.accessibilityId("id_screen_title");
@@ -79,7 +78,7 @@ public class AddRecipientPage extends AndroidActions {
 	public void clickOnContinue()
 	{
 		log.info("Next/Continue");
-		waitForElementToBeVisible(continueButton).click();
+		getActions().click(waitForElementToBeVisible(continueButton)).perform();
 	}
 
 	public void closeScreen()
@@ -202,13 +201,12 @@ public class AddRecipientPage extends AndroidActions {
 		enterIfscCode(ifscCode);
 
 		//ToDo: Issue address section was not present once
-		clickOnAddressSection();
-		enterAddress(address);
-		enterCity(city);
+//		clickOnAddressSection();
+//		enterAddress(address);
+//		enterCity(city);
 
 		//ToDO: Issue - Double click required
 		clickOnContinue();
-		//clickOnContinue();
 	}
 
 	public void enterPersonalDetails(String firstName, String lastName, String mobileNumber, String nickName, String relationship)

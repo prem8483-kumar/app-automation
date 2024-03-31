@@ -69,4 +69,6 @@ public class AppConstant {
     public final static String MAXIMUM_PAKISTAN_RECEIVER_AMOUNT_ERROR_MESSAGE = "Invalid maximum receiving amount. It should be less than: 1140000";
 
 
+    public final static String INVALID_PROMO_CODE_ERROR_MESSAGE = "Promocode is not valid. Please try another code";
+
 }

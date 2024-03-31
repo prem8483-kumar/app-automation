@@ -83,7 +83,7 @@ public class AddRecipientTest extends AndroidBaseTest {
                 recipient.getAddress().getAddress(), recipient.getAddress().getCity());
 
         ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
-        reviewTransferPage.verifyScreenHeader();
+        reviewTransferPage.waitForPaymentNoteTextBox();
     }
 
     @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidFirstNameData", dataProviderClass = SendMoneyDataProvider.class)

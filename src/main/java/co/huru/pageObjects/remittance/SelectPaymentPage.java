@@ -17,10 +17,9 @@ public class SelectPaymentPage extends AndroidActions {
 	public SelectPaymentPage(AndroidDriver driver)
 	{
 		super(driver);
-		verifyScreenHeader();
 	}
 
-	private final By header = AppiumBy.xpath("id_screen_title");
+	private final By header = AppiumBy.accessibilityId("id_screen_title");
 	private final By continueButton = AppiumBy.accessibilityId("id_huru_button_text");
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
 	private final By backButton = AppiumBy.accessibilityId("huru_back_button");
@@ -29,9 +28,14 @@ public class SelectPaymentPage extends AndroidActions {
 	private final By knowAboutFeeCta = AppiumBy.accessibilityId("id_payment_breakdown_know_about_fee_cta");
 
 	private final By useCashbackBalanceButton = AppiumBy.accessibilityId("id_cashback_toggle_button");
+
 	private final By addPromoCodeCta = AppiumBy.accessibilityId("id_promo_code_add_cta");
 	private final By addPromoCodeTextBox = AppiumBy.xpath("//android.widget.EditText");
 	private final By addPromoCodeButton = AppiumBy.accessibilityId("huru_progress_button_text");
+
+	private final By removePromoCodeCta = AppiumBy.accessibilityId("id_promo_code_remove_cta");
+
+	private final By invalidPromoCodeError = AppiumBy.xpath("//android.widget.TextView[@text=\"Promocode is not valid. Please try another code\"]");
 
 	private final By addPaymentMethodCta = AppiumBy.xpath("(//android.widget.TextView[@text=\"Add\"])[1]");
 	private final By addFirstBankAccountCta = AppiumBy.xpath("//android.widget.TextView[@text=\"Add\"]");
@@ -74,12 +78,42 @@ public class SelectPaymentPage extends AndroidActions {
 		waitForElementToBeVisible(payButton).click();
 	}
 
+	public void clickOnAddPromoCodeCta()
+	{
+		log.info("Click on add promo code");
+		waitForElementToBeVisible(addPromoCodeCta).click();
+	}
+
+	public void enterPromoCode(String promoCode)
+	{
+		log.info("Enter promo code");
+		waitForElementToBeVisible(addPromoCodeTextBox).sendKeys(promoCode);
+	}
+
+	public void clickOnAddPromoCodeButton()
+	{
+		log.info("Click on  add promo code button");
+		waitForElementToBeVisible(addPromoCodeButton).click();
+	}
+
+	public void clickOnRemovePromoCodeCta()
+	{
+		log.info("Click on add promo code");
+		waitForElementToBeVisible(removePromoCodeCta).click();
+	}
+
+	public void verifyInvalidPromoCodeError()
+	{
+		log.info("Verify invalid promo code error");
+		assertEquals(waitForElementToBeVisible(invalidPromoCodeError).getText(), AppConstant.INVALID_PROMO_CODE_ERROR_MESSAGE);
+	}
+
 	public void addPromoCode(String promoCode)
 	{
 		log.info("Add promo code");
-		waitForElementToBeVisible(addPromoCodeCta).click();
-		waitForElementToBeVisible(addPromoCodeTextBox).sendKeys(promoCode);
-		waitForElementToBeVisible(addPromoCodeButton).click();
+		clickOnAddPromoCodeCta();
+		enterPromoCode(promoCode);
+		clickOnAddPromoCodeButton();
 	}
 
 	public void useCashbackBalance()

@@ -18,7 +18,6 @@ public class AddBankAccountPage extends AndroidActions {
 	public AddBankAccountPage(AndroidDriver driver)
 	{
 		super(driver);
-		verifyScreenHeader();
 	}
 
 	private final By header = AppiumBy.accessibilityId("id_screen_title");

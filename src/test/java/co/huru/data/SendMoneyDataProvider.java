@@ -1,5 +1,6 @@
 package co.huru.data;
 
+import co.huru.dataObjects.Profile;
 import org.testng.annotations.DataProvider;
 public class SendMoneyDataProvider {
 
@@ -75,6 +76,23 @@ public class SendMoneyDataProvider {
                 {"src/test/resources/testData/setupTransfer.json", "Pakistan", "1200000"},
         };
     }
+
+    @DataProvider(name = "addPromoCodeData")
+    public Object[][] addPromoCodeData() {
+
+        return new Object[][] {
+
+                {Profile.builder()
+                        .phoneNumber("")
+                        .pin("100900")
+                        .otp("123456")
+                        .build(),
+                        "FIRST50"
+                },
+        };
+    }
+
+
 
     @DataProvider(name = "addBankAccountData")
     public Object[][] addBankAccountData() {

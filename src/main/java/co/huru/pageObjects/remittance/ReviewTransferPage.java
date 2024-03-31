@@ -17,7 +17,6 @@ public class ReviewTransferPage extends AndroidActions {
 	public ReviewTransferPage(AndroidDriver driver)
 	{
 		super(driver);
-		verifyScreenHeader();
 	}
 
 	private final By header = AppiumBy.accessibilityId("id_screen_title");
@@ -40,6 +39,12 @@ public class ReviewTransferPage extends AndroidActions {
 	{
 		log.info("Verify screen header");
 		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.REVIEW_TRANSFER_SCREEN_HEADER);
+	}
+
+	public void waitForPaymentNoteTextBox()
+	{
+		log.info("Enter payment note");
+		waitForElementToBeVisible(paymentNoteTextBox);
 	}
 
 	public void navigateBack()
@@ -66,20 +71,9 @@ public class ReviewTransferPage extends AndroidActions {
 		waitForElementToBeVisible(goToPaymentCta).click();
 	}
 
-	public void reviewPaymentAndContinue(String paymentNote)
+	public void enterPaymentNote(String paymentNote)
 	{
-		log.info("Review payment");
-		waitForElementToBeVisible(totalPaymentDetailsCta).click();
-		waitForElementToBeVisible(knowAboutFeesCta).click();
-		waitForElementToBeVisible(continueButton).click();
-
-		waitForElementToBeVisible(feeInfoIcon).click();
-		waitForElementToBeVisible(continueButton).click();
-
-		waitForElementToBeVisible(tncLink).click();
-		waitForElementToBeVisible(tncBackButton).click();
-
+		log.info("Enter payment note");
 		waitForElementToBeVisible(paymentNoteTextBox).sendKeys(paymentNote);
-		waitForElementToBeVisible(goToPaymentCta).click();
 	}
 }

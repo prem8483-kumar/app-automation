@@ -1,5 +1,4 @@
 package co.huru.test.remittance;
-
 import co.huru.data.SendMoneyDataProvider;
 import co.huru.dataObjects.BankAccount;
 import co.huru.dataObjects.Profile;
@@ -21,6 +20,10 @@ public class AddBankAccountTest extends AndroidBaseTest {
 
     private static final Logger log = LogManager.getLogger(AddBankAccountTest.class);
 
+    //Test Numbers
+    //556744084
+    //525946055
+
     @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
     public void signUpAndAddBankAccountTest(String testDataFile) {
 
@@ -30,7 +33,9 @@ public class AddBankAccountTest extends AndroidBaseTest {
         TestData testData = getTestDataObject(testDataFile);
 
         SignUpPage signUpPage = new SignUpPage(driver);
-        signUpPage.signUp(DataGenerator.generateRandomMobileNumber(), "123456", DataGenerator.generateRandomPin(), DataGenerator.generateRandomName(), DataGenerator.generateRandomEmail());
+        String mobileNumber = DataGenerator.generateRandomMobileNumber();
+        log.info(mobileNumber);
+        signUpPage.signUp(mobileNumber, "123456", "100900", DataGenerator.generateRandomName(), DataGenerator.generateRandomEmail());
 
         HomePage homePage = new HomePage(driver);
         homePage.goToSendMoneyPage();
@@ -45,6 +50,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
                 recipient.getAddress().getAddress(), recipient.getAddress().getCity());
 
         ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.enterPaymentNote("Add bank account");
         reviewTransferPage.clickOnGoToPayment();
 
         SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
@@ -57,6 +63,46 @@ public class AddBankAccountTest extends AndroidBaseTest {
 
         selectPaymentPage.verifyPaymentMethodsModelHeader();
     }
+
+
+    //ToDo: for test data purpose only - To Add first bank account, when there are already recipients added
+    //@Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    public void addFirstBankAccountTest(String testDataFile) {
+
+        log.info("Add Bank Account Test");
+
+        log.info("Get test data");
+        TestData testData = getTestDataObject(testDataFile);
+
+        SignInPage signInPage = new SignInPage(driver);
+        Profile profile = testData.getUser().getProfile();
+        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToSendMoneyPage();
+
+        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        setupTransferPage.selectAvailableExchangeAndContinue();
+
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        selectRecipientPage.selectFirstRecipient();
+
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.clickOnGoToPayment();
+
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.clickOnAddPaymentMethod();
+        selectPaymentPage.clickOnAddFirstBankAccount();
+
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        BankAccount bankAccount = testData.getUser().getBankAccounts().get(0);
+
+        addBankAccountPage.verifyScreenHeader();
+        addBankAccountPage.addBankAccount(bankAccount.getUserName(), bankAccount.getPassword(), bankAccount.getOtp());
+
+        selectPaymentPage.verifyPaymentMethodsModelHeader();
+    }
+
 
     @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
     public void addBankAccountTest(String testDataFile) {
