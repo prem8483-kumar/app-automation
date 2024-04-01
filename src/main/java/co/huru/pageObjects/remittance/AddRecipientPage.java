@@ -201,9 +201,9 @@ public class AddRecipientPage extends AndroidActions {
 		enterIfscCode(ifscCode);
 
 		//ToDo: Issue address section was not present once
-//		clickOnAddressSection();
-//		enterAddress(address);
-//		enterCity(city);
+		clickOnAddressSection();
+		enterAddress(address);
+		enterCity(city);
 
 		//ToDO: Issue - Double click required
 		clickOnContinue();
