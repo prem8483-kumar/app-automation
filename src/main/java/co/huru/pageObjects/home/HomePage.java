@@ -25,11 +25,18 @@ public class HomePage extends AndroidActions {
 	private final By kycCardHeader = AppiumBy.accessibilityId("id_kyc_status_header");
 	private final By kycCardDescription = AppiumBy.accessibilityId("id_kyc_status_desc");
 
+
 	public void kycCard()
 	{
 		log.info("Kyc card");
 		waitForElementToBeVisible(kycCardHeader);
 		waitForElementToBeVisible(kycCardDescription);
+	}
+
+	public void waitForHomePage()
+	{
+		log.info("Wait for home page");
+		waitForElementToBeVisible(homeTab);
 	}
 
 	public void goToHomePage()

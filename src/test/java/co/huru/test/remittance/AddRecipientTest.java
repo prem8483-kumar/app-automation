@@ -1,6 +1,6 @@
 package co.huru.test.remittance;
 
-import co.huru.data.SendMoneyDataProvider;
+import co.huru.data.AddRecipientDataProvider;
 import co.huru.dataObjects.Recipient;
 import co.huru.dataObjects.TestData;
 import co.huru.dataObjects.Profile;
@@ -23,7 +23,7 @@ public class AddRecipientTest extends AndroidBaseTest {
 
     private static final Logger log = LogManager.getLogger(AddRecipientTest.class);
 
-    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "addRecipientData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "addRecipientData", dataProviderClass = AddRecipientDataProvider.class)
     public void signUpAndAddRecipientTest(String testDataFile) {
 
         log.info("Add Recipient Test");
@@ -52,7 +52,7 @@ public class AddRecipientTest extends AndroidBaseTest {
 
     }
 
-    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "addRecipientData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "addRecipientData", dataProviderClass = AddRecipientDataProvider.class)
     public void addRecipientTest(String testDataFile) {
 
         log.info("Add Recipient Test");
@@ -86,7 +86,7 @@ public class AddRecipientTest extends AndroidBaseTest {
         reviewTransferPage.waitForPaymentNoteTextBox();
     }
 
-    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidFirstNameData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidFirstNameData", dataProviderClass = AddRecipientDataProvider.class)
     public void firstNameErrorTest(String testDataFile, String invalidFirstName) {
 
         log.info("Add Recipient Test");
@@ -113,7 +113,7 @@ public class AddRecipientTest extends AndroidBaseTest {
 
     }
 
-    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidLastNameData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidLastNameData", dataProviderClass = AddRecipientDataProvider.class)
     public void lastNameErrorTest(String testDataFile, String invalidLastName) {
 
         log.info("Add Recipient Test");
@@ -140,7 +140,7 @@ public class AddRecipientTest extends AndroidBaseTest {
 
     }
 
-    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidMobileNumberData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidMobileNumberData", dataProviderClass = AddRecipientDataProvider.class)
     public void mobileNumberErrorTest(String testDataFile, String invalidMobileNumber) {
 
         log.info("Add Recipient Test");
@@ -167,7 +167,7 @@ public class AddRecipientTest extends AndroidBaseTest {
         addRecipientPage.validateMobileNumberError();
     }
 
-    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "addRecipientData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "addRecipientData", dataProviderClass = AddRecipientDataProvider.class)
     public void relationRequiredErrorTest(String testDataFile) {
 
         log.info("Add Recipient Test");
@@ -193,7 +193,7 @@ public class AddRecipientTest extends AndroidBaseTest {
         addRecipientPage.validateRelationshipRequiredError();
     }
 
-    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidAccountNumberData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidAccountNumberData", dataProviderClass = AddRecipientDataProvider.class)
     public void accountNumberErrorTest(String testDataFile, String invalidAccountNumber) {
 
         log.info("Add Recipient Test");
@@ -221,7 +221,7 @@ public class AddRecipientTest extends AndroidBaseTest {
 
     }
 
-    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidIfscCodeData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidIfscCodeData", dataProviderClass = AddRecipientDataProvider.class)
     public void ifscCodeErrorTest(String testDataFile, String invalidIfscCode) {
 
         log.info("Add Recipient Test");
@@ -250,7 +250,7 @@ public class AddRecipientTest extends AndroidBaseTest {
     }
 
 
-    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidAddressData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidAddressData", dataProviderClass = AddRecipientDataProvider.class)
     public void addressErrorTest(String testDataFile, String invalidAddress) {
 
         log.info("Add Recipient Test");
@@ -278,7 +278,7 @@ public class AddRecipientTest extends AndroidBaseTest {
 
     }
 
-    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidCityData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "invalidCityData", dataProviderClass = AddRecipientDataProvider.class)
     public void cityErrorTest(String testDataFile, String invalidCity) {
 
         log.info("Add Recipient Test");
@@ -306,7 +306,7 @@ public class AddRecipientTest extends AndroidBaseTest {
 
     }
 
-    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "addRecipientData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addRecipient"}, description = "Add recipient", dataProvider = "addRecipientData", dataProviderClass = AddRecipientDataProvider.class)
     public void incompleteSectionErrorTest(String testDataFile) {
 
         log.info("Add Recipient Test");

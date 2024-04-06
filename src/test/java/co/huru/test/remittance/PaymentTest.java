@@ -1,7 +1,6 @@
 package co.huru.test.remittance;
 
-import co.huru.data.SendMoneyDataProvider;
-import co.huru.dataObjects.ConfirmPayment;
+import co.huru.data.PaymentDataProvider;
 import co.huru.dataObjects.Profile;
 import co.huru.dataObjects.TestData;
 import co.huru.pageObjects.home.HomePage;
@@ -18,8 +17,10 @@ public class PaymentTest extends AndroidBaseTest {
 
     private static final Logger log = LogManager.getLogger(PaymentTest.class);
 
-    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = PaymentDataProvider.class)
     public void confirmPaymentTest(String testDataFile)  {
+
+        log.info("Payment test");
 
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
@@ -57,8 +58,10 @@ public class PaymentTest extends AndroidBaseTest {
 
     }
 
-    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentInvalidOtpData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentInvalidOtpData", dataProviderClass = PaymentDataProvider.class)
     public void confirmPaymentOtpErrorTest(String testDataFile, String otp)  {
+
+        log.info("Payment test");
 
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
@@ -90,8 +93,10 @@ public class PaymentTest extends AndroidBaseTest {
         paymentPage.verifyOtpError();
     }
 
-    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = PaymentDataProvider.class)
     public void closePaymentScreenTest(String testDataFile)  {
+
+        log.info("Payment test");
 
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
@@ -126,8 +131,10 @@ public class PaymentTest extends AndroidBaseTest {
         setupTransferPage.verifyScreenHeader();
     }
 
-    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = PaymentDataProvider.class)
     public void closePaymentOtpScreenTest(String testDataFile)  {
+
+        log.info("Payment test");
 
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
@@ -163,9 +170,11 @@ public class PaymentTest extends AndroidBaseTest {
         setupTransferPage.verifyScreenHeader();
     }
 
-    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = PaymentDataProvider.class)
     public void navigateBackFromPaymentScreenTest(String testDataFile)  {
 
+        log.info("Payment test");
+
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
@@ -200,9 +209,11 @@ public class PaymentTest extends AndroidBaseTest {
         setupTransferPage.verifyScreenHeader();
     }
 
-    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = PaymentDataProvider.class)
     public void navigateBackFromPaymentOtpScreenTest(String testDataFile)  {
 
+        log.info("Payment test");
+
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
@@ -237,8 +248,10 @@ public class PaymentTest extends AndroidBaseTest {
         setupTransferPage.verifyScreenHeader();
     }
 
-    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = PaymentDataProvider.class)
     public void minimizeAndReopenAppOnPaymentScreenTest(String testDataFile)  {
+
+        log.info("Payment test");
 
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
@@ -273,8 +286,10 @@ public class PaymentTest extends AndroidBaseTest {
         paymentPage.clickOnDone();
     }
 
-    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = PaymentDataProvider.class)
     public void minimizeAndReopenAppOnPaymentOtpScreenTest(String testDataFile)  {
+
+        log.info("Payment test");
 
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
@@ -306,5 +321,84 @@ public class PaymentTest extends AndroidBaseTest {
         paymentPage.enterOtp(testData.getFundTransfers().get(0).getConfirmPayment().getOtp());
         paymentPage.clickOnSubmitOtp();
         paymentPage.clickOnDone();
+    }
+
+    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = PaymentDataProvider.class)
+    public void killAndRelaunchAppOnPaymentScreenTest(String testDataFile)  {
+
+        log.info("Payment test");
+
+        log.info("Get test data");
+        TestData testData = getTestDataObject(testDataFile);
+
+        SignInPage signInPage = new SignInPage(driver);
+        Profile profile = testData.getUser().getProfile();
+        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToSendMoneyPage();
+
+        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        setupTransferPage.selectAvailableExchangeAndContinue();
+
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        selectRecipientPage.selectFirstRecipient();
+
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.clickOnGoToPayment();
+
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.selectFirstBankAccount();
+        selectPaymentPage.clickOnPayButton();
+
+        PaymentPage paymentPage = new PaymentPage(driver);
+        paymentPage.verifyScreenHeader();
+
+        paymentPage.killAndRestartApp();
+
+        signInPage.verifyPinScreen();
+        signInPage.enterPin(profile.getPin());
+        homePage.waitForHomePage();
+
+    }
+
+    @Test(groups = {"sendMoney"}, description = "Send Money", dataProvider = "confirmPaymentData", dataProviderClass = PaymentDataProvider.class)
+    public void killAndRelaunchAppOnPaymentOtpScreenTest(String testDataFile)  {
+
+        log.info("Payment test");
+
+        log.info("Get test data");
+        TestData testData = getTestDataObject(testDataFile);
+
+        SignInPage signInPage = new SignInPage(driver);
+        Profile profile = testData.getUser().getProfile();
+        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToSendMoneyPage();
+
+        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        setupTransferPage.selectAvailableExchangeAndContinue();
+
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        selectRecipientPage.selectFirstRecipient();
+
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        reviewTransferPage.clickOnGoToPayment();
+
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        selectPaymentPage.selectFirstBankAccount();
+        selectPaymentPage.clickOnPayButton();
+
+        PaymentPage paymentPage = new PaymentPage(driver);
+        paymentPage.clickOnConfirmPayment();
+        paymentPage.waitForOtpTextBox();
+
+        paymentPage.killAndRestartApp();
+
+        signInPage.verifyPinScreen();
+        signInPage.enterPin(profile.getPin());
+        homePage.waitForHomePage();
+
     }
 }

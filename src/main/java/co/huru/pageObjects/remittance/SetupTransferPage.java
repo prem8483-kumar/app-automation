@@ -51,8 +51,21 @@ public class SetupTransferPage extends AndroidActions {
 	private final By selectGccExchange = AppiumBy.accessibilityId("id_eh_rp_nameGCC");
 	private final By firstExchange = AppiumBy.accessibilityId("id_eh_details_row0");
 
-	private final By exchangeQuoteBreakup = AppiumBy.accessibilityId("id_quote_breakup_cta");
-	private final By exchangeFeeInfoIcon = AppiumBy.xpath("//android.view.View[@content-desc=\"id_quote_breakdown_exchange_house_fee_row\"]/android.view.View");
+	//ToDO: No id or reliable xpath
+//	private final By exchangeImage = AppiumBy.accessibilityId("");
+//	private final By exchangeName = AppiumBy.accessibilityId("");
+//	private final By exchangeTransferTimeEstimate = AppiumBy.accessibilityId("");
+//	private final By exchangeStatusVerified = AppiumBy.accessibilityId("");
+//	private final By exchangeAmount = AppiumBy.accessibilityId("");
+
+	private final By exchangeQuoteBreakdown = AppiumBy.accessibilityId("id_quote_breakup_cta");
+	private final By quoteBreakdownModelHeader = AppiumBy.xpath("//android.widget.TextView[@text=\"Quote breakdown\"]");
+
+	private final By quoteBreakdownYouSendValue = AppiumBy.accessibilityId("id_quote_breakdown_you_send_value");
+	private final By quoteBreakdownExchangeRateValue = AppiumBy.accessibilityId("id_quote_breakdown_exchange_rate_value");
+	private final By quoteBreakdownTheyReceiveValue = AppiumBy.accessibilityId("id_quote_breakdown_they_receive_value");
+	private final By quoteBreakdownExchangeHouseFeeValue = AppiumBy.accessibilityId("id_quote_breakdown_exchange_house_fee_value");
+	private final By quoteBreakdownEstimateTransferTimeValue = AppiumBy.accessibilityId("id_quote_breakdown_estimate_transfer_time_value");
 
 	private final By selectFamilySupportPurposeOfTransaction = AppiumBy.accessibilityId("id_radio_button_rowPurpose of transactionFamily support");
 	private final By selectSavingsPurposeOfTransaction = AppiumBy.accessibilityId("id_radio_button_rowPurpose of transactionSavings");
@@ -190,16 +203,22 @@ public class SetupTransferPage extends AndroidActions {
 		waitForElementToBeClickable(firstExchange).click();
 	}
 
-	public void clickOnExchangeBreakup()
+	public void clickOnExchangeQuoteBreakdown()
 	{
-		log.info("Click on exchange breakup");
-		waitForElementToBeVisible(exchangeQuoteBreakup).click();
+		log.info("Click on exchange quote breakup");
+		waitForElementToBeVisible(exchangeQuoteBreakdown).click();
 	}
 
-	public void clickOnExchangeFeeInfoIcon()
+	public void verifyExchangeQuoteBreakdownModel()
 	{
-		log.info("Click on exchange fee info icon");
-		waitForElementToBeVisible(exchangeFeeInfoIcon).click();
+		log.info("Verify exchange quote breakdown model");
+		assertEquals(waitForElementToBeVisible(quoteBreakdownModelHeader).getText(), AppConstant.EXCHANGE_QUOTE_BREAKDOWN_MODEL_HEADER);
+
+		waitForElementToBeVisible(quoteBreakdownYouSendValue);
+		waitForElementToBeVisible(quoteBreakdownExchangeRateValue);
+		waitForElementToBeVisible(quoteBreakdownTheyReceiveValue);
+		waitForElementToBeVisible(quoteBreakdownExchangeHouseFeeValue);
+		waitForElementToBeVisible(quoteBreakdownEstimateTransferTimeValue);
 	}
 
 	public void selectExchange(String exchange)

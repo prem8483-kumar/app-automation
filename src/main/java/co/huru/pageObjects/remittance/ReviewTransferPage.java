@@ -24,14 +24,21 @@ public class ReviewTransferPage extends AndroidActions {
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
 	private final By backButton = AppiumBy.accessibilityId("huru_back_button");
 
-	private final By totalPaymentDetailsCta = AppiumBy.accessibilityId("id_total_to_pay_display_cta");
-	private final By knowAboutFeesCta = AppiumBy.accessibilityId("id_payment_breakdown_know_about_fee_cta");
+	private final By sourceAmountText = AppiumBy.accessibilityId("id_source_amount");
+	private final By receiverAmountText = AppiumBy.accessibilityId("id_receiver_amount receive");
+
+	private final By receiverTitle = AppiumBy.accessibilityId("id_review_screen_title_itemReceiver");
+	private final By theyReceiveTitle = AppiumBy.accessibilityId("id_review_screen_title_itemThey receive");
+
+	private final By youSendTitle = AppiumBy.accessibilityId("id_review_screen_title_itemYou send");
+	private final By feeTitle = AppiumBy.accessibilityId("id_review_screen_title_itemFee");
+	private final By youPayTitle = AppiumBy.accessibilityId("id_review_screen_title_itemYou pay");
 
 	private final By feeInfoIcon = AppiumBy.accessibilityId("id_review_screen_fee_info_icon");
+
 	private final By paymentNoteTextBox = AppiumBy.xpath("//android.widget.EditText");
 
 	private final By tncLink = AppiumBy.accessibilityId("id_review_screen_tnc_clickable_text");
-	private final By tncBackButton = AppiumBy.xpath("//android.widget.Button");
 
 	private final By goToPaymentCta = AppiumBy.accessibilityId("id_huru_button_text");
 
@@ -75,5 +82,35 @@ public class ReviewTransferPage extends AndroidActions {
 	{
 		log.info("Enter payment note");
 		waitForElementToBeVisible(paymentNoteTextBox).sendKeys(paymentNote);
+	}
+
+	public void verifyReviewTransferScreen()
+	{
+		log.info("Verify review transfer screen");
+
+		verifyScreenHeader();
+
+		waitForElementToBeVisible(sourceAmountText);
+		waitForElementToBeVisible(receiverAmountText);
+
+		waitForElementToBeVisible(receiverTitle);
+		waitForElementToBeVisible(theyReceiveTitle);
+
+		waitForElementToBeVisible(youSendTitle);
+		waitForElementToBeVisible(feeTitle);
+		waitForElementToBeVisible(youPayTitle);
+
+		waitForElementToBeVisible(feeInfoIcon).click();
+		closeScreen();
+
+		waitForElementToBeVisible(feeInfoIcon).click();
+		clickOnContinue();
+
+		waitForElementToBeVisible(tncLink).click();
+		navigateBack();
+
+		enterPaymentNote("Payment Note");
+		clickOnGoToPayment();
+
 	}
 }

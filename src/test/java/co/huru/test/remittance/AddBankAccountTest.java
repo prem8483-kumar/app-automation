@@ -1,5 +1,5 @@
 package co.huru.test.remittance;
-import co.huru.data.SendMoneyDataProvider;
+import co.huru.data.AddBankAccountDataProvider;
 import co.huru.dataObjects.BankAccount;
 import co.huru.dataObjects.Profile;
 import co.huru.dataObjects.Recipient;
@@ -20,11 +20,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
 
     private static final Logger log = LogManager.getLogger(AddBankAccountTest.class);
 
-    //Test Numbers
-    //556744084
-    //525946055
-
-    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = AddBankAccountDataProvider.class)
     public void signUpAndAddBankAccountTest(String testDataFile) {
 
         log.info("Add Bank Account Test");
@@ -66,7 +62,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
 
 
     //ToDo: for test data purpose only - To Add first bank account, when there are already recipients added
-    //@Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    //@Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = AddBankAccountDataProvider.class)
     public void addFirstBankAccountTest(String testDataFile) {
 
         log.info("Add Bank Account Test");
@@ -104,7 +100,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
     }
 
 
-    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = AddBankAccountDataProvider.class)
     public void addBankAccountTest(String testDataFile) {
 
         log.info("Add Bank Account Test");
@@ -141,7 +137,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
         selectPaymentPage.verifyPaymentMethodsModelHeader();
     }
 
-    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountWithInvalidCredentialsData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountWithInvalidCredentialsData", dataProviderClass = AddBankAccountDataProvider.class)
     public void addBankAccountWithInvalidCredentialsTest(String testDataFile, String userName, String password) {
 
         log.info("Add Bank Account Test");
@@ -181,7 +177,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
         addBankAccountPage.verifyBankAccountNotFoundError();
     }
 
-    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountWithInvalidOtpData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountWithInvalidOtpData", dataProviderClass = AddBankAccountDataProvider.class)
     public void addBankAccountWithInvalidOtpTest(String testDataFile, String otp) {
 
         log.info("Add Bank Account Test");
@@ -222,7 +218,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
         addBankAccountPage.verifyOtpError();
     }
 
-    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = AddBankAccountDataProvider.class)
     public void closeAddBankAccountSetupScreenTest(String testDataFile) {
 
         log.info("Add Bank Account Test");
@@ -268,7 +264,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
         addBankAccountPage.verifySelectBankScreenHeader();
     }
 
-    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = AddBankAccountDataProvider.class)
     public void closeAddBankAccountLoginScreenTest(String testDataFile) {
 
         log.info("Add Bank Account Test");
@@ -310,7 +306,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
         addBankAccountPage.verifySelectBankScreenHeader();
     }
 
-    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = AddBankAccountDataProvider.class)
     public void closeAddBankAccountOtpScreenTest(String testDataFile) {
 
         log.info("Add Bank Account Test");
@@ -356,7 +352,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
         addBankAccountPage.verifySelectBankScreenHeader();
     }
 
-    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = AddBankAccountDataProvider.class)
     public void navigateBackFromAddBankAccountSetupScreenTest(String testDataFile) {
 
         log.info("Add Bank Account Test");
@@ -392,7 +388,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
         addBankAccountPage.verifySelectBankScreenHeader();
     }
 
-    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = AddBankAccountDataProvider.class)
     public void navigateBackFromAddBankAccountLoginScreenTest(String testDataFile) {
 
         log.info("Add Bank Account Test");
@@ -428,7 +424,7 @@ public class AddBankAccountTest extends AndroidBaseTest {
     }
 
 
-    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"addBankAccount"}, description = "Add bank account", dataProvider = "addBankAccountData", dataProviderClass = AddBankAccountDataProvider.class)
     public void navigateBackFromAddBankAccountOtpScreenTest(String testDataFile) {
 
         log.info("Add Bank Account Test");

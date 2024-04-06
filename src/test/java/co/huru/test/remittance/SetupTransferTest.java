@@ -1,6 +1,6 @@
 package co.huru.test.remittance;
 
-import co.huru.data.SendMoneyDataProvider;
+import co.huru.data.SetupTransferDataProvider;
 import co.huru.dataObjects.FundTransfer;
 import co.huru.dataObjects.Profile;
 import co.huru.dataObjects.TestData;
@@ -18,7 +18,7 @@ public class SetupTransferTest extends AndroidBaseTest {
 
     private static final Logger log = LogManager.getLogger(SetupTransferTest.class);
 
-    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SetupTransferDataProvider.class)
     public void setupTransferTest(String testDataFile) {
 
         log.info("Setup transfer test");
@@ -47,7 +47,7 @@ public class SetupTransferTest extends AndroidBaseTest {
 
     }
 
-    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SetupTransferDataProvider.class)
     public void setupReverseTransferTest(String testDataFile) {
 
         log.info("Setup transfer test");
@@ -77,7 +77,7 @@ public class SetupTransferTest extends AndroidBaseTest {
         setupTransferPage.clickOnContinue();
     }
 
-    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "decimalSenderAmountTransferData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "decimalSenderAmountTransferData", dataProviderClass = SetupTransferDataProvider.class)
     public void decimalSenderAmountTransferTest(String testDataFile, String decimalAmount)  {
 
         log.info("Setup transfer test");
@@ -102,7 +102,7 @@ public class SetupTransferTest extends AndroidBaseTest {
 
     }
 
-    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "decimalReceiverAmountTransferData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "decimalReceiverAmountTransferData", dataProviderClass = SetupTransferDataProvider.class)
     public void decimalReceiverAmountTransferTest(String testDataFile, String country, String decimalAmount)  {
 
         log.info("Setup transfer test");
@@ -128,7 +128,7 @@ public class SetupTransferTest extends AndroidBaseTest {
         setupTransferPage.clickOnContinue();
     }
 
-    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "minimumSenderAmountTransferData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "minimumSenderAmountTransferData", dataProviderClass = SetupTransferDataProvider.class)
     public void minimumSenderAmountTransferErrorTest(String testDataFile, String minimumAmount)  {
 
         log.info("Setup transfer test");
@@ -148,7 +148,7 @@ public class SetupTransferTest extends AndroidBaseTest {
         setupTransferPage.validateSenderMinimumAmountError();
     }
 
-    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "minimumReceiverAmountTransferData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "minimumReceiverAmountTransferData", dataProviderClass = SetupTransferDataProvider.class)
     public void minimumReceiverAmountTransferErrorTest(String testDataFile, String country, String minimumAmount)  {
 
         log.info("Setup transfer test");
@@ -175,7 +175,7 @@ public class SetupTransferTest extends AndroidBaseTest {
 
     }
 
-    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "maximumSenderAmountTransferData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "maximumSenderAmountTransferData", dataProviderClass = SetupTransferDataProvider.class)
     public void maximumSenderAmountTransferErrorTest(String testDataFile, String maximumAmount)  {
 
         log.info("Setup transfer test");
@@ -195,7 +195,7 @@ public class SetupTransferTest extends AndroidBaseTest {
         setupTransferPage.validateSenderMaximumAmountError();
     }
 
-    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "maximumReceiverAmountTransferData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "maximumReceiverAmountTransferData", dataProviderClass = SetupTransferDataProvider.class)
     public void maximumReceiverAmountTransferErrorTest(String testDataFile, String country, String maximumAmount)  {
 
         log.info("Setup transfer test");
@@ -221,7 +221,7 @@ public class SetupTransferTest extends AndroidBaseTest {
         }
     }
 
-    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SetupTransferDataProvider.class)
     public void emptySenderAmountTransferErrorTest(String testDataFile) {
 
         log.info("Setup transfer test");
@@ -243,7 +243,7 @@ public class SetupTransferTest extends AndroidBaseTest {
         setupTransferPage.validateContinueButtonNotVisible();
     }
 
-    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SetupTransferDataProvider.class)
     public void emptyReceiverAmountTransferErrorTest(String testDataFile) {
 
         log.info("Setup transfer test");
@@ -265,8 +265,8 @@ public class SetupTransferTest extends AndroidBaseTest {
         setupTransferPage.validateContinueButtonNotVisible();
     }
 
-    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SendMoneyDataProvider.class)
-    public void verifyExchangeQuoteBreakup(String testDataFile) {
+    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SetupTransferDataProvider.class)
+    public void verifyExchangeQuoteBreakdown(String testDataFile) {
 
         log.info("Setup transfer test");
 
@@ -283,17 +283,16 @@ public class SetupTransferTest extends AndroidBaseTest {
         SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
         setupTransferPage.selectAvailableExchange();
 
-        setupTransferPage.clickOnExchangeBreakup();
-        setupTransferPage.clickOnExchangeFeeInfoIcon();
+        setupTransferPage.clickOnExchangeQuoteBreakdown();
         setupTransferPage.closeScreen();
+        setupTransferPage.clickOnExchangeQuoteBreakdown();
+        setupTransferPage.verifyExchangeQuoteBreakdownModel();
+        setupTransferPage.clickOnContinue();
 
-        setupTransferPage.clickOnExchangeBreakup();
-        setupTransferPage.clickOnExchangeFeeInfoIcon();
-        setupTransferPage.clickOnContinue();
-        setupTransferPage.clickOnContinue();
+        setupTransferPage.verifyScreenHeader();
     }
 
-    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SetupTransferDataProvider.class)
     public void verifyTransferPurposeAndFundSource(String testDataFile) {
 
         log.info("Setup transfer test");
@@ -322,7 +321,7 @@ public class SetupTransferTest extends AndroidBaseTest {
 
     }
 
-    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SendMoneyDataProvider.class)
+    @Test(groups = {"setupTransfer"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SetupTransferDataProvider.class)
     public void verifyCashPickupAndWalletComingSoonBanner(String testDataFile) {
 
         log.info("Setup transfer test");
@@ -343,6 +342,54 @@ public class SetupTransferTest extends AndroidBaseTest {
 
         setupTransferPage.clickOnWalletTab();
         setupTransferPage.verifyComingSoonBanner();
+    }
+
+    @Test(groups = {"sendMoney"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SetupTransferDataProvider.class)
+    public void minimizeAndOpenAppOnSetupTransferScreenTest(String testDataFile)  {
+
+        log.info("Setup transfer test");
+
+        log.info("Get test data");
+        TestData testData = getTestDataObject(testDataFile);
+        Profile profile = testData.getUser().getProfile();
+
+        SignInPage signInPage = new SignInPage(driver);
+        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToSendMoneyPage();
+
+        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        setupTransferPage.verifyScreenHeader();
+        setupTransferPage.minimizeApp(2);
+        setupTransferPage.verifyScreenHeader();
+
+    }
+
+    @Test(groups = {"sendMoney"}, description = "Setup Transfer", dataProvider = "setupTransferData", dataProviderClass = SetupTransferDataProvider.class)
+    public void killAndRelaunchAppOnSetupTransferScreenTest(String testDataFile)  {
+
+        log.info("Setup transfer test");
+
+        log.info("Get test data");
+        TestData testData = getTestDataObject(testDataFile);
+        Profile profile = testData.getUser().getProfile();
+
+        SignInPage signInPage = new SignInPage(driver);
+        signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
+
+        HomePage homePage = new HomePage(driver);
+        homePage.goToSendMoneyPage();
+
+        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        setupTransferPage.verifyScreenHeader();
+
+        setupTransferPage.killAndRestartApp();
+
+        signInPage.verifyPinScreen();
+        signInPage.enterPin(profile.getPin());
+        homePage.waitForHomePage();
+
     }
 
 }

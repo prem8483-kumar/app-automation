@@ -77,6 +77,12 @@ public class PaymentPage extends AndroidActions {
 		waitForElementToBeVisible(confirmPaymentButton).click();
 	}
 
+	public void waitForOtpTextBox()
+	{
+		log.info("Wait for otp text box");
+		waitForElementToBeClickable(otpTextBox);
+	}
+
 	public void enterOtp(String otp)
 	{
 		log.info("Enter otp");
