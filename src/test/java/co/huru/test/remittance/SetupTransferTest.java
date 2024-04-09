@@ -1,6 +1,6 @@
 package co.huru.test.remittance;
 
-import co.huru.data.SetupTransferDataProvider;
+import co.huru.data.remittance.SetupTransferDataProvider;
 import co.huru.dataObjects.FundTransfer;
 import co.huru.dataObjects.Profile;
 import co.huru.dataObjects.TestData;

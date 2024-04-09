@@ -1,6 +1,6 @@
 package co.huru.test.home;
 
-import co.huru.data.SignInDataProvider;
+import co.huru.data.signIn.SignInDataProvider;
 import co.huru.pageObjects.home.HomePage;
 import co.huru.pageObjects.signIn.SignInPage;
 import co.huru.utils.AndroidBaseTest;

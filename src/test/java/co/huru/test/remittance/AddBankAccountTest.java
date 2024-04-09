@@ -1,5 +1,5 @@
 package co.huru.test.remittance;
-import co.huru.data.AddBankAccountDataProvider;
+import co.huru.data.remittance.AddBankAccountDataProvider;
 import co.huru.dataObjects.BankAccount;
 import co.huru.dataObjects.Profile;
 import co.huru.dataObjects.Recipient;

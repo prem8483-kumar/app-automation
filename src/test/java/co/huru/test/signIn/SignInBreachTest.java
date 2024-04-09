@@ -1,7 +1,7 @@
 package co.huru.test.signIn;
 
 import co.huru.configs.EnvConfig;
-import co.huru.data.SignInDataProvider;
+import co.huru.data.signIn.SignInDataProvider;
 import co.huru.pageObjects.home.HomePage;
 import co.huru.pageObjects.profile.ProfilePage;
 import co.huru.pageObjects.signIn.SignInPage;

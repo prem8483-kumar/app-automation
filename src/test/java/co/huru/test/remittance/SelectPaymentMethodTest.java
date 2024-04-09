@@ -1,8 +1,7 @@
 package co.huru.test.remittance;
 
-import co.huru.data.SelectPaymentMethodDataProvider;
+import co.huru.data.remittance.SelectPaymentMethodDataProvider;
 import co.huru.dataObjects.Profile;
-import co.huru.dataObjects.TestData;
 import co.huru.pageObjects.home.HomePage;
 import co.huru.pageObjects.remittance.*;
 import co.huru.pageObjects.signIn.SignInPage;
@@ -10,8 +9,6 @@ import co.huru.utils.AndroidBaseTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.testng.annotations.Test;
-
-import static co.huru.utils.DataObjectMapper.getTestDataObject;
 
 public class SelectPaymentMethodTest extends AndroidBaseTest {
 

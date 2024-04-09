@@ -33,6 +33,8 @@ public class AppConstant {
     public final static String SETUP_TRANSFER_SCREEN_HEADER = "Send money";
     public final static String EXCHANGE_QUOTE_BREAKDOWN_MODEL_HEADER ="Quote breakdown";
 
+    public final static String CREATE_ACCOUNT_SCREEN_HEADER = "Create account";
+
     public final static String SELECT_RECIPIENT_SCREEN_HEADER = "Select recipient";
     public final static String ADD_RECIPIENT_SCREEN_HEADER = "Add recipient details";
     public final static String REVIEW_TRANSFER_SCREEN_HEADER = "Review transfer";

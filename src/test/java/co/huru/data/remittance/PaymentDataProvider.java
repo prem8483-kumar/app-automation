@@ -1,4 +1,4 @@
-package co.huru.data;
+package co.huru.data.remittance;
 
 import org.testng.annotations.DataProvider;
 public class PaymentDataProvider {

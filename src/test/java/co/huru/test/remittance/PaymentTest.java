@@ -1,6 +1,6 @@
 package co.huru.test.remittance;
 
-import co.huru.data.PaymentDataProvider;
+import co.huru.data.remittance.PaymentDataProvider;
 import co.huru.dataObjects.Profile;
 import co.huru.dataObjects.TestData;
 import co.huru.pageObjects.home.HomePage;

@@ -1,6 +1,6 @@
 package co.huru.test.remittance;
 
-import co.huru.data.AddRecipientDataProvider;
+import co.huru.data.remittance.AddRecipientDataProvider;
 import co.huru.dataObjects.Recipient;
 import co.huru.dataObjects.TestData;
 import co.huru.dataObjects.Profile;

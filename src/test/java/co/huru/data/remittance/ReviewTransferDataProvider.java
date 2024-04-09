@@ -1,4 +1,4 @@
-package co.huru.data;
+package co.huru.data.remittance;
 
 import co.huru.dataObjects.Profile;
 import org.testng.annotations.DataProvider;

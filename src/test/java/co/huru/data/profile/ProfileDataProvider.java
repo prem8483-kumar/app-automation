@@ -1,4 +1,4 @@
-package co.huru.data;
+package co.huru.data.profile;
 
 import co.huru.utils.DataGenerator;
 import org.testng.annotations.DataProvider;

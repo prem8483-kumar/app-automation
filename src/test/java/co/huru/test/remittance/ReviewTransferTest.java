@@ -1,6 +1,6 @@
 package co.huru.test.remittance;
 
-import co.huru.data.ReviewTransferDataProvider;
+import co.huru.data.remittance.ReviewTransferDataProvider;
 import co.huru.dataObjects.Profile;
 import co.huru.pageObjects.home.HomePage;
 import co.huru.pageObjects.remittance.ReviewTransferPage;

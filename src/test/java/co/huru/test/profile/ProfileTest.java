@@ -1,6 +1,6 @@
 package co.huru.test.profile;
 
-import co.huru.data.ProfileDataProvider;
+import co.huru.data.profile.ProfileDataProvider;
 import co.huru.pageObjects.home.HomePage;
 import co.huru.pageObjects.profile.ProfilePage;
 import co.huru.pageObjects.signIn.SignInPage;
