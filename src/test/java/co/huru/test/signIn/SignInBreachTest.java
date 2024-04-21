@@ -20,17 +20,17 @@ public class SignInBreachTest extends AndroidBaseTest {
     public void invalidPinMaxAttemptTest(String phoneNumber, String otp, String pin, String name, String email)  {
 
         log.info("Sign Up");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
         signUpPage.signUp(phoneNumber, otp, pin, name, email);
 
         log.info("Log out");
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.logOut();
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
 
         String invalidPin = DataGenerator.reverseString(pin);
@@ -57,7 +57,7 @@ public class SignInBreachTest extends AndroidBaseTest {
 //        signInPage.validateTooManyAttemptScreen();
 
         log.info("Click on device back button");
-        signInPage.clickDeviceBackButton();
+        signInPage.getAndroidActions().clickDeviceBackButton(getDriver());
 
         //ToDo: Check for expected
 
@@ -73,17 +73,17 @@ public class SignInBreachTest extends AndroidBaseTest {
                                          String invalidOtp)  {
 
         log.info("Sign Up");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
         signUpPage.signUp(phoneNumber, otp, pin, name, email);
 
         log.info("Log out");
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.logOut();
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.enterPin(pin);
 
@@ -105,13 +105,13 @@ public class SignInBreachTest extends AndroidBaseTest {
         signInPage.validateTooManyAttemptScreen();
 
         log.info("Kill and restart app");
-        signInPage.killAndRestartApp();
+        signInPage.getAndroidActions().killAndRestartApp(getDriver());
 
         log.info("Validate too many attempt screen");
         signInPage.validateTooManyAttemptScreen();
 
         log.info("Click on device back button");
-        signInPage.clickDeviceBackButton();
+        signInPage.getAndroidActions().clickDeviceBackButton(getDriver());
 
         log.info("Enter valid otp");
         signInPage.enterOtp(otp);
@@ -123,7 +123,7 @@ public class SignInBreachTest extends AndroidBaseTest {
     public void retryAfterInvalidOtpMaxAttemptTest(String phoneNumber, String pin, String invalidOtp, String validOtp)  {
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.enterPin(pin);
 
@@ -145,7 +145,7 @@ public class SignInBreachTest extends AndroidBaseTest {
         signInPage.validateTooManyAttemptScreen();
 
         log.info("Kill and restart app");
-        signInPage.killAndRestartApp();
+        signInPage.getAndroidActions().killAndRestartApp(getDriver());
 
         log.info("Validate too many attempt screen");
         signInPage.validateTooManyAttemptScreen();
@@ -168,7 +168,7 @@ public class SignInBreachTest extends AndroidBaseTest {
     public void forgotPinMaxAttemptTest(String phoneNumber, String pin, String otp)  {
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
 
         log.info("Click forgot pin link for max allowed attempt");
@@ -182,17 +182,17 @@ public class SignInBreachTest extends AndroidBaseTest {
         signInPage.validateTooManyAttemptScreen();
 
         log.info("Kill and restart app");
-        signInPage.killAndRestartApp();
+        signInPage.getAndroidActions().killAndRestartApp(getDriver());
         signInPage.validateTooManyAttemptScreen();
 
         log.info("Click on device back button and click again forgot pin link");
-        signInPage.clickDeviceBackButton();
+        signInPage.getAndroidActions().clickDeviceBackButton(getDriver());
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.clickForgotPasswordLink();
         signInPage.validateTooManyAttemptScreen();
 
         log.info("Click on device back button and sign in with valid pin and otp");
-        signInPage.clickDeviceBackButton();
+        signInPage.getAndroidActions().clickDeviceBackButton(getDriver());
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.enterPin(pin);
         signInPage.enterOtp(otp);
@@ -205,7 +205,7 @@ public class SignInBreachTest extends AndroidBaseTest {
         //ToDo: Expire PIN before test
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.enterPin(passcode);
         signInPage.validatePinError();

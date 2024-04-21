@@ -21,29 +21,25 @@ import java.time.Duration;
 
 import static org.testng.Assert.assertEquals;
 
-public class AndroidActions extends AppiumUtils {
+public class AndroidActions {
 
 	private static final Logger log = LogManager.getLogger(SignInPage.class);
-	protected AndroidDriver driver;
-	protected Wait<AndroidDriver> wait;
-	
-	public AndroidActions(AndroidDriver driver)
+
+
+	public Wait<AndroidDriver> getWait(AndroidDriver driver)
 	{
-		this.driver = driver;
-		this.wait = new FluentWait<>(driver)
+		return new FluentWait<>(driver)
 				.withTimeout(Duration.ofSeconds(Long.parseLong(EnvConfig.getProperty("timeOutInSeconds"))))
 				.pollingEvery(Duration.ofSeconds(Long.parseLong(EnvConfig.getProperty("pollingTimeInSeconds"))))
 				.ignoring(ElementNotInteractableException.class);
 	}
-
-
-	public void minimizeApp(long seconds)
+    public void minimizeApp(AndroidDriver driver, long seconds)
 	{
 		log.info("Minimize app");
 		driver.runAppInBackground(Duration.ofSeconds(seconds));
 	}
 
-	public void killAndRestartApp()
+	public void killAndRestartApp(AndroidDriver driver)
 	{
 		log.info("Get app package");
 		String appPackage = driver.getCurrentPackage();
@@ -55,7 +51,7 @@ public class AndroidActions extends AppiumUtils {
 		driver.activateApp(appPackage);
 	}
 
-	public void killWaitAndRestartApp(long waitTimeInMillis)
+	public void killWaitAndRestartApp(AndroidDriver driver, long waitTimeInMillis)
 	{
 		log.info("Get app package");
 		String appPackage = driver.getCurrentPackage();
@@ -73,7 +69,7 @@ public class AndroidActions extends AppiumUtils {
 		driver.activateApp(appPackage);
 	}
 
-	public void validateAppClosed()
+	public void validateAppClosed(AndroidDriver driver)
 	{
 		log.info("Get app package");
 		String appPackage = driver.getCurrentPackage();
@@ -82,57 +78,57 @@ public class AndroidActions extends AppiumUtils {
 		assertEquals(driver.queryAppState(appPackage), ApplicationState.RUNNING_IN_FOREGROUND);
 	}
 
-	public WebElement waitForElementToBeVisible(By locator)
+	public WebElement waitForElementToBeVisible(AndroidDriver driver, By locator)
 	{
 		log.info("Waiting for element to be visible with locator: " +  locator);
-		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		return getWait(driver).until(ExpectedConditions.visibilityOfElementLocated(locator));
 	}
 
-	public WebElement waitForElementToBeClickable(By locator)
+	public WebElement waitForElementToBeClickable(AndroidDriver driver, By locator)
 	{
 		log.info("Waiting for element to be clickable with locator: " +  locator);
-		return wait.until(ExpectedConditions.elementToBeClickable(locator));
+		return getWait(driver).until(ExpectedConditions.elementToBeClickable(locator));
 	}
 
-	public boolean waitForElementToBeDisplayed(By locator)
+	public boolean waitForElementToBeDisplayed(AndroidDriver driver, By locator)
 	{
 		log.info("Waiting for element to be clickable with locator: " +  locator);
-		return wait.until(ExpectedConditions.attributeToBe(locator, "displayed", "true"));
+		return getWait(driver).until(ExpectedConditions.attributeToBe(locator, "displayed", "true"));
 	}
 
-	public boolean waitForElementToBeEnabled(By locator)
+	public boolean waitForElementToBeEnabled(AndroidDriver driver, By locator)
 	{
 		log.info("Waiting for element to be clickable with locator: " +  locator);
-		return wait.until(ExpectedConditions.attributeToBe(locator, "enabled", "true"));
+		return getWait(driver).until(ExpectedConditions.attributeToBe(locator, "enabled", "true"));
 	}
 
-	public boolean waitForElementToBeNotVisible(By locator)
+	public boolean waitForElementToBeNotVisible(AndroidDriver driver, By locator)
 	{
 		log.info("Waiting for element to be not visible with locator: " +  locator);
-		return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+		return getWait(driver).until(ExpectedConditions.invisibilityOfElementLocated(locator));
 	}
 
-	public boolean elementNotVisible(By locator)
+	public boolean elementNotVisible(AndroidDriver driver, By locator)
 	{
 		log.info("Check if element is visible with locator: " +  locator);
-		return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+		return getWait(driver).until(ExpectedConditions.invisibilityOfElementLocated(locator));
 	}
 
-	public void scrollToText(String visibleText)
+	public void scrollToText(AndroidDriver driver, String visibleText)
 	{
 		log.info("Scrolling to text : " +  visibleText);
 		driver.findElement(new AppiumBy.ByAndroidUIAutomator(
 				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().textContains(\"" + visibleText + "\").instance(0))"));
 	}
 
-	public void scrollToElement(String resourceId)
+	public void scrollToElement(AndroidDriver driver, String resourceId)
 	{
 		log.info("Scrolling to element with resource-id : " +  resourceId);
 		driver.findElement(new AppiumBy.ByAndroidUIAutomator(
 				"new UiScrollable(new UiSelector().scrollable(true).instance(0)).scrollIntoView(new UiSelector().resourceId(\"" + resourceId + "\").instance(0))"));
 	}
 
-	public void sendNumericKeysUsingKeyboard(String keys)
+	public void sendNumericKeysUsingKeyboard(AndroidDriver driver, String keys)
 	{
 		char[] keysArray = keys.toCharArray();
 		for(int i=0; i<keysArray.length; i++) {
@@ -152,12 +148,17 @@ public class AndroidActions extends AppiumUtils {
 		}
 	}
 
-	public Actions getActions()
+	public void pressDeleteKey(AndroidDriver driver)
+	{
+		driver.pressKey(new KeyEvent(AndroidKey.DEL));
+	}
+
+	public Actions getActions(AndroidDriver driver)
 	{
 		return new Actions(driver);
 	}
 
-	public void clickDeviceBackButton()
+	public void clickDeviceBackButton(AndroidDriver driver)
 	{
 		driver.pressKey(new KeyEvent(AndroidKey.BACK));
 	}

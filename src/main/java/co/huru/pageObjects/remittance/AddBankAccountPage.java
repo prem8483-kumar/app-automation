@@ -11,13 +11,18 @@ import org.openqa.selenium.By;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class AddBankAccountPage extends AndroidActions {
+public class AddBankAccountPage {
 
 	private static final Logger log = LogManager.getLogger(AddBankAccountPage.class);
+	private AndroidDriver driver;
 
 	public AddBankAccountPage(AndroidDriver driver)
 	{
-		super(driver);
+		this.driver = driver;
+	}
+
+	public AndroidActions getAndroidActions() {
+		return new AndroidActions();
 	}
 
 	private final By header = AppiumBy.accessibilityId("id_screen_title");
@@ -57,49 +62,49 @@ public class AddBankAccountPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.ADD_BANK_ACCOUNT_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,header).getText(), AppConstant.ADD_BANK_ACCOUNT_SCREEN_HEADER);
 	}
 
 	public void navigateBack()
 	{
 		log.info("Navigate back");
-		waitForElementToBeVisible(backButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,backButton).click();
 	}
 
 	public void clickOnContinue()
 	{
 		log.info("Next/Continue");
-		waitForElementToBeVisible(continueButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,continueButton).click();
 	}
 
 	public void closeScreen()
 	{
 		log.info("Close screen");
-		waitForElementToBeVisible(closeScreen).click();
+		getAndroidActions().waitForElementToBeVisible(driver,closeScreen).click();
 	}
 
 	public void clickOnChoseYourBank()
 	{
 		log.info("Click on chose your bank");
-		waitForElementToBeVisible(choseYourBankButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,choseYourBankButton).click();
 	}
 
 	public void verifySelectBankScreenHeader()
 	{
 		log.info("Verify select bank screen header");
-		assertEquals(waitForElementToBeVisible(selectBankScreenHeader).getText(), AppConstant.SELECT_BANK_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,selectBankScreenHeader).getText(), AppConstant.SELECT_BANK_SCREEN_HEADER);
 	}
 
 	public void clickOnLeanMockBank()
 	{
 		log.info("Click on Lean Mock Bank");
-		waitForElementToBeVisible(selectLeanMockBank).click();
+		getAndroidActions().waitForElementToBeVisible(driver,selectLeanMockBank).click();
 	}
 
 	public void clickOnContinueToBankAccountLoginButton()
 	{
 		log.info("Click on continue to bank account login button");
-		waitForElementToBeVisible(continueToBankAccountLoginButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,continueToBankAccountLoginButton).click();
 	}
 
 	public void connectToLeanMockBank()
@@ -113,62 +118,62 @@ public class AddBankAccountPage extends AndroidActions {
 	public void enterUserName(String userName)
 	{
 		log.info("Enter user name");
-		waitForElementToBeVisible(bankAccountUserNameTextBox).sendKeys(userName);
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountUserNameTextBox).sendKeys(userName);
 	}
 
 	public void enterPassword(String password)
 	{
 		log.info("Enter password");
-		waitForElementToBeVisible(bankAccountPasswordTextBox).sendKeys(password);
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountPasswordTextBox).sendKeys(password);
 	}
 
 	public void clickOnLogin()
 	{
 		log.info("Click on login");
-		waitForElementToBeVisible(bankAccountLoginButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountLoginButton).click();
 	}
 
 	public void enterOtp(String otp)
 	{
 		log.info("Enter otp");
-		waitForElementToBeVisible(bankAccountOtpTextBox).click();
-		getActions().sendKeys(otp).perform();
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountOtpTextBox).click();
+		getAndroidActions().getActions(driver).sendKeys(otp).perform();
 	}
 
 	public void clickOnSubmitOtp()
 	{
 		log.info("Click on submit otp");
-		waitForElementToBeVisible(bankAccountOtpSubmitButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountOtpSubmitButton).click();
 	}
 
 	public void clickOnDone()
 	{
 		log.info("Click on done");
-		waitForElementToBeVisible(bankAccountSuccessButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountSuccessButton).click();
 	}
 
 	public void verifyUserNameError()
 	{
 		log.info("Verify user name error");
-		assertEquals(waitForElementToBeVisible(userNameError).getText(), AppConstant.BANK_ACCOUNT_USER_NAME_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,userNameError).getText(), AppConstant.BANK_ACCOUNT_USER_NAME_ERROR_MESSAGE);
 	}
 
 	public void verifyPasswordError()
 	{
 		log.info("Verify password error");
-		assertEquals(waitForElementToBeVisible(passwordError).getText(), AppConstant.BANK_ACCOUNT_PASSWORD_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,passwordError).getText(), AppConstant.BANK_ACCOUNT_PASSWORD_ERROR_MESSAGE);
 	}
 
 	public void verifyBankAccountNotFoundError()
 	{
 		log.info("Verify bank account not found error");
-		assertTrue(waitForElementToBeVisible(passwordError).getText().contains(AppConstant.BANK_ACCOUNT_NOT_FOUND_ERROR_MESSAGE));
+		assertTrue(getAndroidActions().waitForElementToBeVisible(driver,passwordError).getText().contains(AppConstant.BANK_ACCOUNT_NOT_FOUND_ERROR_MESSAGE));
 	}
 
 	public void verifyOtpError()
 	{
 		log.info("Verify otp error");
-		assertEquals(waitForElementToBeVisible(otpError).getText(), AppConstant.BANK_ACCOUNT_OTP_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,otpError).getText(), AppConstant.BANK_ACCOUNT_OTP_ERROR_MESSAGE);
 	}
 
 	public void addBankAccount(String userName, String password, String otp)
@@ -188,47 +193,47 @@ public class AddBankAccountPage extends AndroidActions {
 	public void verifyBankAccountSetupScreenHeader()
 	{
 		log.info("Verify bank account setup screen header");
-		waitForElementToBeVisible(bankAccountSetupScreenHeader);
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountSetupScreenHeader);
 	}
 
 	public void clickOnBankAccountSetupScreenCloseButton()
 	{
 		log.info("Click on bank account setup screen close button");
-		waitForElementToBeVisible(bankAccountSetupScreenCloseButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountSetupScreenCloseButton).click();
 	}
 
 	public void clickOnBankAccountLoginScreenCloseButton()
 	{
 		log.info("Click on bank account login screen close button");
-		waitForElementToBeVisible(bankAccountLoginScreenCloseButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountLoginScreenCloseButton).click();
 	}
 	public void clickOnBankAccountLoginScreenBackButton()
 	{
 		log.info("Click on bank account login screen back button");
-		waitForElementToBeVisible(bankAccountLoginScreenBackButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountLoginScreenBackButton).click();
 	}
 
 	public void verifyBankAccountConnectSurveyScreenHeader()
 	{
 		log.info("Verify bank account connect survey screen header");
-		waitForElementToBeVisible(bankAccountConnectSurveyHeader);
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountConnectSurveyHeader);
 	}
 
 	public void clickOnBankAccountConnectSurveyBackToConnectButton()
 	{
 		log.info("Click on bank account connect survey back to connect button");
-		waitForElementToBeVisible(bankAccountConnectSurveyBackToConnectButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountConnectSurveyBackToConnectButton).click();
 	}
 	public void clickOnBankAccountConnectSurveyConfirmAndCloseButton()
 	{
 		log.info("Click on bank account connect survey confirm and close button");
-		waitForElementToBeVisible(bankAccountConnectSurveyConfirmAndCloseButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountConnectSurveyConfirmAndCloseButton).click();
 	}
 
 	public void clickOnBankAccountOtpScreenCloseButton()
 	{
 		log.info("Click on bank account otp screen close button");
-		waitForElementToBeVisible(bankAccountOtpScreenCloseButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountOtpScreenCloseButton).click();
 	}
 
 

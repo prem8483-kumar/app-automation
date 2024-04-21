@@ -31,23 +31,23 @@ public class AddRecipientTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
         signUpPage.signUp(DataGenerator.generateRandomMobileNumber(), "123456", "100900", DataGenerator.generateRandomName(), DataGenerator.generateRandomEmail());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
         Recipient recipient = testData.getUser().getRecipients().get(0);
-        AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
+        AddRecipientPage addRecipientPage = new AddRecipientPage(getDriver());
         addRecipientPage.verifyScreenHeader();
         addRecipientPage.addRecipient(recipient.getFirstName(), recipient.getLastName(), recipient.getMobileNumber(), recipient.getNickName(), recipient.getRelationship(),
                 recipient.getBankAccount().getAccountNumber(), recipient.getBankAccount().getIfscCode(),
                 recipient.getAddress().getAddress(), recipient.getAddress().getCity());
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.verifyScreenHeader();
 
     }
@@ -60,21 +60,21 @@ public class AddRecipientTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.verifyScreenHeader();
         selectRecipientPage.clickOnAddRecipient();
 
-        AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
+        AddRecipientPage addRecipientPage = new AddRecipientPage(getDriver());
         Recipient recipient = testData.getUser().getRecipients().get(0);
 
         addRecipientPage.verifyScreenHeader();
@@ -82,7 +82,7 @@ public class AddRecipientTest extends AndroidBaseTest {
                 recipient.getBankAccount().getAccountNumber(), recipient.getBankAccount().getIfscCode(),
                 recipient.getAddress().getAddress(), recipient.getAddress().getCity());
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.waitForPaymentNoteTextBox();
     }
 
@@ -94,20 +94,20 @@ public class AddRecipientTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.clickOnAddRecipient();
 
-        AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
+        AddRecipientPage addRecipientPage = new AddRecipientPage(getDriver());
         addRecipientPage.enterFirstName(invalidFirstName);
         addRecipientPage.validateFirstNameError();
 
@@ -121,20 +121,20 @@ public class AddRecipientTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.clickOnAddRecipient();
 
-        AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
+        AddRecipientPage addRecipientPage = new AddRecipientPage(getDriver());
         addRecipientPage.enterLastName(invalidLastName);
         addRecipientPage.validateLastNameError();
 
@@ -148,20 +148,20 @@ public class AddRecipientTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.clickOnAddRecipient();
 
-        AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
+        AddRecipientPage addRecipientPage = new AddRecipientPage(getDriver());
         addRecipientPage.enterMobileNumber(invalidMobileNumber);
         addRecipientPage.clickOnContinue();
         addRecipientPage.validateMobileNumberError();
@@ -175,20 +175,20 @@ public class AddRecipientTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.clickOnAddRecipient();
 
-        AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
+        AddRecipientPage addRecipientPage = new AddRecipientPage(getDriver());
         addRecipientPage.clickOnContinue();
         addRecipientPage.validateRelationshipRequiredError();
     }
@@ -201,20 +201,20 @@ public class AddRecipientTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.clickOnAddRecipient();
 
-        AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
+        AddRecipientPage addRecipientPage = new AddRecipientPage(getDriver());
         addRecipientPage.clickOnBankDetailsSection();
         addRecipientPage.enterAccountNumber(invalidAccountNumber);
         addRecipientPage.validateAccountNumberError();
@@ -229,20 +229,20 @@ public class AddRecipientTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.clickOnAddRecipient();
 
-        AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
+        AddRecipientPage addRecipientPage = new AddRecipientPage(getDriver());
         addRecipientPage.clickOnBankDetailsSection();
         addRecipientPage.enterIfscCode(invalidIfscCode);
         addRecipientPage.validateIfscCodeError();
@@ -258,20 +258,20 @@ public class AddRecipientTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.clickOnAddRecipient();
 
-        AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
+        AddRecipientPage addRecipientPage = new AddRecipientPage(getDriver());
         addRecipientPage.clickOnAddressSection();
         addRecipientPage.enterAddress(invalidAddress);
         addRecipientPage.validateAddressError();
@@ -286,20 +286,20 @@ public class AddRecipientTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.clickOnAddRecipient();
 
-        AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
+        AddRecipientPage addRecipientPage = new AddRecipientPage(getDriver());
         addRecipientPage.clickOnAddressSection();
         addRecipientPage.enterCity(invalidCity);
         addRecipientPage.validateCityError();
@@ -314,20 +314,20 @@ public class AddRecipientTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.clickOnAddRecipient();
 
-        AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
+        AddRecipientPage addRecipientPage = new AddRecipientPage(getDriver());
         addRecipientPage.clickOnContinue();
         addRecipientPage.validateIncompleteSectionsError();
     }

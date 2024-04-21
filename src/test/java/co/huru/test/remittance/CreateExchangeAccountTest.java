@@ -23,16 +23,16 @@ public class CreateExchangeAccountTest extends AndroidBaseTest {
 
         log.info("Create exchange account test");
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        CreateExchangeAccountPage createAccountPage = new CreateExchangeAccountPage(driver);
+        CreateExchangeAccountPage createAccountPage = new CreateExchangeAccountPage(getDriver());
         createAccountPage.verifyScreenHeader();
         createAccountPage.clickOnExchangeCheckbox();
         createAccountPage.clickOnHuruCheckbox();

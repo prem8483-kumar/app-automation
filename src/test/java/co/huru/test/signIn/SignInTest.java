@@ -18,7 +18,7 @@ public class SignInTest extends AndroidBaseTest {
     public void signInTest(String phoneNumber, String passcode, String otp)  {
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
 
         signInPage.verifyPhoneNumberScreen();
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
@@ -37,7 +37,7 @@ public class SignInTest extends AndroidBaseTest {
                                     String oldPhoneNumber, String oldNUmberPasscode, String oldNumberOtp)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
         signUpPage.enterPhoneNumberAndContinue(newPhoneNumber);
         signUpPage.enterOtp(newNumberOtp);
         signUpPage.enterNameAndContinue(name);
@@ -45,7 +45,7 @@ public class SignInTest extends AndroidBaseTest {
         signUpPage.navigateBack();
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.enterPhoneNumberAndContinue(oldPhoneNumber);
         signInPage.enterPin(oldNUmberPasscode);
         signInPage.enterOtp(oldNumberOtp);
@@ -57,17 +57,17 @@ public class SignInTest extends AndroidBaseTest {
     public void forgotPasscodeTest(String phoneNumber, String otp, String pin, String name, String email, String newPin)  {
 
         log.info("Sign Up");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
         signUpPage.signUp(phoneNumber, otp, pin, name, email);
 
         log.info("Log out");
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.logOut();
 
         log.info("Forgot pin");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.clickForgotPasswordLink();
         signUpPage.enterOtp(otp);
@@ -84,7 +84,7 @@ public class SignInTest extends AndroidBaseTest {
     public void signInUsingResendOtpTest(String phoneNumber, String passcode, String otp)  {
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.enterPin(passcode);
 
@@ -98,16 +98,16 @@ public class SignInTest extends AndroidBaseTest {
     public void navigateBackFromPhoneNumberScreen()  {
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.navigateBack();
-        signInPage.validateAppClosed();
+        signInPage.getAndroidActions().validateAppClosed(getDriver());
     }
 
     @Test(groups = {"signIn"}, description = "Sign In", dataProvider = "signInData", dataProviderClass = SignInDataProvider.class)
     public void navigateBackFromEnterPasscodeScreen(String phoneNumber, String passcode, String otp)  {
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.navigateBack();
         signInPage.verifyPhoneNumberPreFilled(phoneNumber);
@@ -117,7 +117,7 @@ public class SignInTest extends AndroidBaseTest {
     public void navigateBackFromOtpScreen(String phoneNumber, String passcode, String otp)  {
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.enterPin(passcode);
         signInPage.navigateBack();
@@ -128,7 +128,7 @@ public class SignInTest extends AndroidBaseTest {
     public void forgotPasscodeNavigateBackFromOtpScreen(String phoneNumber, String passcode, String otp)  {
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.clickForgotPasswordLink();
         signInPage.navigateBack();
@@ -139,7 +139,7 @@ public class SignInTest extends AndroidBaseTest {
     public void forgotPasscodeNavigateBackFromEnterPasscodeScreen(String phoneNumber, String passcode, String otp)  {
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.clickForgotPasswordLink();
         signInPage.enterOtp(otp);
@@ -151,7 +151,7 @@ public class SignInTest extends AndroidBaseTest {
     public void forgotPasscodeNavigateBackFromConfirmPasscodeScreen(String phoneNumber, String passcode, String otp)  {
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.clickForgotPasswordLink();
         signInPage.enterOtp(otp);

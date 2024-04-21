@@ -10,17 +10,21 @@ import org.openqa.selenium.By;
 
 import static org.testng.Assert.assertEquals;
 
-public class SignUpPage extends AndroidActions {
+public class SignUpPage {
 
 	private static final Logger log = LogManager.getLogger(SignUpPage.class);
+	private AndroidDriver driver;
 
 	public SignUpPage(AndroidDriver driver)
 	{
-		super(driver);
+		this.driver = driver;
 	}
 
-	private final By launchImage = By.id("com.huru:id/imageView4");
-	private final By signUpButton = By.id("com.huru:id/signUpButton");
+	public AndroidActions getAndroidActions() {
+		return new AndroidActions();
+	}
+
+
 	private final By backButton = AppiumBy.accessibilityId("Navigate up");
 
 	private final By phoneNumberScreenHeader = By.id("com.huru:id/phone_validation_header");
@@ -74,186 +78,177 @@ public class SignUpPage extends AndroidActions {
 		waitForHomePage();
 	}
 
-	public void navigateValueProps()
-	{
-		log.info("Navigate value prop");
-		waitForElementToBeVisible(signUpButton).click();
-		//waitForElementToBeVisible(signUpButton).click();
-		//waitForElementToBeVisible(signUpButton).click();
-	}
-
 	public void navigateBack()
 	{
 		log.info("Navigate back");
-		waitForElementToBeVisible(backButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,backButton).click();
 	}
 
 	public void verifyPhoneNumberScreen() {
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(phoneNumberScreenHeader).getText(), AppConstant.PHONE_NUMBER_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,phoneNumberScreenHeader).getText(), AppConstant.PHONE_NUMBER_SCREEN_HEADER);
 	}
 
 	public void verifySetPinScreen() {
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(pinScreenHeader).getText(), AppConstant.SIGN_UP_PIN_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,pinScreenHeader).getText(), AppConstant.SIGN_UP_PIN_SCREEN_HEADER);
 	}
 
 	public void verifyConfirmPinScreen() {
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(confirmPinScreenHeader).getText(), AppConstant.CONFIRM_PIN_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,confirmPinScreenHeader).getText(), AppConstant.CONFIRM_PIN_SCREEN_HEADER);
 	}
 
 	public void verifyOtpScreen() {
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(otpScreenHeader).getText(), AppConstant.OTP_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,otpScreenHeader).getText(), AppConstant.OTP_SCREEN_HEADER);
 	}
 
 	public void verifyNameScreen() {
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(nameScreenHeader).getText(), AppConstant.NAME_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,nameScreenHeader).getText(), AppConstant.NAME_SCREEN_HEADER);
 	}
 
 	public void verifyEmailScreen() {
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(emailScreenHeader).getText(), AppConstant.EMAIL_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,emailScreenHeader).getText(), AppConstant.EMAIL_SCREEN_HEADER);
 	}
 
 	public void enterPhoneNumberAndContinue(String phoneNumber)
 	{
 		log.info("Enter phone number");
-		waitForElementToBeVisible(phoneNumberTextBox).sendKeys(phoneNumber);
-		waitForElementToBeVisible(phoneNumberContinueButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,phoneNumberTextBox).sendKeys(phoneNumber);
+		getAndroidActions().waitForElementToBeVisible(driver,phoneNumberContinueButton).click();
 	}
 
 	public void enterPhoneNumber(String phoneNumber)
 	{
 		log.info("Enter phone number");
-		waitForElementToBeVisible(phoneNumberTextBox).sendKeys(phoneNumber);
+		getAndroidActions().waitForElementToBeVisible(driver,phoneNumberTextBox).sendKeys(phoneNumber);
 	}
 
 	public void enterOtp(String otp)
 	{
 		log.info("Enter otp");
-		waitForElementToBeVisible(otpView);
-		sendNumericKeysUsingKeyboard(otp);
+		getAndroidActions().waitForElementToBeVisible(driver,otpView);
+		getAndroidActions().sendNumericKeysUsingKeyboard(driver,otp);
 	}
 
 	public void waitForResendOtpLink()
 	{
 		log.info("Wait for resend otp link");
-		waitForElementToBeVisible(resendOtpLink);
+		getAndroidActions().waitForElementToBeVisible(driver,resendOtpLink);
 	}
 
 	public void clickResendOtpLink()
 	{
 		log.info("Click resend otp link");
-		waitForElementToBeVisible(resendOtpLink).click();
+		getAndroidActions().waitForElementToBeVisible(driver,resendOtpLink).click();
 	}
 
 	public void enterNameAndContinue(String name)
 	{
 		log.info("Enter name");
-		waitForElementToBeVisible(nameTextBox).clear();
-		waitForElementToBeVisible(nameTextBox).sendKeys(name);
-		waitForElementToBeVisible(nameContinueButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,nameTextBox).clear();
+		getAndroidActions().waitForElementToBeVisible(driver,nameTextBox).sendKeys(name);
+		getAndroidActions().waitForElementToBeVisible(driver,nameContinueButton).click();
 	}
 
 	public void enterName(String name)
 	{
 		log.info("Enter name");
-		waitForElementToBeVisible(nameTextBox).clear();
-		waitForElementToBeVisible(nameTextBox).sendKeys(name);
+		getAndroidActions().waitForElementToBeVisible(driver,nameTextBox).clear();
+		getAndroidActions().waitForElementToBeVisible(driver,nameTextBox).sendKeys(name);
 	}
 
 	public void enterEmailAndContinue(String email)
 	{
 		log.info("Enter email");
-		waitForElementToBeVisible(emailTextBox).clear();
-		waitForElementToBeVisible(emailTextBox).sendKeys(email);
-		waitForElementToBeVisible(emailContinueButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,emailTextBox).clear();
+		getAndroidActions().waitForElementToBeVisible(driver,emailTextBox).sendKeys(email);
+		getAndroidActions().waitForElementToBeVisible(driver,emailContinueButton).click();
 	}
 
 	public void enterEmail(String email)
 	{
 		log.info("Enter email");
-		waitForElementToBeVisible(emailTextBox).clear();
-		waitForElementToBeVisible(emailTextBox).sendKeys(email);
+		getAndroidActions().waitForElementToBeVisible(driver,emailTextBox).clear();
+		getAndroidActions().waitForElementToBeVisible(driver,emailTextBox).sendKeys(email);
 	}
 
 	public void enterPin(String passcode)
 	{
 		log.info("Enter Pin");
-		waitForElementToBeVisible(passcodeView);
-		sendNumericKeysUsingKeyboard(passcode);
+		getAndroidActions().waitForElementToBeVisible(driver,passcodeView);
+		getAndroidActions().sendNumericKeysUsingKeyboard(driver,passcode);
 	}
 
 	public void enterPinAndConfirm(String passcode)
 	{
 		log.info("Confirm Pin");
-		waitForElementToBeVisible(passcodeView);
-		waitForElementToBeVisible(passCodeTextBox_1).click();
-		sendNumericKeysUsingKeyboard(passcode);
-		waitForElementToBeVisible(confirmPasscodeButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,passcodeView);
+		getAndroidActions().waitForElementToBeVisible(driver,passCodeTextBox_1).click();
+		getAndroidActions().sendNumericKeysUsingKeyboard(driver,passcode);
+		getAndroidActions().waitForElementToBeVisible(driver,confirmPasscodeButton).click();
 	}
 
 	public void validateSetPinError()
 	{
 		log.info("Validate pin error");
-		assertEquals(waitForElementToBeVisible(passcodeError).getText(), AppConstant.SET_PIN_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,passcodeError).getText(), AppConstant.SET_PIN_ERROR_MESSAGE);
 	}
 
 	public void validatePinNotMatchError()
 	{
 		log.info("Validate pin error");
-		assertEquals(waitForElementToBeVisible(passcodeError).getText(), AppConstant.PIN_NOT_MATCH_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,passcodeError).getText(), AppConstant.PIN_NOT_MATCH_ERROR_MESSAGE);
 	}
 
 	public void validateSamePinAsPreviousError()
 	{
 		log.info("Validate pin error");
-		assertEquals(waitForElementToBeVisible(passcodeError).getText(), AppConstant.SAME_PIN_AS_PREVIOUS_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,passcodeError).getText(), AppConstant.SAME_PIN_AS_PREVIOUS_ERROR_MESSAGE);
 	}
 
 	public void validateNameError()
 	{
 		log.info("Validate pin error");
-		waitForElementToBeVisible(nameError);
+		getAndroidActions().waitForElementToBeVisible(driver,nameError);
 	}
 
 	public void validateEmailError()
 	{
 		log.info("Validate pin error");
-		assertEquals(waitForElementToBeVisible(emailError).getText(), AppConstant.EMAIL_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,emailError).getText(), AppConstant.EMAIL_ERROR_MESSAGE);
 	}
 
 	public void validateEmailRequiredError()
 	{
 		log.info("Validate pin error");
-		assertEquals(waitForElementToBeVisible(emailError).getText(), AppConstant.EMAIL_REQUIRED_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,emailError).getText(), AppConstant.EMAIL_REQUIRED_ERROR_MESSAGE);
 	}
 
 	public void skipBiometric()
 	{
 		log.info("Skip biometric setup");
-		waitForElementToBeVisible(skipForNowLink).click();
+		getAndroidActions().waitForElementToBeVisible(driver,skipForNowLink).click();
 	}
 
 	public void waitForHomePage()
 	{
 		log.info("Wait for home page");
-		waitForElementToBeVisible(homeTab);
+		getAndroidActions().waitForElementToBeVisible(driver,homeTab);
 	}
 
 	public void verifyPhoneNumberPreFilled(String phoneNumber)
 	{
 		log.info("Verify phone number prefilled");
-		assertEquals(waitForElementToBeVisible(phoneNumberTextBox).getText(), phoneNumber);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,phoneNumberTextBox).getText(), phoneNumber);
 	}
 
 	public void verifyNamePreFilled(String name)
 	{
 		log.info("Enter name prefilled");
-		assertEquals(waitForElementToBeVisible(nameTextBox).getText(), name);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,nameTextBox).getText(), name);
 	}
-
 }

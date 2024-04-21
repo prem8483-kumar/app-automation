@@ -28,33 +28,33 @@ public class AddBankAccountTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
         String mobileNumber = DataGenerator.generateRandomMobileNumber();
         log.info(mobileNumber);
         signUpPage.signUp(mobileNumber, "123456", "100900", DataGenerator.generateRandomName(), DataGenerator.generateRandomEmail());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
         Recipient recipient = testData.getUser().getRecipients().get(0);
-        AddRecipientPage addRecipientPage = new AddRecipientPage(driver);
+        AddRecipientPage addRecipientPage = new AddRecipientPage(getDriver());
         addRecipientPage.addRecipient(recipient.getFirstName(), recipient.getLastName(), recipient.getMobileNumber(), recipient.getNickName(), recipient.getRelationship(),
                 recipient.getBankAccount().getAccountNumber(), recipient.getBankAccount().getIfscCode(),
                 recipient.getAddress().getAddress(), recipient.getAddress().getCity());
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.enterPaymentNote("Add bank account");
         reviewTransferPage.clickOnGoToPayment();
 
-        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(getDriver());
         selectPaymentPage.clickOnAddPaymentMethod();
         selectPaymentPage.clickOnAddFirstBankAccount();
 
         BankAccount bankAccount = testData.getUser().getBankAccounts().get(0);
-        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(getDriver());
         addBankAccountPage.addBankAccount(bankAccount.getUserName(), bankAccount.getPassword(), bankAccount.getOtp());
 
         selectPaymentPage.verifyPaymentMethodsModelHeader();
@@ -70,27 +70,27 @@ public class AddBankAccountTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.clickOnGoToPayment();
 
-        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(getDriver());
         selectPaymentPage.clickOnAddPaymentMethod();
         selectPaymentPage.clickOnAddFirstBankAccount();
 
-        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(getDriver());
         BankAccount bankAccount = testData.getUser().getBankAccounts().get(0);
 
         addBankAccountPage.verifyScreenHeader();
@@ -108,27 +108,27 @@ public class AddBankAccountTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.clickOnGoToPayment();
 
-        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(getDriver());
         selectPaymentPage.clickOnChangePaymentMethod();
         selectPaymentPage.clickOnAddBankAccount();
 
-        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(getDriver());
         BankAccount bankAccount = testData.getUser().getBankAccounts().get(0);
 
         addBankAccountPage.verifyScreenHeader();
@@ -145,27 +145,27 @@ public class AddBankAccountTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.clickOnGoToPayment();
 
-        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(getDriver());
         selectPaymentPage.clickOnChangePaymentMethod();
         selectPaymentPage.clickOnAddBankAccount();
 
-        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(getDriver());
         addBankAccountPage.connectToLeanMockBank();
         addBankAccountPage.clickOnLogin();
         addBankAccountPage.verifyUserNameError();
@@ -185,27 +185,27 @@ public class AddBankAccountTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.clickOnGoToPayment();
 
-        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(getDriver());
         selectPaymentPage.clickOnChangePaymentMethod();
         selectPaymentPage.clickOnAddBankAccount();
 
-        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(getDriver());
         BankAccount bankAccount = testData.getUser().getBankAccounts().get(0);
 
         addBankAccountPage.connectToLeanMockBank();
@@ -226,27 +226,27 @@ public class AddBankAccountTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.clickOnGoToPayment();
 
-        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(getDriver());
         selectPaymentPage.clickOnChangePaymentMethod();
         selectPaymentPage.clickOnAddBankAccount();
 
-        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(getDriver());
         addBankAccountPage.clickOnChoseYourBank();
         addBankAccountPage.clickOnLeanMockBank();
 
@@ -272,27 +272,27 @@ public class AddBankAccountTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.clickOnGoToPayment();
 
-        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(getDriver());
         selectPaymentPage.clickOnChangePaymentMethod();
         selectPaymentPage.clickOnAddBankAccount();
 
-        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(getDriver());
         addBankAccountPage.connectToLeanMockBank();
 
         addBankAccountPage.clickOnBankAccountLoginScreenCloseButton();
@@ -314,28 +314,28 @@ public class AddBankAccountTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.clickOnGoToPayment();
 
-        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(getDriver());
         selectPaymentPage.clickOnChangePaymentMethod();
         selectPaymentPage.clickOnAddBankAccount();
 
         BankAccount bankAccount = testData.getUser().getBankAccounts().get(0);
-        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(getDriver());
         addBankAccountPage.connectToLeanMockBank();
         addBankAccountPage.enterUserName(bankAccount.getUserName());
         addBankAccountPage.enterPassword(bankAccount.getPassword());
@@ -360,31 +360,31 @@ public class AddBankAccountTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.clickOnGoToPayment();
 
-        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(getDriver());
         selectPaymentPage.clickOnChangePaymentMethod();
         selectPaymentPage.clickOnAddBankAccount();
 
-        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(getDriver());
         addBankAccountPage.clickOnChoseYourBank();
         addBankAccountPage.clickOnLeanMockBank();
 
-        addBankAccountPage.clickDeviceBackButton();
+        addBankAccountPage.getAndroidActions().clickDeviceBackButton(getDriver());
         addBankAccountPage.verifySelectBankScreenHeader();
     }
 
@@ -396,30 +396,30 @@ public class AddBankAccountTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.clickOnGoToPayment();
 
-        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(getDriver());
         selectPaymentPage.clickOnChangePaymentMethod();
         selectPaymentPage.clickOnAddBankAccount();
 
-        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(getDriver());
         addBankAccountPage.connectToLeanMockBank();
 
-        addBankAccountPage.clickDeviceBackButton();
+        addBankAccountPage.getAndroidActions().clickDeviceBackButton(getDriver());
         addBankAccountPage.verifySelectBankScreenHeader();
     }
 
@@ -432,34 +432,34 @@ public class AddBankAccountTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.clickOnGoToPayment();
 
-        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(getDriver());
         selectPaymentPage.clickOnChangePaymentMethod();
         selectPaymentPage.clickOnAddBankAccount();
 
         BankAccount bankAccount = testData.getUser().getBankAccounts().get(0);
-        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(driver);
+        AddBankAccountPage addBankAccountPage = new AddBankAccountPage(getDriver());
         addBankAccountPage.connectToLeanMockBank();
         addBankAccountPage.enterUserName(bankAccount.getUserName());
         addBankAccountPage.enterPassword(bankAccount.getPassword());
         addBankAccountPage.clickOnLogin();
 
-        addBankAccountPage.clickDeviceBackButton();
+        addBankAccountPage.getAndroidActions().clickDeviceBackButton(getDriver());
         addBankAccountPage.verifySelectBankScreenHeader();
     }
 

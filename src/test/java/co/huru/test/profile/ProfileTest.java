@@ -18,13 +18,13 @@ public class ProfileTest extends AndroidBaseTest {
     public void editUserName(String phoneNumber, String passcode, String otp, String newName)  {
 
         log.info("Edit user name test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(phoneNumber, passcode, otp);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
 
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.gotToPersonalDetailsSection();
         profilePage.editName(newName);
     }
@@ -33,13 +33,13 @@ public class ProfileTest extends AndroidBaseTest {
     public void editUserEmail(String phoneNumber, String passcode, String otp, String newEmail)  {
 
         log.info("Edit user email address test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(phoneNumber, passcode, otp);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
 
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.gotToPersonalDetailsSection();
         profilePage.editEmail(newEmail, otp);
     }
@@ -48,20 +48,20 @@ public class ProfileTest extends AndroidBaseTest {
     public void editUserPhoneNumber(String phoneNumber, String otp, String pin, String name, String email, String newPhoneNumber)  {
 
         log.info("Edit user phone number test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
         signUpPage.signUp(phoneNumber, otp, pin, name, email);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
 
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.gotToPersonalDetailsSection();
         profilePage.editPhoneNumber(newPhoneNumber, otp);
 
         profilePage.gotToLogoutSection();
         profilePage.logOutConfirm();
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(newPhoneNumber, pin, otp);
     }
 
@@ -70,17 +70,17 @@ public class ProfileTest extends AndroidBaseTest {
                           String newPin)  {
 
         log.info("Change user pin test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
         signUpPage.signUp(phoneNumber, otp, pin, name, email);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
 
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.gotToLoginSettingsSection();
         profilePage.changePin(pin, newPin, otp);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(phoneNumber, newPin, otp);
     }
 
@@ -89,13 +89,13 @@ public class ProfileTest extends AndroidBaseTest {
     public void verifyUserEmailAddressFromProfilePage(String phoneNumber, String passcode, String otp)  {
 
         log.info("Verify user email address from profile page test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(phoneNumber, passcode, otp);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
 
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.verifyEmailFromProfilePage(otp);
     }
 
@@ -104,13 +104,13 @@ public class ProfileTest extends AndroidBaseTest {
     public void verifyUserEmailAddressFromPersonalDetailsPage(String phoneNumber, String passcode, String otp)  {
 
         log.info("Verify user email address form personal details page test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(phoneNumber, passcode, otp);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
 
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.gotToPersonalDetailsSection();
         profilePage.verifyEmailFromPersonalDetailsPage(otp);
     }
@@ -121,13 +121,13 @@ public class ProfileTest extends AndroidBaseTest {
                                               String bankUserName, String bankPassword, String bankOtp)  {
 
         log.info("Add bank account as payment method  test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(phoneNumber, passcode, otp);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
 
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.gotToPaymentMethodsSection();
         profilePage.addBankAccount(bankUserName, bankPassword, bankOtp);
 
@@ -137,13 +137,13 @@ public class ProfileTest extends AndroidBaseTest {
     public void verifyCashbackRewards(String phoneNumber, String passcode, String otp)  {
 
         log.info("Verify cashback rewards test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(phoneNumber, passcode, otp);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
 
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.gotToCashbackRewardsSection();
         profilePage.verifyCashbackRewards();
     }
@@ -152,13 +152,13 @@ public class ProfileTest extends AndroidBaseTest {
     public void verifyTermsAndConditions(String phoneNumber, String passcode, String otp)  {
 
         log.info("Verify terms & conditions test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(phoneNumber, passcode, otp);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
 
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.gotToTermsAndConditionSection();
         profilePage.verifyTermsAndConditions();
     }
@@ -167,13 +167,13 @@ public class ProfileTest extends AndroidBaseTest {
     public void verifyPrivacyPolicy(String phoneNumber, String passcode, String otp)  {
 
         log.info("Verify privacy policy test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(phoneNumber, passcode, otp);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
 
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.gotToPrivacyPolicySection();
         profilePage.verifyPrivacyPolicy();
     }
@@ -182,13 +182,13 @@ public class ProfileTest extends AndroidBaseTest {
     public void verifyHelpAndSupport(String phoneNumber, String passcode, String otp)  {
 
         log.info("Verify help & support test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(phoneNumber, passcode, otp);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
 
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.gotToHelpAndSupportSection();
         profilePage.verifyHelpAndSupport();
     }
@@ -197,13 +197,13 @@ public class ProfileTest extends AndroidBaseTest {
     public void logoutConfirm(String phoneNumber, String passCode, String otp)  {
 
         log.info("Logout confirm test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(phoneNumber, passCode, otp);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
 
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.gotToLogoutSection();
         profilePage.logOutConfirm();
     }
@@ -212,13 +212,13 @@ public class ProfileTest extends AndroidBaseTest {
     public void logoutCancel(String phoneNumber, String passCode, String otp)  {
 
         log.info("Logout cancel test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(phoneNumber, passCode, otp);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
 
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.gotToLogoutSection();
         profilePage.logOutCancel();
     }
@@ -227,13 +227,13 @@ public class ProfileTest extends AndroidBaseTest {
     public void enableBiometric(String phoneNumber, String passcode, String otp)  {
 
         log.info("Enable biometric test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(phoneNumber, passcode, otp);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
 
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.gotToLoginSettingsSection();
         profilePage.enableBiometric(passcode);
     }
@@ -243,13 +243,13 @@ public class ProfileTest extends AndroidBaseTest {
     public void activateAccount(String phoneNumber, String passCode, String otp)  {
 
         log.info("Activate account test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(phoneNumber, passCode, otp);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToProfilePage();
 
-        ProfilePage profilePage = new ProfilePage(driver);
+        ProfilePage profilePage = new ProfilePage(getDriver());
         profilePage.activateAccount();
     }
 }

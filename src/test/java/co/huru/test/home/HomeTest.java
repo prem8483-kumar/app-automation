@@ -16,10 +16,10 @@ public class HomeTest extends AndroidBaseTest {
     public void kycCardTest(String phoneNumber, String passcode, String otp)  {
 
         log.info("Home Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(phoneNumber, passcode, otp);
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.kycCard();
 
 

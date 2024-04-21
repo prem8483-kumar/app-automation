@@ -21,19 +21,19 @@ public class ReviewTransferTest extends AndroidBaseTest {
 
         log.info("Review transfer test");
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.verifyReviewTransferScreen();
 
     }
@@ -43,21 +43,21 @@ public class ReviewTransferTest extends AndroidBaseTest {
 
         log.info("Review transfer test");
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.verifyScreenHeader();
-        reviewTransferPage.minimizeApp(2);
+        reviewTransferPage.getAndroidActions().minimizeApp(getDriver(), 2);
         reviewTransferPage.verifyScreenHeader();
 
     }
@@ -67,21 +67,21 @@ public class ReviewTransferTest extends AndroidBaseTest {
 
         log.info("Review transfer test");
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.verifyScreenHeader();
-        reviewTransferPage.killAndRestartApp();
+        reviewTransferPage.getAndroidActions().killAndRestartApp(getDriver());
 
         signInPage.verifyPinScreen();
         signInPage.enterPin(profile.getPin());

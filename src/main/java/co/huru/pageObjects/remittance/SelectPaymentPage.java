@@ -10,13 +10,18 @@ import org.openqa.selenium.By;
 
 import static org.testng.Assert.assertEquals;
 
-public class SelectPaymentPage extends AndroidActions {
+public class SelectPaymentPage {
 
 	private static final Logger log = LogManager.getLogger(SelectPaymentPage.class);
+	private AndroidDriver driver;
 
 	public SelectPaymentPage(AndroidDriver driver)
 	{
-		super(driver);
+		this.driver = driver;
+	}
+
+	public AndroidActions getAndroidActions() {
+		return new AndroidActions();
 	}
 
 	private final By header = AppiumBy.accessibilityId("id_screen_title");
@@ -51,61 +56,61 @@ public class SelectPaymentPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.SELECT_PAYMENT_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,header).getText(), AppConstant.SELECT_PAYMENT_SCREEN_HEADER);
 	}
 
 	public void navigateBack()
 	{
 		log.info("Navigate back");
-		waitForElementToBeVisible(backButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,backButton).click();
 	}
 
 	public void clickOnContinue()
 	{
 		log.info("Next/Continue");
-		waitForElementToBeVisible(continueButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,continueButton).click();
 	}
 
 	public void closeScreen()
 	{
 		log.info("Close screen");
-		waitForElementToBeVisible(closeScreen).click();
+		getAndroidActions().waitForElementToBeVisible(driver,closeScreen).click();
 	}
 
 	public void clickOnPayButton()
 	{
 		log.info("Click on pay");
-		waitForElementToBeVisible(payButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,payButton).click();
 	}
 
 	public void clickOnAddPromoCodeCta()
 	{
 		log.info("Click on add promo code");
-		waitForElementToBeVisible(addPromoCodeCta).click();
+		getAndroidActions().waitForElementToBeVisible(driver,addPromoCodeCta).click();
 	}
 
 	public void enterPromoCode(String promoCode)
 	{
 		log.info("Enter promo code");
-		waitForElementToBeVisible(addPromoCodeTextBox).sendKeys(promoCode);
+		getAndroidActions().waitForElementToBeVisible(driver,addPromoCodeTextBox).sendKeys(promoCode);
 	}
 
 	public void clickOnAddPromoCodeButton()
 	{
 		log.info("Click on  add promo code button");
-		waitForElementToBeVisible(addPromoCodeButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,addPromoCodeButton).click();
 	}
 
 	public void clickOnRemovePromoCodeCta()
 	{
 		log.info("Click on add promo code");
-		waitForElementToBeVisible(removePromoCodeCta).click();
+		getAndroidActions().waitForElementToBeVisible(driver,removePromoCodeCta).click();
 	}
 
 	public void verifyInvalidPromoCodeError()
 	{
 		log.info("Verify invalid promo code error");
-		assertEquals(waitForElementToBeVisible(invalidPromoCodeError).getText(), AppConstant.INVALID_PROMO_CODE_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,invalidPromoCodeError).getText(), AppConstant.INVALID_PROMO_CODE_ERROR_MESSAGE);
 	}
 
 	public void addPromoCode(String promoCode)
@@ -119,25 +124,25 @@ public class SelectPaymentPage extends AndroidActions {
 	public void useCashbackBalance()
 	{
 		log.info("Use cashback balance");
-		waitForElementToBeVisible(useCashbackBalanceButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,useCashbackBalanceButton).click();
 	}
 
 	public void clickOnChangePaymentMethod()
 	{
 		log.info("Click on change payment method");
-		waitForElementToBeVisible(changePaymentMethodCta).click();
+		getAndroidActions().waitForElementToBeVisible(driver,changePaymentMethodCta).click();
 	}
 
 	public void clickOnAddPaymentMethod()
 	{
 		log.info("Click on add payment method");
-		waitForElementToBeVisible(addPaymentMethodCta).click();
+		getAndroidActions().waitForElementToBeVisible(driver,addPaymentMethodCta).click();
 	}
 
 	public void verifyPaymentMethodsModelHeader()
 	{
 		log.info("Verify payment methods model");
-		assertEquals(waitForElementToBeVisible(paymentMethodsModelHeader).getText(), AppConstant.PAYMENT_METHOD_MODEL_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,paymentMethodsModelHeader).getText(), AppConstant.PAYMENT_METHOD_MODEL_HEADER);
 	}
 
 	public void selectFirstBankAccount()
@@ -150,19 +155,19 @@ public class SelectPaymentPage extends AndroidActions {
 	public void clickOnFirstBankAccount()
 	{
 		log.info("Click on first bank account");
-		waitForElementToBeVisible(firstBankAccount).click();
+		getAndroidActions().waitForElementToBeVisible(driver,firstBankAccount).click();
 	}
 
 	public void clickOnAddBankAccount()
 	{
 		log.info("Click on add bank account");
-		waitForElementToBeVisible(addBankAccountCta).click();
+		getAndroidActions().waitForElementToBeVisible(driver,addBankAccountCta).click();
 	}
 
 	public void clickOnAddFirstBankAccount()
 	{
 		log.info("Click on add first bank account");
-		waitForElementToBeVisible(addFirstBankAccountCta).click();
+		getAndroidActions().waitForElementToBeVisible(driver,addFirstBankAccountCta).click();
 	}
 
 }

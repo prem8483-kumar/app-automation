@@ -15,7 +15,7 @@ public class SignUpErrorTest extends AndroidBaseTest {
     public void invalidNameTest(String phoneNumber, String otp, String name)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
 
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
@@ -27,7 +27,7 @@ public class SignUpErrorTest extends AndroidBaseTest {
     public void invalidEmailTest(String phoneNumber, String otp, String name, String email)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
 
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
@@ -45,7 +45,7 @@ public class SignUpErrorTest extends AndroidBaseTest {
     public void setInvalidPinTest(String phoneNumber, String otp, String name, String email, String pin)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
 
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
@@ -60,7 +60,7 @@ public class SignUpErrorTest extends AndroidBaseTest {
     public void confirmInvalidPinTest(String phoneNumber, String otp, String name, String email, String pin, String confirmPin)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
 
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);

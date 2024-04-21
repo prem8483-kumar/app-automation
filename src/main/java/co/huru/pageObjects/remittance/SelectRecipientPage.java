@@ -10,13 +10,18 @@ import org.openqa.selenium.By;
 
 import static org.testng.Assert.assertEquals;
 
-public class SelectRecipientPage extends AndroidActions {
+public class SelectRecipientPage {
 
 	private static final Logger log = LogManager.getLogger(SelectRecipientPage.class);
+	private AndroidDriver driver;
 
 	public SelectRecipientPage(AndroidDriver driver)
 	{
-		super(driver);
+		this.driver = driver;
+	}
+
+	public AndroidActions getAndroidActions() {
+		return new AndroidActions();
 	}
 
 	private final By header = AppiumBy.accessibilityId("id_screen_title");
@@ -30,36 +35,36 @@ public class SelectRecipientPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.SELECT_RECIPIENT_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,header).getText(), AppConstant.SELECT_RECIPIENT_SCREEN_HEADER);
 	}
 
 	public void navigateBack()
 	{
 		log.info("Navigate back");
-		waitForElementToBeVisible(backButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,backButton).click();
 	}
 
 	public void clickOnContinue()
 	{
 		log.info("Next/Continue");
-		waitForElementToBeVisible(continueButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,continueButton).click();
 	}
 
 	public void closeScreen()
 	{
 		log.info("Close screen");
-		waitForElementToBeVisible(closeScreen).click();
+		getAndroidActions().waitForElementToBeVisible(driver,closeScreen).click();
 	}
 
 	public void clickOnAddRecipient()
 	{
 		log.info("Click on add recipient");
-		waitForElementToBeVisible(addRecipient).click();
+		getAndroidActions().waitForElementToBeVisible(driver,addRecipient).click();
 	}
 
 	public void selectFirstRecipient()
 	{
 		log.info("Select recipient");
-		waitForElementToBeVisible(selectFirstRecipient).click();
+		getAndroidActions().waitForElementToBeVisible(driver,selectFirstRecipient).click();
 	}
 }

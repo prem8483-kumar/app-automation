@@ -10,13 +10,18 @@ import org.openqa.selenium.By;
 
 import static org.testng.Assert.assertEquals;
 
-public class CreateExchangeAccountPage extends AndroidActions {
+public class CreateExchangeAccountPage {
 
 	private static final Logger log = LogManager.getLogger(CreateExchangeAccountPage.class);
+	private AndroidDriver driver;
 
 	public CreateExchangeAccountPage(AndroidDriver driver)
 	{
-		super(driver);
+		this.driver = driver;
+	}
+
+	public AndroidActions getAndroidActions() {
+		return new AndroidActions();
 	}
 
 	private final By header = AppiumBy.accessibilityId("id_screen_title");
@@ -42,91 +47,91 @@ public class CreateExchangeAccountPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.CREATE_ACCOUNT_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,header).getText(), AppConstant.CREATE_ACCOUNT_SCREEN_HEADER);
 	}
 
 	public void navigateBack()
 	{
 		log.info("Navigate back");
-		waitForElementToBeVisible(backButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,backButton).click();
 	}
 
 	public void clickOnContinue()
 	{
 		log.info("Next/Continue");
-		waitForElementToBeVisible(continueButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,continueButton).click();
 	}
 
 	public void closeScreen()
 	{
 		log.info("Close screen");
-		waitForElementToBeVisible(closeScreen).click();
+		getAndroidActions().waitForElementToBeVisible(driver,closeScreen).click();
 	}
 
 	public void clickOnExchangeCheckbox()
 	{
 		log.info("Click on exchange checkbox");
-		waitForElementToBeVisible(exchangeCheckbox).click();
+		getAndroidActions().waitForElementToBeVisible(driver,exchangeCheckbox).click();
 	}
 
 	public void clickOnHuruCheckbox()
 	{
 		log.info("Click on huru checkbox");
-		waitForElementToBeVisible(huruCheckbox).click();
+		getAndroidActions().waitForElementToBeVisible(driver,huruCheckbox).click();
 	}
 
 	public void enterAnnualIncome(String annualIncome)
 	{
 		log.info("Enter annual income");
-		waitForElementToBeVisible(annualIncomeTextBox).sendKeys(annualIncome);
+		getAndroidActions().waitForElementToBeVisible(driver,annualIncomeTextBox).sendKeys(annualIncome);
 	}
 
 	public void enterMonthlyTransactionNumber(String monthlyTransactionNumber)
 	{
 		log.info("Enter annual income");
-		waitForElementToBeVisible(monthlyTransactionNumberTextBox).sendKeys(monthlyTransactionNumber);
+		getAndroidActions().waitForElementToBeVisible(driver,monthlyTransactionNumberTextBox).sendKeys(monthlyTransactionNumber);
 	}
 
 	public void enterMonthlyTransactionAmount(String monthlyTransactionAmount)
 	{
 		log.info("Enter annual income");
-		waitForElementToBeVisible(monthlyTransactionAmountTextBox).sendKeys(monthlyTransactionAmount);
+		getAndroidActions().waitForElementToBeVisible(driver,monthlyTransactionAmountTextBox).sendKeys(monthlyTransactionAmount);
 	}
 
 	public void clickOnExchangeTnCLink()
 	{
 		log.info("Click on exchange TnC link");
-		waitForElementToBeVisible(exchangeTnCLink).click();
+		getAndroidActions().waitForElementToBeVisible(driver,exchangeTnCLink).click();
 	}
 
 	public void clickOnExchangeTnCBackButton()
 	{
 		log.info("Click on exchange TnC back button");
-		waitForElementToBeVisible(exchangeTnCBackButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,exchangeTnCBackButton).click();
 	}
 
 	public void clickOnExchangePrivacyPolicyLink()
 	{
 		log.info("Click on exchange privacy policy link");
-		waitForElementToBeVisible(exchangePrivacyPolicyLink).click();
+		getAndroidActions().waitForElementToBeVisible(driver,exchangePrivacyPolicyLink).click();
 	}
 
 	public void clickOnExchangePrivacyPolicyBackButton()
 	{
 		log.info("Click on exchange privacy policy back button");
-		waitForElementToBeVisible(exchangePrivacyPolicyBackButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,exchangePrivacyPolicyBackButton).click();
 	}
 
 	public void clickOnHuruMyDetailsLink()
 	{
 		log.info("Click on huru my details link");
-		waitForElementToBeVisible(huruMyDetailsLink).click();
+		getAndroidActions().waitForElementToBeVisible(driver,huruMyDetailsLink).click();
 	}
 
 	public void clickOnHuruMyDetailsModelContinueButton()
 	{
 		log.info("Click on huru my details continue button");
-		waitForElementToBeVisible(huruMyDetailsModelContinueButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,huruMyDetailsModelContinueButton).click();
 	}
 
 }

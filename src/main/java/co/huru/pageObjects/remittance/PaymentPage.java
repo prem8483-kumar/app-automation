@@ -10,13 +10,18 @@ import org.openqa.selenium.By;
 
 import static org.testng.Assert.assertEquals;
 
-public class PaymentPage extends AndroidActions {
+public class PaymentPage {
 
 	private static final Logger log = LogManager.getLogger(PaymentPage.class);
+	private AndroidDriver driver;
 
 	public PaymentPage(AndroidDriver driver)
 	{
-		super(driver);
+		this.driver = driver;
+	}
+
+	public AndroidActions getAndroidActions() {
+		return new AndroidActions();
 	}
 
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
@@ -47,19 +52,19 @@ public class PaymentPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.PAYMENT_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,header).getText(), AppConstant.PAYMENT_SCREEN_HEADER);
 	}
 
 	public void clickOnContinue()
 	{
 		log.info("Next/Continue");
-		waitForElementToBeVisible(continueButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,continueButton).click();
 	}
 
 	public void closeScreen()
 	{
 		log.info("Close screen");
-		waitForElementToBeVisible(closeScreen).click();
+		getAndroidActions().waitForElementToBeVisible(driver,closeScreen).click();
 	}
 
 	public void confirmPayment(String otp)
@@ -74,72 +79,72 @@ public class PaymentPage extends AndroidActions {
 	public void clickOnConfirmPayment()
 	{
 		log.info("Click on confirm payment");
-		waitForElementToBeVisible(confirmPaymentButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,confirmPaymentButton).click();
 	}
 
 	public void waitForOtpTextBox()
 	{
 		log.info("Wait for otp text box");
-		waitForElementToBeClickable(otpTextBox);
+		getAndroidActions().waitForElementToBeClickable(driver, otpTextBox);
 	}
 
 	public void enterOtp(String otp)
 	{
 		log.info("Enter otp");
-		waitForElementToBeClickable(otpTextBox).click();
-		getActions().sendKeys(otp).perform();
+		getAndroidActions().waitForElementToBeClickable(driver, otpTextBox).click();
+		getAndroidActions().getActions(driver).sendKeys(otp).perform();
 	}
 
 	public void clickOnSubmitOtp()
 	{
 		log.info("Click on submit otp");
-		waitForElementToBeVisible(submitOtpButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,submitOtpButton).click();
 	}
 
 	public void clickOnDone()
 	{
 		log.info("Click on done");
-		waitForElementToBeVisible(paymentDoneButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,paymentDoneButton).click();
 	}
 
 	public void clickOnViewPaymentDetails()
 	{
 		log.info("Click on payment details");
-		waitForElementToBeVisible(viewPaymentDetailsLink).click();
+		getAndroidActions().waitForElementToBeVisible(driver,viewPaymentDetailsLink).click();
 	}
 
 
 	public void clickOnClosePaymentScreen()
 	{
 		log.info("Click on cancel payment");
-		waitForElementToBeVisible(closePaymentScreen).click();
+		getAndroidActions().waitForElementToBeVisible(driver,closePaymentScreen).click();
 	}
 
 	public void verifyOtpError()
 	{
 		log.info("Verify otp error");
-		assertEquals(waitForElementToBeVisible(otpError).getText(), AppConstant.BANK_ACCOUNT_OTP_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,otpError).getText(), AppConstant.BANK_ACCOUNT_OTP_ERROR_MESSAGE);
 	}
 
 	public void clickOnCloseOtpScreen()
 	{
 		log.info("click on close otp screen");
-		waitForElementToBeVisible(closeOtpScreen).click();
+		getAndroidActions().waitForElementToBeVisible(driver,closeOtpScreen).click();
 	}
 
 	public void verifyPaymentProcessModel()
 	{
 		log.info("Verify payment progress model");
-		waitForElementToBeVisible(paymentProgressBar);
-		assertEquals(waitForElementToBeVisible(paymentProgressTitle).getText(), AppConstant.PAYMENT_PROCESS_TITLE);
-		assertEquals(waitForElementToBeVisible(paymentProgressSubtitle).getText(), AppConstant.PAYMENT_PROCESS_SUBTITLE);
+		getAndroidActions().waitForElementToBeVisible(driver,paymentProgressBar);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,paymentProgressTitle).getText(), AppConstant.PAYMENT_PROCESS_TITLE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,paymentProgressSubtitle).getText(), AppConstant.PAYMENT_PROCESS_SUBTITLE);
 	}
 
 	public void verifyPaymentPendingModel()
 	{
 		log.info("Verify payment pending model");
-		assertEquals(waitForElementToBeVisible(paymentPendingTitle).getText(), AppConstant.PAYMENT_PENDING_TITLE);
-		assertEquals(waitForElementToBeVisible(paymentPendingSubtitle).getText(), AppConstant.PAYMENT_PENDING_SUBTITLE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,paymentPendingTitle).getText(), AppConstant.PAYMENT_PENDING_TITLE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,paymentPendingSubtitle).getText(), AppConstant.PAYMENT_PENDING_SUBTITLE);
 	}
 }
 

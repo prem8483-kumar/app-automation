@@ -10,13 +10,18 @@ import org.openqa.selenium.By;
 
 import static org.testng.Assert.assertEquals;
 
-public class AddRecipientPage extends AndroidActions {
+public class AddRecipientPage {
 
 	private static final Logger log = LogManager.getLogger(AddRecipientPage.class);
+	private AndroidDriver driver;
 
 	public AddRecipientPage(AndroidDriver driver)
 	{
-		super(driver);
+		this.driver = driver;
+	}
+
+	public AndroidActions getAndroidActions() {
+		return new AndroidActions();
 	}
 
 	private final By header = AppiumBy.accessibilityId("id_screen_title");
@@ -66,61 +71,61 @@ public class AddRecipientPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.ADD_RECIPIENT_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,header).getText(), AppConstant.ADD_RECIPIENT_SCREEN_HEADER);
 	}
 
 	public void navigateBack()
 	{
 		log.info("Navigate back");
-		waitForElementToBeVisible(backButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,backButton).click();
 	}
 
 	public void clickOnContinue()
 	{
 		log.info("Next/Continue");
-		getActions().click(waitForElementToBeVisible(continueButton)).perform();
+		getAndroidActions().getActions(driver).click(getAndroidActions().waitForElementToBeVisible(driver,continueButton)).perform();
 	}
 
 	public void closeScreen()
 	{
 		log.info("Close screen");
-		waitForElementToBeVisible(closeScreen).click();
+		getAndroidActions().waitForElementToBeVisible(driver,closeScreen).click();
 	}
 
 	public void clickOnPersonalDetailsSection()
 	{
 		log.info("Click on personal details section");
-		waitForElementToBeVisible(personalDetailsSection).click();
+		getAndroidActions().waitForElementToBeVisible(driver,personalDetailsSection).click();
 	}
 
 	public void enterFirstName(String firstName)
 	{
 		log.info("Enter first name");
-		waitForElementToBeVisible(firstNameTextBox).sendKeys(firstName);
+		getAndroidActions().waitForElementToBeVisible(driver,firstNameTextBox).sendKeys(firstName);
 	}
 
 	public void enterLastName(String lastName)
 	{
 		log.info("Enter last name");
-		waitForElementToBeVisible(lastNameTextBox).sendKeys(lastName);
+		getAndroidActions().waitForElementToBeVisible(driver,lastNameTextBox).sendKeys(lastName);
 	}
 
 	public void enterNickName(String nickName)
 	{
 		log.info("Enter nick name");
-		waitForElementToBeVisible(nickNameTextBox).sendKeys(nickName);
+		getAndroidActions().waitForElementToBeVisible(driver,nickNameTextBox).sendKeys(nickName);
 	}
 
 	public void enterMobileNumber(String mobileNumber)
 	{
 		log.info("Enter mobile number");
-		waitForElementToBeVisible(mobileNumberTextBox).sendKeys(mobileNumber);
+		getAndroidActions().waitForElementToBeVisible(driver,mobileNumberTextBox).sendKeys(mobileNumber);
 	}
 
 	public void clickOnSelectRelationShip()
 	{
 		log.info("Click on select relationship");
-		waitForElementToBeVisible(selectRelationship).click();
+		getAndroidActions().waitForElementToBeVisible(driver,selectRelationship).click();
 	}
 
 	public void selectRelationship(String relationship)
@@ -129,22 +134,22 @@ public class AddRecipientPage extends AndroidActions {
 		clickOnSelectRelationShip();
 		switch (relationship) {
 			case "Self":
-				waitForElementToBeVisible(selfAccount).click();
+				getAndroidActions().waitForElementToBeVisible(driver,selfAccount).click();
 				break;
 			case "Father":
-				waitForElementToBeVisible(father).click();
+				getAndroidActions().waitForElementToBeVisible(driver,father).click();
 				break;
 			case "Mother":
-				waitForElementToBeVisible(mother).click();
+				getAndroidActions().waitForElementToBeVisible(driver,mother).click();
 				break;
 			case "Spouse":
-				waitForElementToBeVisible(spouse).click();
+				getAndroidActions().waitForElementToBeVisible(driver,spouse).click();
 				break;
 			case "Son":
-				waitForElementToBeVisible(son).click();
+				getAndroidActions().waitForElementToBeVisible(driver,son).click();
 				break;
 			case "Daughter":
-				waitForElementToBeVisible(daughter).click();
+				getAndroidActions().waitForElementToBeVisible(driver,daughter).click();
 				break;
 		}
 	}
@@ -152,37 +157,37 @@ public class AddRecipientPage extends AndroidActions {
 	public void clickOnBankDetailsSection()
 	{
 		log.info("Click on bank details section");
-		waitForElementToBeVisible(bankDetailsSection).click();
+		getAndroidActions().waitForElementToBeVisible(driver,bankDetailsSection).click();
 	}
 
 	public void enterAccountNumber(String accountNumber)
 	{
 		log.info("Enter account number");
-		waitForElementToBeVisible(accountNumberTextBox).sendKeys(accountNumber);
+		getAndroidActions().waitForElementToBeVisible(driver,accountNumberTextBox).sendKeys(accountNumber);
 	}
 
 	public void enterIfscCode(String ifscCode)
 	{
 		log.info("Enter ifsc code");
-		waitForElementToBeVisible(ifscCodeTextBox).sendKeys(ifscCode);
+		getAndroidActions().waitForElementToBeVisible(driver,ifscCodeTextBox).sendKeys(ifscCode);
 	}
 
 	public void clickOnAddressSection()
 	{
 		log.info("Click on address section");
-		waitForElementToBeVisible(addressSection).click();
+		getAndroidActions().waitForElementToBeVisible(driver,addressSection).click();
 	}
 
 	public void enterAddress(String address)
 	{
 		log.info("Enter address");
-		waitForElementToBeVisible(addressTextBox).sendKeys(address);
+		getAndroidActions().waitForElementToBeVisible(driver,addressTextBox).sendKeys(address);
 	}
 
 	public void enterCity(String city)
 	{
 		log.info("Enter city");
-		waitForElementToBeVisible(cityTextBox).sendKeys(city);
+		getAndroidActions().waitForElementToBeVisible(driver,cityTextBox).sendKeys(city);
 	}
 
 	public void addRecipient(String firstName, String lastName, String mobileNumber, String nickName, String relationship,
@@ -236,53 +241,53 @@ public class AddRecipientPage extends AndroidActions {
 	public void validateFirstNameError()
 	{
 		log.info("Validate first name error");
-		assertEquals(waitForElementToBeVisible(firstNameError).getText(), AppConstant.RECIPIENT_FIRST_NAME_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,firstNameError).getText(), AppConstant.RECIPIENT_FIRST_NAME_ERROR_MESSAGE);
 	}
 
 	public void validateLastNameError()
 	{
 		log.info("Validate last name error");
-		assertEquals(waitForElementToBeVisible(lastNameError).getText(), AppConstant.RECIPIENT_LAST_NAME_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,lastNameError).getText(), AppConstant.RECIPIENT_LAST_NAME_ERROR_MESSAGE);
 	}
 
 
 	public void validateMobileNumberError()
 	{
 		log.info("Validate mobile number error");
-		assertEquals(waitForElementToBeVisible(mobileNumberError).getText(), AppConstant.RECIPIENT_MOBILE_NUMBER_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,mobileNumberError).getText(), AppConstant.RECIPIENT_MOBILE_NUMBER_ERROR_MESSAGE);
 	}
 
 
 	public void validateRelationshipRequiredError()
 	{
 		log.info("Validate relationship required error");
-		assertEquals(waitForElementToBeVisible(relationshipRequiredError).getText(), AppConstant.RECIPIENT_RELATIONSHIP_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,relationshipRequiredError).getText(), AppConstant.RECIPIENT_RELATIONSHIP_ERROR_MESSAGE);
 	}
 
 
 	public void validateAccountNumberError()
 	{
 		log.info("Validate account number error");
-		assertEquals(waitForElementToBeVisible(accountNumberError).getText(), AppConstant.RECIPIENT_ACCOUNT_NUMBER_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,accountNumberError).getText(), AppConstant.RECIPIENT_ACCOUNT_NUMBER_ERROR_MESSAGE);
 	}
 
 
 	public void validateIfscCodeError()
 	{
 		log.info("Validate ifsc code error");
-		assertEquals(waitForElementToBeVisible(ifscCodeError).getText(), AppConstant.RECIPIENT_IFSC_CODE_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,ifscCodeError).getText(), AppConstant.RECIPIENT_IFSC_CODE_ERROR_MESSAGE);
 	}
 
 	public void validateAddressError()
 	{
 		log.info("Validate address error");
-		assertEquals(waitForElementToBeVisible(addressError).getText(), AppConstant.RECIPIENT_ADDRESS_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,addressError).getText(), AppConstant.RECIPIENT_ADDRESS_ERROR_MESSAGE);
 	}
 
 	public void validateCityError()
 	{
 		log.info("Validate city error");
-		assertEquals(waitForElementToBeVisible(cityError).getText(), AppConstant.RECIPIENT_CITY_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,cityError).getText(), AppConstant.RECIPIENT_CITY_ERROR_MESSAGE);
 	}
 
 	public void validatePersonalDetailsSectionError()
@@ -294,7 +299,7 @@ public class AddRecipientPage extends AndroidActions {
 		validateRelationshipRequiredError();
 
 		clickOnPersonalDetailsSection();
-		assertEquals(waitForElementToBeVisible(personalDetailsSectionError).getText(), AppConstant.RECIPIENT_SECTIONS_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,personalDetailsSectionError).getText(), AppConstant.RECIPIENT_SECTIONS_ERROR_MESSAGE);
 	}
 
 	public void validateBankDetailsSectionError()
@@ -305,7 +310,7 @@ public class AddRecipientPage extends AndroidActions {
 		validateIfscCodeError();
 
 		clickOnBankDetailsSection();
-		assertEquals(waitForElementToBeVisible(bankDetailsSectionError).getText(), AppConstant.RECIPIENT_SECTIONS_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,bankDetailsSectionError).getText(), AppConstant.RECIPIENT_SECTIONS_ERROR_MESSAGE);
 	}
 
 	public void validateAddressSectionError()
@@ -316,7 +321,7 @@ public class AddRecipientPage extends AndroidActions {
 		validateCityError();
 
 		clickOnAddressSection();
-		assertEquals(waitForElementToBeVisible(addressSectionError).getText(), AppConstant.RECIPIENT_SECTIONS_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,addressSectionError).getText(), AppConstant.RECIPIENT_SECTIONS_ERROR_MESSAGE);
 	}
 
 	public void validateIncompleteSectionsError()

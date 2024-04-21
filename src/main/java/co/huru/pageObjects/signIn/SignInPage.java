@@ -4,21 +4,24 @@ import co.huru.constants.AppConstant;
 import co.huru.utils.AndroidActions;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
 import static org.testng.Assert.*;
 
-public class SignInPage extends AndroidActions {
+public class SignInPage {
 
 	private static final Logger log = LogManager.getLogger(SignInPage.class);
-
+	private AndroidDriver driver;
+	
 	public SignInPage(AndroidDriver driver)
 	{
-		super(driver);
+		this.driver = driver;
+	}
+
+	public AndroidActions getAndroidActions() {
+		return new AndroidActions();
 	}
 
 	private final By backButton = AppiumBy.accessibilityId("Navigate up");
@@ -56,189 +59,189 @@ public class SignInPage extends AndroidActions {
 	public void navigateBack()
 	{
 		log.info("Navigate back");
-		waitForElementToBeVisible(backButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver, backButton).click();
 	}
 
 	public void verifyPhoneNumberScreen() {
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(phoneNumberScreenHeader).getText(), AppConstant.PHONE_NUMBER_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver, phoneNumberScreenHeader).getText(), AppConstant.PHONE_NUMBER_SCREEN_HEADER);
 	}
 
 	public void verifyOtpScreen() {
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(otpScreenHeader).getText(), AppConstant.OTP_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver, otpScreenHeader).getText(), AppConstant.OTP_SCREEN_HEADER);
 	}
 
 	public void verifyPinScreen() {
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(pinScreenHeader).getText(), AppConstant.PIN_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver, pinScreenHeader).getText(), AppConstant.PIN_SCREEN_HEADER);
 	}
 
 	public void enterPhoneNumberAndContinue(String phoneNumber)
 	{
 		log.info("Enter phone number");
-		waitForElementToBeVisible(phoneNumberTextBox).sendKeys(phoneNumber);
-		waitForElementToBeVisible(phoneNumberContinueButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver, phoneNumberTextBox).sendKeys(phoneNumber);
+		getAndroidActions().waitForElementToBeVisible(driver, phoneNumberContinueButton).click();
 	}
 
 	public void enterPhoneNumber(String phoneNumber)
 	{
 		log.info("Enter phone number");
-		waitForElementToBeVisible(phoneNumberTextBox).sendKeys(phoneNumber);
+		getAndroidActions().waitForElementToBeVisible(driver, phoneNumberTextBox).sendKeys(phoneNumber);
 	}
 
 	public void clickOnDisclaimerCheckBox()
 	{
 		log.info("Click disclaimer check box");
-		waitForElementToBeVisible(disclaimerCheckBox).click();
+		getAndroidActions().waitForElementToBeVisible(driver, disclaimerCheckBox).click();
 	}
 
 	public void validateDisclaimerCheckBoxSelected(String selected)
 	{
 		log.info("Validate disclaimer check box selected");
-		assertEquals(waitForElementToBeVisible(disclaimerCheckBox).getAttribute("checked"), selected);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver, disclaimerCheckBox).getAttribute("checked"), selected);
 	}
 
 	public void validatePhoneNumberContinueButtonEnabled(boolean enabled)
 	{
 		log.info("Validate phone number continue button disabled");
-		assertEquals(waitForElementToBeVisible(phoneNumberContinueButton).isEnabled(), enabled);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver, phoneNumberContinueButton).isEnabled(), enabled);
 	}
 
 	public void enterPin(String passcode)
 	{
 		log.info("Enter pin");
-		waitForElementToBeVisible(passcodeView);
-		sendNumericKeysUsingKeyboard(passcode);
+		getAndroidActions().waitForElementToBeVisible(driver, passcodeView);
+		getAndroidActions().sendNumericKeysUsingKeyboard(driver, passcode);
 	}
 
 	public void clickOnPasscodeTextBox()
 	{
 		log.info("Click on pin text box");
-		waitForElementToBeVisible(passcodeTextBox_1).click();
+		getAndroidActions().waitForElementToBeVisible(driver, passcodeTextBox_1).click();
 	}
 
 	public void clickForgotPasswordLink()
 	{
 		log.info("Click forgot password link");
-		waitForElementToBeVisible(forgotPasscodeLink).click();
+		getAndroidActions().waitForElementToBeVisible(driver, forgotPasscodeLink).click();
 	}
 
 	public void clickOnOtpTextBox()
 	{
 		log.info("Click on otp text box");
-		waitForElementToBeVisible(otpTextBox_1).click();
+		getAndroidActions().waitForElementToBeVisible(driver, otpTextBox_1).click();
 	}
 
 	public void clearOtpTextBox()
 	{
 		log.info("Clear otp text box");
 		for(int i=1; i<=6; i++) {
-			driver.pressKey(new KeyEvent(AndroidKey.DEL));
+			getAndroidActions().pressDeleteKey(driver);
 		}
 	}
 
 	public void enterOtp(String otp)
 	{
 		log.info("Enter otp");
-		waitForElementToBeVisible(otpView);
-		sendNumericKeysUsingKeyboard(otp);
+		getAndroidActions().waitForElementToBeVisible(driver, otpView);
+		getAndroidActions().sendNumericKeysUsingKeyboard(driver, otp);
 	}
 
 	public void clickOnVerifyOtp()
 	{
 		log.info("Click verify otp");
-		waitForElementToBeVisible(verifyOtpButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver, verifyOtpButton).click();
 	}
 
 	public void validatePhoneNumberError()
 	{
 		log.info("Validate phone number error");
-		assertEquals(waitForElementToBeVisible(phoneNumberError).getText(), AppConstant.PHONE_NUMBER_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver, phoneNumberError).getText(), AppConstant.PHONE_NUMBER_ERROR_MESSAGE);
 	}
 
 	public void validatePinError()
 	{
 		log.info("Validate pin error");
-		assertEquals(waitForElementToBeVisible(passcodeError).getText(), AppConstant.PIN_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver, passcodeError).getText(), AppConstant.PIN_ERROR_MESSAGE);
 	}
 
 	public void validateForgotPinLinkDisabled()
 	{
 		log.info("Validate forgot pin link disabled");
-		assertTrue(waitForElementToBeNotVisible(forgotPasscodeLink));
+		assertTrue(getAndroidActions().waitForElementToBeNotVisible(driver, forgotPasscodeLink));
 	}
 
 	public void validateTooManyAttemptScreen()
 	{
 		log.info("Validate too many attempt image, header and body ");
-		waitForElementToBeVisible(tooManyAttemptImage);
-		waitForElementToBeVisible(tooManyAttemptHeader);
-		waitForElementToBeVisible(tooManyAttemptBody);
+		getAndroidActions().waitForElementToBeVisible(driver, tooManyAttemptImage);
+		getAndroidActions().waitForElementToBeVisible(driver, tooManyAttemptHeader);
+		getAndroidActions().waitForElementToBeVisible(driver, tooManyAttemptBody);
 
 		log.info("Validate retry timer");
-		waitForElementToBeVisible(tryAgainTimerText);
-		waitForElementToBeVisible(tryAgainTimerValue);
+		getAndroidActions().waitForElementToBeVisible(driver, tryAgainTimerText);
+		getAndroidActions().waitForElementToBeVisible(driver, tryAgainTimerValue);
 
 		log.info("Validate retry button disabled");
-		assertFalse(waitForElementToBeVisible(retryButton).isEnabled());
+		assertFalse(getAndroidActions().waitForElementToBeVisible(driver, retryButton).isEnabled());
 
 	}
 
 	public void validateRetryTimer()
 	{
 		log.info("Validate retry timer");
-		waitForElementToBeVisible(tryAgainTimerText);
-		waitForElementToBeVisible(tryAgainTimerValue);
+		getAndroidActions().waitForElementToBeVisible(driver, tryAgainTimerText);
+		getAndroidActions().waitForElementToBeVisible(driver, tryAgainTimerValue);
 	}
 
 	public void validateRetryButtonEnabled(boolean enabled)
 	{
 		log.info("Validate retry button enabled");
-		assertEquals(waitForElementToBeVisible(retryButton).isEnabled(), enabled);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver, retryButton).isEnabled(), enabled);
 	}
 
 	public void waitForRetryButtonToBeClickable()
 	{
 		log.info(" wait for retry button to be clickable");
-		waitForElementToBeClickable(retryButton).click();
+		getAndroidActions().waitForElementToBeClickable(driver, retryButton).click();
 	}
 
 	public void clickOnRetryButton()
 	{
 		log.info("Click retry button");
-		waitForElementToBeVisible(retryButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver, retryButton).click();
 	}
 
 	public void validateOtpError()
 	{
 		log.info("Validate otp error");
-		assertEquals(waitForElementToBeVisible(otpError).getText(), AppConstant.OTP_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver, otpError).getText(), AppConstant.OTP_ERROR_MESSAGE);
 
 	}
 
 	public void waitForResendOtpLink()
 	{
 		log.info("Wait for resend otp link");
-		waitForElementToBeVisible(resendOtpLink);
+		getAndroidActions().waitForElementToBeVisible(driver, resendOtpLink);
 	}
 
 	public void clickResendOtpLink()
 	{
 		log.info("Click resend otp link");
-		waitForElementToBeVisible(resendOtpLink).click();
+		getAndroidActions().waitForElementToBeVisible(driver, resendOtpLink).click();
 	}
 
 	public void waitForHomePage()
 	{
 		log.info("Wait for home page");
-		waitForElementToBeVisible(homeTab);
+		getAndroidActions().waitForElementToBeVisible(driver, homeTab);
 	}
 
 	public void verifyPhoneNumberPreFilled(String phoneNumber)
 	{
 		log.info("Verify phone number prefilled");
-		assertEquals(waitForElementToBeVisible(phoneNumberTextBox).getText(), phoneNumber);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver, phoneNumberTextBox).getText(), phoneNumber);
 	}
 
 	public void signIn(String phoneNumber, String pin, String otp) {
@@ -248,5 +251,4 @@ public class SignInPage extends AndroidActions {
 		enterOtp(otp);
 		waitForHomePage();
 	}
-
 }

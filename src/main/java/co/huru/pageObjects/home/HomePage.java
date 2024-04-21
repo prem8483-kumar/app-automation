@@ -7,13 +7,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 
-public class HomePage extends AndroidActions {
+public class HomePage {
 
 	private static final Logger log = LogManager.getLogger(HomePage.class);
+	private AndroidDriver driver;
 
 	public HomePage(AndroidDriver driver)
 	{
-		super(driver);
+		this.driver = driver;
+	}
+
+	public AndroidActions getAndroidActions() {
+		return new AndroidActions();
 	}
 
 	private final By homeTab = By.id("com.huru:id/homeFragment");
@@ -29,43 +34,43 @@ public class HomePage extends AndroidActions {
 	public void kycCard()
 	{
 		log.info("Kyc card");
-		waitForElementToBeVisible(kycCardHeader);
-		waitForElementToBeVisible(kycCardDescription);
+		getAndroidActions().waitForElementToBeVisible(driver,kycCardHeader);
+		getAndroidActions().waitForElementToBeVisible(driver,kycCardDescription);
 	}
 
 	public void waitForHomePage()
 	{
 		log.info("Wait for home page");
-		waitForElementToBeVisible(homeTab);
+		getAndroidActions().waitForElementToBeVisible(driver,homeTab);
 	}
 
 	public void goToHomePage()
 	{
 		log.info("Go to profile");
-		waitForElementToBeVisible(homeTab).click();
+		getAndroidActions().waitForElementToBeVisible(driver,homeTab).click();
 	}
 
 	public void goToPayBillsPage()
 	{
 		log.info("Go to profile");
-		waitForElementToBeVisible(payBillsTab).click();
+		getAndroidActions().waitForElementToBeVisible(driver,payBillsTab).click();
 	}
 
 	public void goToSendMoneyPage()
 	{
 		log.info("Go to profile");
-		waitForElementToBeVisible(sendMoneyTab).click();
+		getAndroidActions().waitForElementToBeVisible(driver,sendMoneyTab).click();
 	}
 
 	public void goToTransactionsPage()
 	{
 		log.info("Go to profile");
-		waitForElementToBeVisible(transactionsTab).click();
+		getAndroidActions().waitForElementToBeVisible(driver,transactionsTab).click();
 	}
 
 	public void goToProfilePage()
 	{
 		log.info("Go to profile");
-		waitForElementToBeVisible(profileTab).click();
+		getAndroidActions().waitForElementToBeVisible(driver,profileTab).click();
 	}
 }

@@ -15,7 +15,7 @@ public class SignUpTest extends AndroidBaseTest {
     public void signUpTest(String phoneNumber, String otp, String passcode, String name, String email)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
 
         signUpPage.verifyPhoneNumberScreen();
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
@@ -43,7 +43,7 @@ public class SignUpTest extends AndroidBaseTest {
     public void signUpUsingResendOtpTest(String phoneNumber, String otp, String passcode, String name, String email)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
 
         signUpPage.waitForResendOtpLink();
@@ -62,12 +62,12 @@ public class SignUpTest extends AndroidBaseTest {
     public void dropOffAtOtpScreenAndRestartSignUpTest(String phoneNumber, String otp, String passcode, String name, String email)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
 
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
 
         log.info("Kill and restart app");
-        signUpPage.killAndRestartApp();
+        signUpPage.getAndroidActions().killAndRestartApp(getDriver());
 
         log.info("Continue signup");
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
@@ -85,12 +85,12 @@ public class SignUpTest extends AndroidBaseTest {
     public void dropOffAtOtpScreenAndRestartSignUpAfter30SecondsTest(String phoneNumber, String otp, String passcode, String name, String email) throws InterruptedException {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
 
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
 
         log.info("Kill wait and restart app");
-        signUpPage.killWaitAndRestartApp(30000);
+        signUpPage.getAndroidActions().killWaitAndRestartApp(getDriver(),30000);
 
         log.info("Continue signup");
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
@@ -105,19 +105,17 @@ public class SignUpTest extends AndroidBaseTest {
         signUpPage.waitForHomePage();
     }
 
-
-
     @Test(groups = {"signUp"}, description = "Sign Up", dataProvider = "signUpData", dataProviderClass = SignUpDataProvider.class)
     public void dropOffAtNameScreenAndRestartSignUpTest(String phoneNumber, String otp, String passcode, String name, String email)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
 
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
 
         log.info("Kill and restart app");
-        signUpPage.killAndRestartApp();
+        signUpPage.getAndroidActions().killAndRestartApp(getDriver());
 
         log.info("Continue signup");
         signUpPage.enterNameAndContinue(name);
@@ -132,7 +130,7 @@ public class SignUpTest extends AndroidBaseTest {
     public void dropOffAtPinScreenAndRestartSignUpTest(String phoneNumber, String otp, String passcode, String name, String email)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
 
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
@@ -140,7 +138,7 @@ public class SignUpTest extends AndroidBaseTest {
         signUpPage.enterEmailAndContinue(email);
 
         log.info("Kill and restart app");
-        signUpPage.killAndRestartApp();
+        signUpPage.getAndroidActions().killAndRestartApp(getDriver());
 
         log.info("Continue signup");
         signUpPage.enterNameAndContinue(name);
@@ -155,7 +153,7 @@ public class SignUpTest extends AndroidBaseTest {
     public void navigateBackFromOtpScreen(String phoneNumber, String otp, String pin, String name, String email)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.navigateBack();
         signUpPage.verifyPhoneNumberPreFilled(phoneNumber);
@@ -166,7 +164,7 @@ public class SignUpTest extends AndroidBaseTest {
     public void navigateBackFromNameScreen(String phoneNumber, String otp, String pin, String name, String email)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
         signUpPage.navigateBack();
@@ -178,7 +176,7 @@ public class SignUpTest extends AndroidBaseTest {
     public void navigateBackFromEmailScreen(String phoneNumber, String otp, String pin, String name, String email)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
         signUpPage.enterNameAndContinue(name);
@@ -191,7 +189,7 @@ public class SignUpTest extends AndroidBaseTest {
     public void navigateBackFromEnterPasscodeScreen(String phoneNumber, String otp, String pin, String name, String email)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
         signUpPage.enterNameAndContinue(name);
@@ -204,7 +202,7 @@ public class SignUpTest extends AndroidBaseTest {
     public void navigateBackFromConfirmPasscodeScreen(String phoneNumber, String otp, String passcode, String name, String email)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
         signUpPage.enterNameAndContinue(name);
@@ -218,14 +216,14 @@ public class SignUpTest extends AndroidBaseTest {
     public void navigateBackFromSuccessScreen(String phoneNumber, String otp, String passcode, String name, String email)  {
 
         log.info("Sign Up Test");
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignUpPage signUpPage = new SignUpPage(getDriver());
         signUpPage.enterPhoneNumberAndContinue(phoneNumber);
         signUpPage.enterOtp(otp);
         signUpPage.enterNameAndContinue(name);
         signUpPage.enterEmailAndContinue(email);
         signUpPage.enterPin(passcode);
         signUpPage.enterPinAndConfirm(passcode);
-        signUpPage.clickDeviceBackButton();
-        signUpPage.validateAppClosed();
+        signUpPage.getAndroidActions().clickDeviceBackButton(getDriver());
+        signUpPage.getAndroidActions().validateAppClosed(getDriver());
     }
 }

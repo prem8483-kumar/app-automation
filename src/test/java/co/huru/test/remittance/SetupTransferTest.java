@@ -26,14 +26,14 @@ public class SetupTransferTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         FundTransfer fundTransfer = testData.getFundTransfers().get(0);
 
         setupTransferPage.verifyScreenHeader();
@@ -55,14 +55,14 @@ public class SetupTransferTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         FundTransfer fundTransfer = testData.getFundTransfers().get(0);
 
         setupTransferPage.verifyScreenHeader();
@@ -85,14 +85,14 @@ public class SetupTransferTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.enterSenderAmount(decimalAmount);
         //ToDo: Single click not working
         setupTransferPage.selectAvailableExchange();
@@ -110,14 +110,14 @@ public class SetupTransferTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.clickOnExchangeIcon();
         setupTransferPage.selectReceiverCountry(country);
         setupTransferPage.enterReceiverAmount(decimalAmount);
@@ -136,14 +136,14 @@ public class SetupTransferTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.enterSenderAmount(minimumAmount);
         setupTransferPage.validateSenderMinimumAmountError();
     }
@@ -156,14 +156,14 @@ public class SetupTransferTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.clickOnExchangeIcon();
         setupTransferPage.selectReceiverCountry(country);
         setupTransferPage.enterReceiverAmount(minimumAmount);
@@ -183,14 +183,14 @@ public class SetupTransferTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.enterSenderAmount(maximumAmount);
         setupTransferPage.validateSenderMaximumAmountError();
     }
@@ -203,14 +203,14 @@ public class SetupTransferTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.clickOnExchangeIcon();
         setupTransferPage.selectReceiverCountry(country);
         setupTransferPage.enterReceiverAmount(maximumAmount);
@@ -229,14 +229,14 @@ public class SetupTransferTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
 
         setupTransferPage.enterSenderAmount("");
         setupTransferPage.selectAvailableExchange();
@@ -251,14 +251,14 @@ public class SetupTransferTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.clickOnExchangeIcon();
         setupTransferPage.enterReceiverAmount("");
         setupTransferPage.selectAvailableExchange();
@@ -273,14 +273,14 @@ public class SetupTransferTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchange();
 
         setupTransferPage.clickOnExchangeQuoteBreakdown();
@@ -300,14 +300,14 @@ public class SetupTransferTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchange();
         setupTransferPage.clickOnContinue();
 
@@ -329,14 +329,14 @@ public class SetupTransferTest extends AndroidBaseTest {
         log.info("Get test data");
         TestData testData = getTestDataObject(testDataFile);
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         Profile profile = testData.getUser().getProfile();
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.clickOnCashPickupTab();
         setupTransferPage.verifyComingSoonBanner();
 
@@ -353,15 +353,15 @@ public class SetupTransferTest extends AndroidBaseTest {
         TestData testData = getTestDataObject(testDataFile);
         Profile profile = testData.getUser().getProfile();
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.verifyScreenHeader();
-        setupTransferPage.minimizeApp(2);
+        setupTransferPage.getAndroidActions().minimizeApp(getDriver(), 2);
         setupTransferPage.verifyScreenHeader();
 
     }
@@ -375,16 +375,16 @@ public class SetupTransferTest extends AndroidBaseTest {
         TestData testData = getTestDataObject(testDataFile);
         Profile profile = testData.getUser().getProfile();
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.verifyScreenHeader();
 
-        setupTransferPage.killAndRestartApp();
+        setupTransferPage.getAndroidActions().killAndRestartApp(getDriver());
 
         signInPage.verifyPinScreen();
         signInPage.enterPin(profile.getPin());

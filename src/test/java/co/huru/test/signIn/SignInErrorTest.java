@@ -16,7 +16,7 @@ public class SignInErrorTest extends AndroidBaseTest {
     public void phoneNumberValidationTest(String phoneNumber)  {
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
 
         signInPage.enterPhoneNumber(phoneNumber);
         if(phoneNumber.length() < 9) {
@@ -52,7 +52,7 @@ public class SignInErrorTest extends AndroidBaseTest {
     public void pinValidationTest(String phoneNumber, String passcode)  {
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
 
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.enterPin(passcode);
@@ -63,7 +63,7 @@ public class SignInErrorTest extends AndroidBaseTest {
     public void otpValidationTest(String phoneNumber, String passcode, String otp)  {
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
 
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.enterPin(passcode);
@@ -71,13 +71,12 @@ public class SignInErrorTest extends AndroidBaseTest {
         signInPage.validateOtpError();
     }
 
-
     @Test(groups = {"signIn"}, description = "Sign In", dataProvider = "signInData", dataProviderClass = SignInDataProvider.class)
     public void forgotPinSetNewPinSameAsOldPinTest(String phoneNumber, String pin, String otp)  {
 
         log.info("Sign In Test");
-        SignInPage signInPage = new SignInPage(driver);
-        SignUpPage signUpPage = new SignUpPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
+        SignUpPage signUpPage = new SignUpPage(getDriver());
 
         signInPage.enterPhoneNumberAndContinue(phoneNumber);
         signInPage.clickForgotPasswordLink();

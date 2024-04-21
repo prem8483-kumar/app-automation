@@ -11,13 +11,18 @@ import org.openqa.selenium.By;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class SetupTransferPage extends AndroidActions {
+public class SetupTransferPage {
 
 	private static final Logger log = LogManager.getLogger(SetupTransferPage.class);
+	private AndroidDriver driver;
 
 	public SetupTransferPage(AndroidDriver driver)
 	{
-		super(driver);
+		this.driver = driver;
+	}
+
+	public AndroidActions getAndroidActions() {
+		return new AndroidActions();
 	}
 
 	private final By header = AppiumBy.accessibilityId("id_screen_title");
@@ -76,49 +81,49 @@ public class SetupTransferPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.SETUP_TRANSFER_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,header).getText(), AppConstant.SETUP_TRANSFER_SCREEN_HEADER);
 	}
 
 	public void clickOnContinue()
 	{
 		log.info("Next/Continue");
-		waitForElementToBeVisible(continueButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,continueButton).click();
 	}
 
 	public void clickOnTransferTab()
 	{
 		log.info("Click on transfer tab");
-		waitForElementToBeVisible(transferTab).click();
+		getAndroidActions().waitForElementToBeVisible(driver,transferTab).click();
 	}
 
 	public void clickOnCashPickupTab()
 	{
 		log.info("Click on cash pickup tab");
-		waitForElementToBeVisible(cashPickupTab).click();
+		getAndroidActions().waitForElementToBeVisible(driver,cashPickupTab).click();
 	}
 
 	public void clickOnWalletTab()
 	{
 		log.info("Click on wallet tab");
-		waitForElementToBeClickable(walletTab).click();
+		getAndroidActions().waitForElementToBeClickable(driver, walletTab).click();
 	}
 
 	public void verifyComingSoonBanner()
 	{
 		log.info("Verify coming soon banner");
-		waitForElementToBeVisible(comingSoonBanner);
+		getAndroidActions().waitForElementToBeVisible(driver,comingSoonBanner);
 	}
 
 	public void validateContinueButtonNotVisible()
 	{
 		log.info("Validate continue button not visible");
-		assertTrue(elementNotVisible(continueButton));
+		assertTrue(getAndroidActions().elementNotVisible(driver, continueButton));
 	}
 
 	public void closeScreen()
 	{
 		log.info("Close screen");
-		waitForElementToBeVisible(closeScreen).click();
+		getAndroidActions().waitForElementToBeVisible(driver,closeScreen).click();
 	}
 
 	public void clickOnExchangeIcon()
@@ -126,99 +131,99 @@ public class SetupTransferPage extends AndroidActions {
 		log.info("Click on exchange icon");
 
 		waitForExchangeToBeAvailable();
-		waitForElementToBeClickable(exchangeIcon).click();
+		getAndroidActions().waitForElementToBeClickable(driver, exchangeIcon).click();
 	}
 
 	public void waitForExchangeToBeAvailable()
 	{
 		log.info("Wait for exchange to be available");
-		waitForElementToBeVisible(firstExchange);
+		getAndroidActions().waitForElementToBeVisible(driver,firstExchange);
 	}
 
 	public void enterSenderAmount(String amount)
 	{
 		log.info("Enter sender amount");
-		waitForElementToBeVisible(senderAmountTextBox).clear();
-		waitForElementToBeVisible(senderAmountTextBox).sendKeys(amount);
+		getAndroidActions().waitForElementToBeVisible(driver,senderAmountTextBox).clear();
+		getAndroidActions().waitForElementToBeVisible(driver,senderAmountTextBox).sendKeys(amount);
 	}
 
 	public void enterReceiverAmount(String amount)
 	{
 		log.info("Enter receiver amount");
-		waitForElementToBeVisible(receiverAmountTextBox).clear();
-		waitForElementToBeVisible(receiverAmountTextBox).sendKeys(amount);
+		getAndroidActions().waitForElementToBeVisible(driver,receiverAmountTextBox).clear();
+		getAndroidActions().waitForElementToBeVisible(driver,receiverAmountTextBox).sendKeys(amount);
 	}
 
 	public void validateSenderMinimumAmountError()
 	{
 		log.info("Validate minimum amount error");
-		assertEquals(waitForElementToBeVisible(minimumSenderAmountError).getText(), AppConstant.MINIMUM_SENDER_AMOUNT_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,minimumSenderAmountError).getText(), AppConstant.MINIMUM_SENDER_AMOUNT_ERROR_MESSAGE);
 	}
 
 	public void validateSenderMaximumAmountError()
 	{
 		log.info("Validate maximum amount error");
-		assertEquals(waitForElementToBeVisible(maximumSenderAmountError).getText(), AppConstant.MAXIMUM_SENDER_AMOUNT_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,maximumSenderAmountError).getText(), AppConstant.MAXIMUM_SENDER_AMOUNT_ERROR_MESSAGE);
 	}
 
 	public void validateIndiaReceiverMinimumAmountError()
 	{
 		log.info("Validate minimum amount error");
-		assertEquals(waitForElementToBeVisible(minimumIndiaReceiverAmountError).getText(), AppConstant.MINIMUM_INDIA_RECEIVER_AMOUNT_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,minimumIndiaReceiverAmountError).getText(), AppConstant.MINIMUM_INDIA_RECEIVER_AMOUNT_ERROR_MESSAGE);
 	}
 
 	public void validateIndiaReceiverMaximumAmountError()
 	{
 		log.info("Validate maximum amount error");
-		assertEquals(waitForElementToBeVisible(maximumIndiaReceiverAmountError).getText(), AppConstant.MAXIMUM_INDIA_RECEIVER_AMOUNT_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,maximumIndiaReceiverAmountError).getText(), AppConstant.MAXIMUM_INDIA_RECEIVER_AMOUNT_ERROR_MESSAGE);
 	}
 
 	public void validatePakistanReceiverMinimumAmountError()
 	{
 		log.info("Validate minimum amount error");
-		assertEquals(waitForElementToBeVisible(minimumPakistanReceiverAmountError).getText(), AppConstant.MINIMUM_PAKISTAN_RECEIVER_AMOUNT_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,minimumPakistanReceiverAmountError).getText(), AppConstant.MINIMUM_PAKISTAN_RECEIVER_AMOUNT_ERROR_MESSAGE);
 	}
 
 	public void validatePakistanReceiverMaximumAmountError()
 	{
 		log.info("Validate maximum amount error");
-		assertEquals(waitForElementToBeVisible(maximumPakistanReceiverAmountError).getText(), AppConstant.MAXIMUM_PAKISTAN_RECEIVER_AMOUNT_ERROR_MESSAGE);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,maximumPakistanReceiverAmountError).getText(), AppConstant.MAXIMUM_PAKISTAN_RECEIVER_AMOUNT_ERROR_MESSAGE);
 	}
 
 	public void selectReceiverCountry(String country)
 	{
 		log.info("Select receiver country");
-		waitForElementToBeVisible(receiverCountryDropdown).click();
+		getAndroidActions().waitForElementToBeVisible(driver,receiverCountryDropdown).click();
 
         if (country.equalsIgnoreCase("India")) {
-            waitForElementToBeVisible(selectIndia).click();
+            getAndroidActions().waitForElementToBeVisible(driver,selectIndia).click();
         } else if (country.equalsIgnoreCase("Pakistan")){
-            waitForElementToBeVisible(selectPakistan).click();
+            getAndroidActions().waitForElementToBeVisible(driver,selectPakistan).click();
         }
     }
 
 	public void selectAvailableExchange()
 	{
 		log.info("Select first available exchange");
-		waitForElementToBeClickable(firstExchange).click();
+		getAndroidActions().waitForElementToBeClickable(driver, firstExchange).click();
 	}
 
 	public void clickOnExchangeQuoteBreakdown()
 	{
 		log.info("Click on exchange quote breakup");
-		waitForElementToBeVisible(exchangeQuoteBreakdown).click();
+		getAndroidActions().waitForElementToBeVisible(driver,exchangeQuoteBreakdown).click();
 	}
 
 	public void verifyExchangeQuoteBreakdownModel()
 	{
 		log.info("Verify exchange quote breakdown model");
-		assertEquals(waitForElementToBeVisible(quoteBreakdownModelHeader).getText(), AppConstant.EXCHANGE_QUOTE_BREAKDOWN_MODEL_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,quoteBreakdownModelHeader).getText(), AppConstant.EXCHANGE_QUOTE_BREAKDOWN_MODEL_HEADER);
 
-		waitForElementToBeVisible(quoteBreakdownYouSendValue);
-		waitForElementToBeVisible(quoteBreakdownExchangeRateValue);
-		waitForElementToBeVisible(quoteBreakdownTheyReceiveValue);
-		waitForElementToBeVisible(quoteBreakdownExchangeHouseFeeValue);
-		waitForElementToBeVisible(quoteBreakdownEstimateTransferTimeValue);
+		getAndroidActions().waitForElementToBeVisible(driver,quoteBreakdownYouSendValue);
+		getAndroidActions().waitForElementToBeVisible(driver,quoteBreakdownExchangeRateValue);
+		getAndroidActions().waitForElementToBeVisible(driver,quoteBreakdownTheyReceiveValue);
+		getAndroidActions().waitForElementToBeVisible(driver,quoteBreakdownExchangeHouseFeeValue);
+		getAndroidActions().waitForElementToBeVisible(driver,quoteBreakdownEstimateTransferTimeValue);
 	}
 
 	public void selectExchange(String exchange)
@@ -226,9 +231,9 @@ public class SetupTransferPage extends AndroidActions {
 		log.info("Select exchange");
 
 		if (exchange.equalsIgnoreCase("LuLu")) {
-			waitForElementToBeVisible(selectLuluExchange).click();
+			getAndroidActions().waitForElementToBeVisible(driver,selectLuluExchange).click();
 		} else if (exchange.equalsIgnoreCase("GCC")){
-			waitForElementToBeVisible(selectGccExchange).click();
+			getAndroidActions().waitForElementToBeVisible(driver,selectGccExchange).click();
 		}
 	}
 
@@ -252,9 +257,9 @@ public class SetupTransferPage extends AndroidActions {
 	{
 		log.info("Select purpose of transaction");
 		if (purpose.equalsIgnoreCase("Family support")) {
-			waitForElementToBeVisible(selectFamilySupportPurposeOfTransaction).click();
+			getAndroidActions().waitForElementToBeVisible(driver,selectFamilySupportPurposeOfTransaction).click();
 		} else if (purpose.equalsIgnoreCase("Savings")){
-			waitForElementToBeVisible(selectSavingsPurposeOfTransaction).click();
+			getAndroidActions().waitForElementToBeVisible(driver,selectSavingsPurposeOfTransaction).click();
 		}
 	}
 
@@ -262,22 +267,22 @@ public class SetupTransferPage extends AndroidActions {
 	{
 		log.info("Select source of fund");
 		if (fundSource.equalsIgnoreCase("Salary")) {
-			waitForElementToBeVisible(selectSalarySourceFund).click();
+			getAndroidActions().waitForElementToBeVisible(driver,selectSalarySourceFund).click();
 		} else if (fundSource.equalsIgnoreCase("Savings")){
-			waitForElementToBeVisible(selectSavingsSourceFund).click();
+			getAndroidActions().waitForElementToBeVisible(driver,selectSavingsSourceFund).click();
 		}
 	}
 
 	public void verifyFamilySupportPurposeSelected()
 	{
 		log.info("Check family support purpose selected");
-		assertTrue(waitForElementToBeVisible(selectFamilySupportPurposeOfTransaction).isSelected());
+		assertTrue(getAndroidActions().waitForElementToBeVisible(driver,selectFamilySupportPurposeOfTransaction).isSelected());
 	}
 
 	public void verifySalarySourceSelected()
 	{
 		log.info("Check salary source selected");
-		assertTrue(waitForElementToBeVisible(selectSalarySourceFund).isSelected());
+		assertTrue(getAndroidActions().waitForElementToBeVisible(driver,selectSalarySourceFund).isSelected());
 	}
 
 	public void setupTransfer(String amount, String receiverCountry, String exchange, String purpose, String fundSource)

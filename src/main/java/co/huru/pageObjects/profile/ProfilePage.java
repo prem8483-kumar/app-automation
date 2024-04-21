@@ -10,13 +10,18 @@ import org.openqa.selenium.By;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class ProfilePage extends AndroidActions {
+public class ProfilePage {
 
 	private static final Logger log = LogManager.getLogger(ProfilePage.class);
+	private AndroidDriver driver;
 
 	public ProfilePage(AndroidDriver driver)
 	{
-		super(driver);
+		this.driver = driver;
+	}
+
+	public AndroidActions getAndroidActions() {
+		return new AndroidActions();
 	}
 
 	private final By backButton = AppiumBy.accessibilityId("huru_back_button");
@@ -105,204 +110,204 @@ public class ProfilePage extends AndroidActions {
 	public void navigateBack()
 	{
 		log.info("Navigate back");
-		waitForElementToBeVisible(backButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,backButton).click();
 	}
 
 	public void gotToPersonalDetailsSection()
 	{
 		log.info("Go to personal details section");
-		waitForElementToBeVisible(personalDetailsSection).click();
+		getAndroidActions().waitForElementToBeVisible(driver,personalDetailsSection).click();
 	}
 
 	public void editName(String name)
 	{
 		log.info("Edit name");
-		waitForElementToBeVisible(editNameLink).click();
-		waitForElementToBeVisible(nameTextBox).sendKeys(name);
-		waitForElementToBeVisible(nameSaveButton).click();
-        assertEquals(waitForElementToBeVisible(nameText).getText(), name);
+		getAndroidActions().waitForElementToBeVisible(driver,editNameLink).click();
+		getAndroidActions().waitForElementToBeVisible(driver,nameTextBox).sendKeys(name);
+		getAndroidActions().waitForElementToBeVisible(driver,nameSaveButton).click();
+        assertEquals(getAndroidActions().waitForElementToBeVisible(driver,nameText).getText(), name);
 	}
 
 	public void editEmail(String email, String otp)
 	{
 		log.info("Edit email");
-		waitForElementToBeVisible(editEmailLink).click();
-		waitForElementToBeVisible(emailTextBox).sendKeys(email);
-		waitForElementToBeVisible(emailSaveButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,editEmailLink).click();
+		getAndroidActions().waitForElementToBeVisible(driver,emailTextBox).sendKeys(email);
+		getAndroidActions().waitForElementToBeVisible(driver,emailSaveButton).click();
 
 		log.info("Enter otp");
-		waitForElementToBeVisible(otpView);
-		sendNumericKeysUsingKeyboard(otp);
+		getAndroidActions().waitForElementToBeVisible(driver,otpView);
+		getAndroidActions().sendNumericKeysUsingKeyboard(driver,otp);
 
 		log.info("Verify updated email");
-		waitForElementToBeVisible(emailVerifyButton).click();
-		waitForElementToBeVisible(personalDetailsSection).click();
-		assertEquals(waitForElementToBeVisible(emailText).getText(), email);
+		getAndroidActions().waitForElementToBeVisible(driver,emailVerifyButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,personalDetailsSection).click();
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,emailText).getText(), email);
 	}
 
 	public void editPhoneNumber(String phoneNumber, String otp)
 	{
 		log.info("Edit phone number");
-		waitForElementToBeVisible(editPhoneNumberLink).click();
-		waitForElementToBeVisible(phoneNumberTextBox).sendKeys(phoneNumber);
-		waitForElementToBeVisible(phoneNumberSaveButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,editPhoneNumberLink).click();
+		getAndroidActions().waitForElementToBeVisible(driver,phoneNumberTextBox).sendKeys(phoneNumber);
+		getAndroidActions().waitForElementToBeVisible(driver,phoneNumberSaveButton).click();
 
 		log.info("Enter otp");
-		waitForElementToBeVisible(otpView);
-		sendNumericKeysUsingKeyboard(otp);
+		getAndroidActions().waitForElementToBeVisible(driver,otpView);
+		getAndroidActions().sendNumericKeysUsingKeyboard(driver,otp);
 
 //		log.info("Verify updated phone");
 //		gotToPersonalDetailsSection();
-//		assertEquals(waitForElementToBeVisible(phoneNumberText).getText(), phoneNumber);
+//		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,phoneNumberText).getText(), phoneNumber);
 	}
 
 	public void verifyEmailFromProfilePage(String otp)
 	{
 		log.info("Verify email from Profile page");
-		waitForElementToBeVisible(verifyEmailLink).click();
-		waitForElementToBeVisible(otpView);
-		waitForElementToBeVisible(otpTextBox_1).click();
-		sendNumericKeysUsingKeyboard(otp);
-		waitForElementToBeVisible(emailVerifyButton).click();
-		waitForElementToBeVisible(personalDetailsSection);
-		assertTrue(waitForElementToBeNotVisible(verifyEmailLink));
+		getAndroidActions().waitForElementToBeVisible(driver,verifyEmailLink).click();
+		getAndroidActions().waitForElementToBeVisible(driver,otpView);
+		getAndroidActions().waitForElementToBeVisible(driver,otpTextBox_1).click();
+		getAndroidActions().sendNumericKeysUsingKeyboard(driver,otp);
+		getAndroidActions().waitForElementToBeVisible(driver,emailVerifyButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,personalDetailsSection);
+		assertTrue(getAndroidActions().waitForElementToBeNotVisible(driver,verifyEmailLink));
 	}
 
 	public void verifyEmailFromPersonalDetailsPage(String otp)
 	{
 		log.info("Verify email from Personal details page");
-		waitForElementToBeVisible(verifyEmailLink).click();
-		waitForElementToBeVisible(otpView);
-		waitForElementToBeVisible(otpTextBox_1).click();
-		sendNumericKeysUsingKeyboard(otp);
-		waitForElementToBeVisible(emailVerifyButton).click();
-		waitForElementToBeVisible(emailText);
-		assertTrue(waitForElementToBeNotVisible(verifyEmailLink));
+		getAndroidActions().waitForElementToBeVisible(driver,verifyEmailLink).click();
+		getAndroidActions().waitForElementToBeVisible(driver,otpView);
+		getAndroidActions().waitForElementToBeVisible(driver,otpTextBox_1).click();
+		getAndroidActions().sendNumericKeysUsingKeyboard(driver,otp);
+		getAndroidActions().waitForElementToBeVisible(driver,emailVerifyButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,emailText);
+		assertTrue(getAndroidActions().waitForElementToBeNotVisible(driver,verifyEmailLink));
 	}
 
 	public void gotToPaymentMethodsSection()
 	{
 		log.info("Go to payment methods section");
-		waitForElementToBeVisible(paymentMethodsSection).click();
+		getAndroidActions().waitForElementToBeVisible(driver,paymentMethodsSection).click();
 	}
 
 	public void verifyPaymentMethods()
 	{
 		log.info("Verify payment methods");
-		waitForElementToBeVisible(bankAccountsTab).click();
-		waitForElementToBeVisible(cardsTab);
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountsTab).click();
+		getAndroidActions().waitForElementToBeVisible(driver,cardsTab);
 		navigateBack();
-		waitForElementToBeVisible(paymentMethodsSection);
+		getAndroidActions().waitForElementToBeVisible(driver,paymentMethodsSection);
 	}
 
 	public void addBankAccount(String userName, String password, String otp)
 	{
 		log.info("Add bank account");
-		if(elementNotVisible(addAccountButton)) {
-			waitForElementToBeVisible(addAccountLink).click();
+		if(getAndroidActions().elementNotVisible(driver,addAccountButton)) {
+			getAndroidActions().waitForElementToBeVisible(driver,addAccountLink).click();
 		} else {
-			waitForElementToBeVisible(addAccountButton).click();
+			getAndroidActions().waitForElementToBeVisible(driver,addAccountButton).click();
 		}
 
-		waitForElementToBeVisible(choseYourBankButton).click();
-		waitForElementToBeVisible(selectBank1).click();
-		waitForElementToBeVisible(connectToBankButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,choseYourBankButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,selectBank1).click();
+		getAndroidActions().waitForElementToBeVisible(driver,connectToBankButton).click();
 
-		waitForElementToBeVisible(bankAccountUserNameTextBox).sendKeys(userName);
-		waitForElementToBeVisible(bankAccountPasswordTextBox).sendKeys(password);
-		waitForElementToBeVisible(bankAccountLoginButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountUserNameTextBox).sendKeys(userName);
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountPasswordTextBox).sendKeys(password);
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountLoginButton).click();
 
-		waitForElementToBeVisible(bankAccountOtpTextBox).click();
-		sendNumericKeysUsingKeyboard(otp);
-		waitForElementToBeVisible(bankAccountOtpSubmitButton).click();
-		waitForElementToBeVisible(bankAccountSuccessButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountOtpTextBox).click();
+		getAndroidActions().sendNumericKeysUsingKeyboard(driver,otp);
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountOtpSubmitButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,bankAccountSuccessButton).click();
 
-		waitForElementToBeVisible(addAccountLink);
+		getAndroidActions().waitForElementToBeVisible(driver,addAccountLink);
 	}
 
 	public void gotToCashbackRewardsSection()
 	{
 		log.info("Go to cashback rewards section");
-		waitForElementToBeVisible(cashbackRewardsSection).click();
+		getAndroidActions().waitForElementToBeVisible(driver,cashbackRewardsSection).click();
 	}
 
 	public void verifyCashbackRewards()
 	{
 		log.info("Verify cashback rewards");
-		waitForElementToBeVisible(cashbackBalanceText);
-		waitForElementToBeVisible(backButtonFromCashbackRewards).click();
-		waitForElementToBeVisible(cashbackRewardsSection);
+		getAndroidActions().waitForElementToBeVisible(driver,cashbackBalanceText);
+		getAndroidActions().waitForElementToBeVisible(driver,backButtonFromCashbackRewards).click();
+		getAndroidActions().waitForElementToBeVisible(driver,cashbackRewardsSection);
 	}
 
 	public void gotToTermsAndConditionSection()
 	{
 		log.info("Go to terms & conditions section");
-		waitForElementToBeVisible(termsAndConditionsSection).click();
+		getAndroidActions().waitForElementToBeVisible(driver,termsAndConditionsSection).click();
 	}
 
 	public void verifyTermsAndConditions()
 	{
 		log.info("Verify Terms & Conditions");
-		waitForElementToBeVisible(termsAndConditionsHeaderText);
-		waitForElementToBeVisible(backButtonFromTermsAndConditions).click();
-		waitForElementToBeVisible(termsAndConditionsSection);
+		getAndroidActions().waitForElementToBeVisible(driver,termsAndConditionsHeaderText);
+		getAndroidActions().waitForElementToBeVisible(driver,backButtonFromTermsAndConditions).click();
+		getAndroidActions().waitForElementToBeVisible(driver,termsAndConditionsSection);
 	}
 
 	public void gotToPrivacyPolicySection()
 	{
 		log.info("Go to privacy policy section");
-		scrollToText("Privacy policy");
-		waitForElementToBeVisible(privacyPolicySection).click();
+		getAndroidActions().scrollToText(driver,"Privacy policy");
+		getAndroidActions().waitForElementToBeVisible(driver,privacyPolicySection).click();
 	}
 
 	public void verifyPrivacyPolicy()
 	{
 		log.info("Verify Privacy Policy");
-		waitForElementToBeVisible(privacyPolicyHeaderText);
-		waitForElementToBeVisible(backButtonFromPrivacyPolicy).click();
-		waitForElementToBeVisible(privacyPolicySection);
+		getAndroidActions().waitForElementToBeVisible(driver,privacyPolicyHeaderText);
+		getAndroidActions().waitForElementToBeVisible(driver,backButtonFromPrivacyPolicy).click();
+		getAndroidActions().waitForElementToBeVisible(driver,privacyPolicySection);
 	}
 
 	public void gotToHelpAndSupportSection()
 	{
 		log.info("Go to help & support section");
-		scrollToText("Help and Support");
-		waitForElementToBeVisible(helpAndSupportSection).click();
+		getAndroidActions().scrollToText(driver,"Help and Support");
+		getAndroidActions().waitForElementToBeVisible(driver,helpAndSupportSection).click();
 	}
 
 	public void verifyHelpAndSupport()
 	{
 		log.info("Verify Help & Support");
-		waitForElementToBeVisible(helpAndSupportHeaderText);
-		waitForElementToBeVisible(backButtonFromHelpAndSupport).click();
-		waitForElementToBeVisible(helpAndSupportSection);
+		getAndroidActions().waitForElementToBeVisible(driver,helpAndSupportHeaderText);
+		getAndroidActions().waitForElementToBeVisible(driver,backButtonFromHelpAndSupport).click();
+		getAndroidActions().waitForElementToBeVisible(driver,helpAndSupportSection);
 	}
 
 	public void gotToLoginSettingsSection()
 	{
 		log.info("Go to login settings section");
-		waitForElementToBeVisible(loginSettingsSection).click();
+		getAndroidActions().waitForElementToBeVisible(driver,loginSettingsSection).click();
 	}
 
 
 	public void changePin(String oldPassCode, String newPasscode, String otp)
 	{
 		log.info("Chane passcode");
-		waitForElementToBeVisible(changePinLink).click();
+		getAndroidActions().waitForElementToBeVisible(driver,changePinLink).click();
 
 		log.info("Enter old passcode");
-		waitForElementToBeVisible(passcodeView);
-		sendNumericKeysUsingKeyboard(oldPassCode);
+		getAndroidActions().waitForElementToBeVisible(driver,passcodeView);
+		getAndroidActions().sendNumericKeysUsingKeyboard(driver,oldPassCode);
 
 		log.info("Enter new passcode");
-		waitForElementToBeVisible(passcodeView);
-		sendNumericKeysUsingKeyboard(newPasscode);
+		getAndroidActions().waitForElementToBeVisible(driver,passcodeView);
+		getAndroidActions().sendNumericKeysUsingKeyboard(driver,newPasscode);
 
 		log.info("Confirm new passcode");
-		waitForElementToBeVisible(passcodeView);
-		waitForElementToBeVisible(passCodeTextBox_1).click();
-		sendNumericKeysUsingKeyboard(newPasscode);
-		waitForElementToBeVisible(confirmPasscodeButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,passcodeView);
+		getAndroidActions().waitForElementToBeVisible(driver,passCodeTextBox_1).click();
+		getAndroidActions().sendNumericKeysUsingKeyboard(driver,newPasscode);
+		getAndroidActions().waitForElementToBeVisible(driver,confirmPasscodeButton).click();
 	}
 
 	public void logOut()
@@ -316,33 +321,33 @@ public class ProfilePage extends AndroidActions {
 	public void gotToLogoutSection()
 	{
 		log.info("Go to logout section");
-		scrollToText("Log out");
-		waitForElementToBeVisible(logoutSection).click();
+		getAndroidActions().scrollToText(driver,"Log out");
+		getAndroidActions().waitForElementToBeVisible(driver,logoutSection).click();
 	}
 
 	public void logOutConfirm()
 	{
 		log.info("Logout confirm");
-		waitForElementToBeVisible(logoutContinueButton).click();
-		waitForElementToBeVisible(phoneNumberTextBox);
+		getAndroidActions().waitForElementToBeVisible(driver,logoutContinueButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,phoneNumberTextBox);
 	}
 
 	public void logOutCancel()
 	{
 		log.info("Logout cancel");
-		waitForElementToBeVisible(logoutCancelButton).click();
-		waitForElementToBeVisible(logoutSection);
+		getAndroidActions().waitForElementToBeVisible(driver,logoutCancelButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,logoutSection);
 	}
 
 	public void activateAccount()
 	{
 		log.info("Activate account");
-		waitForElementToBeVisible(activateAccountButton).click();
-		waitForElementToBeVisible(activateAccountContinueButton).click();
-		waitForElementToBeVisible(outOfUaeAlertIcon);
-		waitForElementToBeVisible(outOfUaeAlertAcceptButton).click();
-		waitForElementToBeVisible(activateAccountCancelButton).click();
-		waitForElementToBeVisible(activateAccountButton);
+		getAndroidActions().waitForElementToBeVisible(driver,activateAccountButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,activateAccountContinueButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,outOfUaeAlertIcon);
+		getAndroidActions().waitForElementToBeVisible(driver,outOfUaeAlertAcceptButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,activateAccountCancelButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,activateAccountButton);
 
 		//ToDo: Check automation feasibility
 	}
@@ -350,15 +355,15 @@ public class ProfilePage extends AndroidActions {
 	public void enableBiometric(String passcode)
 	{
 		log.info("Enable biometric");
-		waitForElementToBeVisible(enableBiometricRadioButton).click();
+		getAndroidActions().waitForElementToBeVisible(driver,enableBiometricRadioButton).click();
 
 		log.info("Enter passcode");
-		waitForElementToBeVisible(passcodeView);
-		sendNumericKeysUsingKeyboard(passcode);
+		getAndroidActions().waitForElementToBeVisible(driver,passcodeView);
+		getAndroidActions().sendNumericKeysUsingKeyboard(driver,passcode);
 
-		waitForElementToBeVisible(biometricHeaderText);
+		getAndroidActions().waitForElementToBeVisible(driver,biometricHeaderText);
 		navigateBack();
-		waitForElementToBeVisible(enableBiometricRadioButton);
+		getAndroidActions().waitForElementToBeVisible(driver,enableBiometricRadioButton);
 
 		//ToDo: Check automation feasibility
 	}

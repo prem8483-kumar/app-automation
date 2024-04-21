@@ -10,13 +10,18 @@ import org.openqa.selenium.By;
 
 import static org.testng.Assert.assertEquals;
 
-public class TransactionsPage extends AndroidActions {
+public class TransactionsPage {
 
 	private static final Logger log = LogManager.getLogger(TransactionsPage.class);
+	private AndroidDriver driver;
 
 	public TransactionsPage(AndroidDriver driver)
 	{
-		super(driver);
+		this.driver = driver;
+	}
+
+	public AndroidActions getAndroidActions() {
+		return new AndroidActions();
 	}
 
 	private final By header = AppiumBy.accessibilityId("id_screen_title");
@@ -25,6 +30,6 @@ public class TransactionsPage extends AndroidActions {
 	public void verifyScreenHeader()
 	{
 		log.info("Verify screen header");
-		assertEquals(waitForElementToBeVisible(header).getText(), AppConstant.TRANSACTIONS_SCREEN_HEADER);
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver,header).getText(), AppConstant.TRANSACTIONS_SCREEN_HEADER);
 	}
 }

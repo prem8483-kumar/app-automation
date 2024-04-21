@@ -19,22 +19,22 @@ public class SelectPaymentMethodTest extends AndroidBaseTest {
 
         log.info("Add promo code test");
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.clickOnGoToPayment();
 
-        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(getDriver());
         selectPaymentPage.addPromoCode(promoCode);
         selectPaymentPage.verifyScreenHeader();
 
@@ -45,22 +45,22 @@ public class SelectPaymentMethodTest extends AndroidBaseTest {
 
         log.info("Add promo code test");
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.clickOnGoToPayment();
 
-        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(getDriver());
         selectPaymentPage.addPromoCode(promoCode);
         selectPaymentPage.clickOnRemovePromoCodeCta();
         selectPaymentPage.verifyScreenHeader();
@@ -71,22 +71,22 @@ public class SelectPaymentMethodTest extends AndroidBaseTest {
 
         log.info("Add promo code test");
 
-        SignInPage signInPage = new SignInPage(driver);
+        SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
-        HomePage homePage = new HomePage(driver);
+        HomePage homePage = new HomePage(getDriver());
         homePage.goToSendMoneyPage();
 
-        SetupTransferPage setupTransferPage = new SetupTransferPage(driver);
+        SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
 
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(driver);
+        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
         selectRecipientPage.selectFirstRecipient();
 
-        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(driver);
+        ReviewTransferPage reviewTransferPage = new ReviewTransferPage(getDriver());
         reviewTransferPage.clickOnGoToPayment();
 
-        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(driver);
+        SelectPaymentPage selectPaymentPage = new SelectPaymentPage(getDriver());
         selectPaymentPage.addPromoCode(invalidPromoCode);
         selectPaymentPage.verifyInvalidPromoCodeError();
     }
