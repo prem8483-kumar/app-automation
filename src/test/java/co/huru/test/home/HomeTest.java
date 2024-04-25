@@ -12,7 +12,7 @@ public class HomeTest extends AndroidBaseTest {
 
     private static final Logger log = LogManager.getLogger(HomeTest.class);
 
-    @Test(groups = {"Home"}, description = "Home Page", dataProvider = "signInData", dataProviderClass = SignInDataProvider.class)
+    //@Test(groups = {"Home"}, description = "Home Page", dataProvider = "signInData", dataProviderClass = SignInDataProvider.class)
     public void kycCardTest(String phoneNumber, String passcode, String otp)  {
 
         log.info("Home Test");

@@ -12,8 +12,8 @@ public class SelectPaymentMethodDataProvider {
         return new Object[][] {
 
                 {Profile.builder()
-                        .phoneNumber("554381407")
-                        .pin("100900")
+                        .phoneNumber("550892370")
+                        .pin("223915")
                         .otp("123456")
                         .build(),
                         "FIRST50"
@@ -27,8 +27,8 @@ public class SelectPaymentMethodDataProvider {
         return new Object[][] {
 
                 {Profile.builder()
-                        .phoneNumber("554381407")
-                        .pin("100900")
+                        .phoneNumber("550892370")
+                        .pin("223915")
                         .otp("123456")
                         .build(),
                         "INVALID"

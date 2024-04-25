@@ -42,7 +42,7 @@ public class AddRecipientDataProvider {
                 {"src/test/resources/testData/addRecipient.json", "99999@@@@@@"},
                 {"src/test/resources/testData/addRecipient.json", "99999ab@@@@"},
                 {"src/test/resources/testData/addRecipient.json", "999999"},
-                {"src/test/resources/testData/addRecipient.json", "523333333"},
+                {"src/test/resources/testData/addRecipient.json", "623333333"},
         };
     }
 

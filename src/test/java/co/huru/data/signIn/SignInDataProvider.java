@@ -8,14 +8,14 @@ public class SignInDataProvider {
     @DataProvider(name = "signInData")
     public Object[][] signInData() {
         return new Object[][] {
-                {"523333333", "100900", "123456"},
+                {"525946055", "100900", "123456"},
         };
     }
 
     @DataProvider(name = "signUpSignInData")
     public Object[][] signUpSignInData() {
         return new Object[][] {
-                {DataGenerator.generateRandomMobileNumber(), "123456", DataGenerator.generateRandomName(), "523333333", "100900", "123456"},
+                {DataGenerator.generateRandomMobileNumber(), "123456", DataGenerator.generateRandomName(), "525946055", "100900", "123456"},
         };
     }
 
@@ -40,14 +40,14 @@ public class SignInDataProvider {
     @DataProvider(name = "invalidPinData")
     public Object[][] invalidPinData() {
         return new Object[][] {
-                {"523333333", "111111"},
+                {"525946055", "111111"},
         };
     }
 
     @DataProvider(name = "invalidOtpData")
     public Object[][] invalidOtpData() {
         return new Object[][] {
-                {"523333333", "100900", "111111"},
+                {"525946055", "100900", "111111"},
         };
     }
 
