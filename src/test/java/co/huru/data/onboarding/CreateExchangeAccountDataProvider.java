@@ -1,4 +1,4 @@
-package co.huru.data.remittance;
+package co.huru.data.onboarding;
 
 import co.huru.dataObjects.CreateExchangeAccountData;
 import co.huru.dataObjects.Profile;
@@ -14,13 +14,13 @@ public class CreateExchangeAccountDataProvider {
 
                 { Profile.builder()
                         .phoneNumber("582323232")
-                        .pin("232323")
+                        .pin("100900")
                         .otp("123456")
                         .build(),
                  CreateExchangeAccountData.builder()
-                        .annualIncome("600000")
-                        .monthlyTransactionNumber("2")
-                        .monthlyTransactionAmount("10000")
+                        .annualIncome("100000")
+                        .monthlyTransactionNumber("10")
+                        .monthlyTransactionAmount("1000")
                         .build()
                 },
         };

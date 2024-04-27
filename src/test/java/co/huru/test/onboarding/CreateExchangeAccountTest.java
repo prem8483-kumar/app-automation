@@ -1,10 +1,11 @@
-package co.huru.test.remittance;
+package co.huru.test.onboarding;
 
-import co.huru.data.remittance.CreateExchangeAccountDataProvider;
+import co.huru.data.onboarding.CreateExchangeAccountDataProvider;
 import co.huru.dataObjects.CreateExchangeAccountData;
 import co.huru.dataObjects.Profile;
+import co.huru.pageObjects.appLaunch.AppLauncherPage;
 import co.huru.pageObjects.home.HomePage;
-import co.huru.pageObjects.remittance.CreateExchangeAccountPage;
+import co.huru.pageObjects.onboarding.CreateExchangeAccountPage;
 import co.huru.pageObjects.remittance.SetupTransferPage;
 import co.huru.pageObjects.signIn.SignInPage;
 import co.huru.utils.AndroidBaseTest;
@@ -17,11 +18,14 @@ public class CreateExchangeAccountTest extends AndroidBaseTest {
 
     private static final Logger log = LogManager.getLogger(CreateExchangeAccountTest.class);
 
-    //ToDo
+
     @Test(groups = {"createAccount"}, description = "Create exchange account", dataProvider = "createExchangeAccountData", dataProviderClass = CreateExchangeAccountDataProvider.class)
     public void createExchangeAccountTest(Profile profile, CreateExchangeAccountData createExchangeAccountData) {
 
         log.info("Create exchange account test");
+
+        AppLauncherPage appLauncherPage = new AppLauncherPage(getDriver());
+        appLauncherPage.navigateValueProps();
 
         SignInPage signInPage = new SignInPage(getDriver());
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
@@ -34,6 +38,8 @@ public class CreateExchangeAccountTest extends AndroidBaseTest {
 
         CreateExchangeAccountPage createAccountPage = new CreateExchangeAccountPage(getDriver());
         createAccountPage.verifyScreenHeader();
+
+        createAccountPage.verifyTncScreen();
         createAccountPage.clickOnExchangeCheckbox();
         createAccountPage.clickOnHuruCheckbox();
         createAccountPage.clickOnContinue();
@@ -42,8 +48,7 @@ public class CreateExchangeAccountTest extends AndroidBaseTest {
         createAccountPage.enterAnnualIncome(createExchangeAccountData.getAnnualIncome());
         createAccountPage.enterMonthlyTransactionNumber(createExchangeAccountData.getMonthlyTransactionNumber());
         createAccountPage.enterMonthlyTransactionAmount(createExchangeAccountData.getMonthlyTransactionAmount());
-        createAccountPage.clickOnContinue();
-
+        createAccountPage.clickOnCreateAccountButton();
     }
 
 }
