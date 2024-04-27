@@ -34,8 +34,9 @@ public class AppConstant {
     public final static String EXCHANGE_QUOTE_BREAKDOWN_MODEL_HEADER ="Quote breakdown";
 
     public final static String CREATE_ACCOUNT_SCREEN_HEADER = "Create account";
-    public final static String CREATE_ACCOUNT_TNC_SCREEN_HEADER = "Create account";
-    public final static String CREATE_ACCOUNT_TNC_SCREEN_DESC = "Create account";
+    public final static String ANNUAL_INCOME_ERROR_MESSAGE = "Create account";
+    public final static String MONTHLY_TRANSACTION_NUMBER_ERROR_MESSAGE = "Create account";
+    public final static String MONTHLY_TRANSACTION_AMOUNT_ERROR_MESSAGE = "Create account";
 
     public final static String SELECT_RECIPIENT_SCREEN_HEADER = "Select recipient";
     public final static String ADD_RECIPIENT_SCREEN_HEADER = "Add recipient details";

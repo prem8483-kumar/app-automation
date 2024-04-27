@@ -27,7 +27,7 @@ public class CreateExchangeAccountPage {
 	private final By header = AppiumBy.accessibilityId("id_screen_title");
 	private final By continueButton = AppiumBy.accessibilityId("id_huru_button_text");
 	private final By closeScreen = AppiumBy.accessibilityId("Close sheet");
-	private final By backButton = AppiumBy.accessibilityId("huru_back_button");
+	private final By backButton = AppiumBy.xpath("//androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View/android.widget.Button");
 
 	private final By tncScreenHeader = AppiumBy.accessibilityId("id_ob_tnc_screen_header");
 	private final By tncScreenDesc = AppiumBy.accessibilityId("id_ob_tnc_screen_desc");
@@ -47,7 +47,12 @@ public class CreateExchangeAccountPage {
 	private final By annualIncomeTextBox = AppiumBy.xpath("//android.widget.EditText[1]");
 	private final By monthlyTransactionNumberTextBox = AppiumBy.xpath("//android.widget.EditText[2]");
 	private final By monthlyTransactionAmountTextBox = AppiumBy.xpath("//android.widget.EditText[3]");
+
 	private final By createAccountButton = AppiumBy.accessibilityId("id_huru_button_text");
+
+	private final By annualIncomeError = AppiumBy.xpath("//android.widget.TextView[@content-desc=\"id_error_msg_title\" and @text=\"Please provide valid annual income\"]");
+	private final By monthlyTransactionNumberError = AppiumBy.xpath("//android.widget.TextView[@content-desc=\"id_error_msg_title\" and @text=\"How many transactions you expect to make each month\"]");
+	private final By monthlyTransactionAmountError = AppiumBy.xpath("//android.widget.TextView[@content-desc=\"id_error_msg_title\" and @text=\"Total amount you expect to send each month\"]");
 
 	public void verifyScreenHeader()
 	{
@@ -116,6 +121,23 @@ public class CreateExchangeAccountPage {
 		getAndroidActions().waitForElementToBeVisible(driver,createAccountButton).click();
 	}
 
+	public void verifyAnnualIncomeError()
+	{
+		log.info("Verify annual income error");
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver, annualIncomeError).getText(), AppConstant.ANNUAL_INCOME_ERROR_MESSAGE);
+	}
+
+	public void verifyMonthlyTransactionNumberError()
+	{
+		log.info("Verify monthly transaction number error");
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver, monthlyTransactionNumberError).getText(), AppConstant.MONTHLY_TRANSACTION_NUMBER_ERROR_MESSAGE);
+	}
+
+	public void verifyMonthlyTransactionAmountError()
+	{
+		log.info("Verify monthly transaction amount error");
+		assertEquals(getAndroidActions().waitForElementToBeVisible(driver, monthlyTransactionAmountError).getText(), AppConstant.MONTHLY_TRANSACTION_AMOUNT_ERROR_MESSAGE);
+	}
 
 	//ToDo: No locators available
 //	public void clickOnExchangeTnCLink()
