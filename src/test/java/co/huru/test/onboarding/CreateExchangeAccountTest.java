@@ -32,7 +32,7 @@ public class CreateExchangeAccountTest extends AndroidBaseTest {
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
         HomePage homePage = new HomePage(getDriver());
-        //homePage.goToSendMoneyPage();
+        homePage.goToSendMoneyPage();
 
         SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
