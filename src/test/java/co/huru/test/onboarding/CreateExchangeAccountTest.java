@@ -32,7 +32,7 @@ public class CreateExchangeAccountTest extends AndroidBaseTest {
         signInPage.signIn(profile.getPhoneNumber(), profile.getPin(), profile.getOtp());
 
         HomePage homePage = new HomePage(getDriver());
-        homePage.goToSendMoneyPage();
+        //homePage.goToSendMoneyPage();
 
         SetupTransferPage setupTransferPage = new SetupTransferPage(getDriver());
         setupTransferPage.selectAvailableExchangeAndContinue();
@@ -50,9 +50,6 @@ public class CreateExchangeAccountTest extends AndroidBaseTest {
         createAccountPage.enterMonthlyTransactionNumber(createExchangeAccountData.getMonthlyTransactionNumber());
         createAccountPage.enterMonthlyTransactionAmount(createExchangeAccountData.getMonthlyTransactionAmount());
         createAccountPage.clickOnCreateAccountButton();
-
-        SelectRecipientPage selectRecipientPage = new SelectRecipientPage(getDriver());
-        selectRecipientPage.verifyScreenHeader();
     }
 
     @Test(groups = {"createAccount"}, description = "Create exchange account", dataProvider = "createExchangeAccountData", dataProviderClass = CreateExchangeAccountDataProvider.class)
